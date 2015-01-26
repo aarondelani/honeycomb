@@ -1,8 +1,278 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+// @import "compass";
+// @import "normalize";
+@import "bootstrap-compass";
+@import "bootstrap-variables";
+@import "bootstrap";
 
-@import "compass";
-@import "normalize";
+@import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700|Roboto:400,300,500,700");
 
+@mixin anti-aliased {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin oswald {
+	font-family: 'Oswald', sans-serif;
+	@include anti-aliased;
+}
+
+@mixin roboto {
+	font-family: 'Roboto', sans-serif;
+	@include anti-aliased;
+}
+
+$ljgreen: #C0D22E;
+$dark-gray: #353535;
+
+body {
+	background: #FFF;
+	font: 14px/1.5 'Helvetica', Arial, sans-serif;
+
+	@include anti-aliased;
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: 400;
+}
+
+a {
+	text-decoration: none;
+}
+
+#navigation {
+	background: #004A80;
+	border-bottom-width: 0;
+
+	@include anti-aliased;
+
+	&, a {
+		color: #FFF;
+	}
+	.nav {
+		> li > a {
+			&:hover, &:focus {
+				color: #FFF;
+				background: #0064AD;
+			}
+		}
+
+		.open {
+			> a {
+				&, &:hover, &:focus {
+					color: #222;
+					background: #EFC100;
+				}
+			}
+		}
+	}
+
+	.divider {
+		background-color: #CAA300;
+	}
+
+	.dropdown-menu {
+		background: #EFC100;
+
+		&, a, .dropdown-header {
+			color: #222;
+		}
+	}
+
+	.navbar-toggle {
+		border-color: #0064AD;
+
+		.icon-bar {
+			background-color: #0064AD;
+		}
+	}
+}
+
+legend {
+	& + .input-group {
+		margin-top: 0;
+	}
+}
+
+
+.input-group {
+		margin: 1em 0;
+	& + .input-group {
+	}
+}
+
+@mixin input-base {
+	border: 1px solid #EAEAEA;
+	font-size: 14px;
+	line-height: 1.5em;
+}
+
+// @mixin button() {
+// 	background: #E9E9E9;
+// 	border-width: 0;
+// 	color: #222;
+
+// 	@include box-shadow(0 -1px 0px 0px rgba(0,0,0,0.3) inset);
+// 	@include background(linear-gradient(to bottom, #EAEAEA 0%,#B9B9B9 100%));
+// 	@include transition-property(box-shadow, background-color);
+// 	@include transition-duration(0.1s);
+// 	@include anti-aliased;
+
+// 	&:hover, &:focus {
+// 		@include box-shadow(0 1px 3px 0px rgba(0, 0, 0, 0.8) inset);
+// 	}
+
+// 	&:active, &:focus {
+// 		color: #FFF;
+
+// 		@include background(linear-gradient(to bottom, #008fd9 0%,#005BCC 100%));
+// 	}
+// }
+
+// input, button, .button {
+// 	display: inline-block;
+// 	padding: 0.5em 0.75em;
+
+// 	@include border-radius(8px);
+// 	@include input-base();
+// }
+
+// input[type=button], button, .button, input[type=color] {
+
+// 	@include button();
+// }
+
+textarea {
+	width: 100%;
+}
+
+.hidden-accessible {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+}
+
+.roboto {
+	font-family: 'Roboto';
+}
+
+header {
+
+}
+
+#content {
+	padding: 4.723em 2em;
+}
+
+#client_bar {
+	.input-group {
+		margin: 0;
+	}
+}
+
+.client-search {
+	margin-right: 0;
+
+
+}
+
+.layout {
+	display: table;
+	width: 100%;
+	.col {
+		display: table-cell;
+		&:first-child .col-content {
+			padding-left: 0;
+		}
+		&:last-child .col-content {
+			padding-right: 0;
+		}
+	}
+	&.show-border .col {
+		border: 1px solid #EAEAEA;
+		border-right-width: 0;
+		border-collapse: collapse;
+
+		&:last-child {
+			border-right-width: 1px;
+		}
+
+		.col-content {
+			padding: 1em;
+		}
+	}
+	.col-content {
+		padding: 1em;
+	}
+	&.wid-30-70 {
+		.col {
+			&:nth-child(1) {
+				width: 30%;
+			}
+			&:nth-child(2) {
+				width: 70%;
+			}
+		}
+	}
+	&.wid-50-50 {
+		.col {
+			&:nth-child(1) {
+				width: 50%;
+			}
+			&:nth-child(2) {
+				width: 50%;
+			}
+		}
+	}
+	&.wid-33-33-33 {
+		.col {
+			width: 33.333%;
+		}
+	}
+}
+
+@import 'dataTablesBoostrap';
+
+
+table {
+	&.stripes, &.blues {
+		th, &.dataTable thead th {
+			background-color: $dark-gray;
+			@include anti-aliased;
+			&, a {
+				color: #FFF;
+			}
+		}
+		th, td {
+			border: 1px solid #FFF;
+			padding: 0.5em 0.75em;
+			text-align: left;
+		}
+	}
+	&.stripes tr {
+		background: #EAEAEA;
+		&:nth-child(even) {
+			background: #FAFAFA;
+		}
+		&:hover td {
+			background: #DAEFFA;
+		}
+	}
+	&.blues tr {
+		background: #C8E5F4;
+		&:nth-child(even) {
+			background: #DAEFFA;
+		}
+		&:hover td {
+			background: #EAF8FF;
+		}
+	}
+}
+
+th {
+	background: #DBDBDB;
+}
+
+th, td {
+	padding: 0.5em 0.75em;
+	border: 1px solid #EAEAEA;
+	text-align: left;
+}
