@@ -7,13 +7,54 @@ var jsonifyUrlQuery = function (query) {
 		function(key, value) { return key===""?value:decodeURIComponent(value) }):{}
 }
 
-var buildRow = function (parent, arr, table) {
-	var parent = $(parent);
+var buildTable = function (params, insert) {
+	table_id = params.table_id;
+	table_classes = params.table_classes;
+	table_headers = params.table_headers;
+
+	var table = $("<table>");
+
+	if (table_id) {
+		table.attr('id', table_id);
+	}
+
+	if (table_classes) {
+		table.attr('class', table_classes);
+	}
+
+	if (table_headers) {
+		buildRow(table_headers, table, true);
+	}
+
+	table.appendTo(insert);
+}
+
+// new buildTable(
+// 	{
+// 		table_id: "constantinople",
+// 		table_classes: "hello world",
+// 		table_headers: [
+// 			"Fruit",
+// 			"name",
+// 			"time"
+// 		]
+// 	},
+// 		$("#wrapper") // insert into html
+// 	);
+
+var buildRow = function (arr, table, hasHeading) {
 	var arr = arr;
 	var table = $(table);
 	var row = $("<tr />");
+	var cell = $("<td />");
 
 	for (var i = 0; i < arr.length; i++) {
+		if (hasHeading && i < arr.length) {
+			cell = $("<th />");
+		} else {
+			cell = $("<td />");
+		}
+
 		arr[i];
 
 		if (arr[i] != undefined) {
@@ -22,7 +63,7 @@ var buildRow = function (parent, arr, table) {
 			t = ""
 		}
 
-		$("<td />").html(t).appendTo(row);
+		cell.html(t).appendTo(row);
 	};
 
 	row.appendTo(table);
@@ -46,7 +87,7 @@ var ajaxifyForm = function (form, success, reset) {
 				url: form.attr('action'),
 				data: form.serialize(),
 				dataType: 'text',
-				processData: false,
+				// processData: false,
 				contentType: 'application/x-www-form-urlencoded',
 				success: function (response) {
 					if (arg !== undefined) {

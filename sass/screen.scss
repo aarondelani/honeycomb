@@ -48,12 +48,18 @@ a {
 	&, a {
 		color: #FFF;
 	}
+
 	.nav {
 		> li > a {
 			&:hover, &:focus {
 				color: #FFF;
 				background: #0064AD;
 			}
+		}
+
+		> li.active > a {
+			color: #FFF;
+			background: #0064AD;
 		}
 
 		.open {
@@ -93,10 +99,17 @@ legend {
 	}
 }
 
-
 .input-group {
 		margin: 1em 0;
 	& + .input-group {
+	}
+}
+
+input {
+	margin: 0.5em 0;
+
+	&:first-child {
+		margin-top: 0;
 	}
 }
 
@@ -230,7 +243,6 @@ header {
 }
 
 @import 'dataTablesBoostrap';
-
 
 table {
 	&.stripes, &.blues {

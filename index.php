@@ -2,6 +2,8 @@
 <?php
 	// Need page preferences here
 
+	$home_page_active = TRUE;
+
 	include 'admin/headers.php';
 	include 'admin/vars.php';
 
