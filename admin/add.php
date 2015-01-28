@@ -15,7 +15,11 @@
 
 <div id="wrapper" class="container-fluid theme-showcase" role="main">
 	<div id="content">
-		<h1>Add a New User</h1>
+		<?php include 'customer_navigation.php' ?>
+
+		<h1>Add Customer</h1>
+		<p>(Functionality is still under construction)</p>
+
 		<form name="submitUser" method="post" action="reqs.php" id="submitUser">
 			<input type="hidden" name="update_user" value="add user">
 
