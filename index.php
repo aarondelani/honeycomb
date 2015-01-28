@@ -29,8 +29,15 @@
 					<li>Compare a CSV to current Customer Database (Coolcat)</li>
 					<li>Mobile Web App ready</li>
 				</ul>
+				<h3>Upcoming Features:</h3>
+				<ul>
+					<li>Customer Company Hierarchy Table (to be used for any queries related to our customers) <br> This will improve sales, inventory, and updates with our customers.</li>
+					<li>Customer Contact List</li>
+				</ul>
 			</div>
 			<div class="col-md-4">
+				<h4>Requests:</h4>
+				<p>If you have any feature requests, please let <a href="mailto:aaron@lesliejordan.com">Aaron Delani</a> know.</p>
 			</div>
 		</div>
 	</div>

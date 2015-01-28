@@ -1,9 +1,1 @@
-/* line 1, ../sass/print.scss */
-body {
-  font-family: 'Helvetica', 'Arial';
-}
-
-/* line 4, ../sass/print.scss */
-header {
-  display: none;
-}
+body{font-family:'Helvetica', 'Arial'}header{display:none}
