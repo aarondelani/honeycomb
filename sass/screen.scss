@@ -1,4 +1,4 @@
-// @import "compass";
+@import "compass/css3";
 // @import "normalize";
 @import "bootstrap-sprockets";
 @import "bootstrap-compass";
@@ -51,8 +51,24 @@ a {
 	animation:         spin 1s infinite; /* IE 10+, Fx 29+ */
 }
 
+#welcome {
+	padding-top: 4.723em;
+	color: #FFF;
+
+	@include anti-aliased;
+	@include background-image(linear-gradient(top, #03212E 0%,#00415D 100%));
+
+	.jumbotron {
+		background: transparent;
+	}
+
+	+ #wrapper #content {
+		padding-top: 1em;
+	}
+}
+
 #navigation {
-	background: #004A80;
+	background: #0D0A05;
 	border-bottom-width: 0;
 
 	@include anti-aliased;
@@ -65,13 +81,13 @@ a {
 		> li > a {
 			&:hover, &:focus {
 				color: #FFF;
-				background: #0064AD;
+				background: #852200;
 			}
 		}
 
 		> li.active > a {
 			color: #FFF;
-			background: #0064AD;
+			background: #852200;
 		}
 
 		.open {
@@ -97,10 +113,10 @@ a {
 	}
 
 	.navbar-toggle {
-		border-color: #0064AD;
+		border-color: #852200;
 
 		.icon-bar {
-			background-color: #0064AD;
+			background-color: #852200;
 		}
 	}
 }
@@ -301,4 +317,11 @@ th, td {
 	padding: 0.5em 0.75em;
 	border: 1px solid #EAEAEA;
 	text-align: left;
+}
+
+@media (min-height: 500px) and (max-width: 360px) {
+	#content {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }

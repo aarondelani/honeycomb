@@ -11,7 +11,6 @@
 
 	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
 ?>
-<script src="<?php echo "$host";?>/javascripts/jquery.csv.js"></script>
 
 <div id="wrapper" class="container-fluid theme-showcase" role="main">
 	<div id="content">

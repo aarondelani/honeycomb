@@ -9,10 +9,30 @@
 
 	include 'navigation.php';
 ?>
-
-<div id="wrapper" class="container-fluid theme-showcase" role="main">
-	<div id="content">
-		<h1>Welcome to Honeycomb</h1>
+<div id="welcome">
+	<div class="container">
+		<div class="jumbotron">
+			<h1><img src="images/honeycomb-logo-line-wht.svg" alt="Honeycomb Logo"><span class="sr-only">Honeycomb</span></h1>
+			<p>The customer relationship management app</p>
+		</div>
+	</div>
+</div>
+<div id="wrapper">
+	<div id="content" class="container" role="main">
+		<div class="row">
+			<div class="col-md-8">
+				<h2>Welcome</h2>
+				<p>Thanks for taking a look at Honeycomb. It&apos;s currently still in development. So don&apos;t be surprised if a few things break.</p>
+				<h3>Features:</h3>
+				<ul>
+					<li>Coolcat Integration for Viewing Customer List</li>
+					<li>Compare a CSV to current Customer Database (Coolcat)</li>
+					<li>Mobile Web App ready</li>
+				</ul>
+			</div>
+			<div class="col-md-4">
+			</div>
+		</div>
 	</div>
 </div>
 

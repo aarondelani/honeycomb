@@ -5,7 +5,11 @@ $mysql_user = 'honeycomb';
 $mysql_password = 'password';
 $honeycomb_db = "HONEYCOMB";
 
-$host = "http://localhost/~aaron/honeycomb";
+
+$host = "http://localhost/~aaron/HONEYCOMB";
+// $host = "http://192.168.0.144/~aaron/honeycomb";
+
+// $site_location = "/Users/~aaron/Sites/HONEYCOMB";
 $site_location = "/Users/~aaron/Sites/HONEYCOMB";
 
 //PARADOX SERVER LEGACY

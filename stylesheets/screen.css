@@ -6289,7 +6289,7 @@ a.thumbnail.active {
 .progress-bar-striped {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
   background-size: 40px 40px;
 }
 
@@ -6309,7 +6309,7 @@ a.thumbnail.active {
 .progress-striped .progress-bar-success {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
 }
 
 /* line 77, ../../../.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_progress-bars.scss */
@@ -6320,7 +6320,7 @@ a.thumbnail.active {
 .progress-striped .progress-bar-info {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
 }
 
 /* line 81, ../../../.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_progress-bars.scss */
@@ -6331,7 +6331,7 @@ a.thumbnail.active {
 .progress-striped .progress-bar-warning {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
 }
 
 /* line 85, ../../../.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_progress-bars.scss */
@@ -6342,7 +6342,7 @@ a.thumbnail.active {
 .progress-striped .progress-bar-danger {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
 }
 
 /* line 1, ../../../.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_media.scss */
@@ -8192,158 +8192,180 @@ a {
 }
 
 /* line 54, ../sass/screen.scss */
+#welcome {
+  padding-top: 4.723em;
+  color: #FFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAzMjEyZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwNDE1ZCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #03212e), color-stop(100%, #00415d));
+  background-image: -moz-linear-gradient(top, #03212e 0%, #00415d 100%);
+  background-image: -webkit-linear-gradient(top, #03212e 0%, #00415d 100%);
+  background-image: linear-gradient(to bottom, #03212e 0%, #00415d 100%);
+}
+/* line 61, ../sass/screen.scss */
+#welcome .jumbotron {
+  background: transparent;
+}
+/* line 65, ../sass/screen.scss */
+#welcome + #wrapper #content {
+  padding-top: 1em;
+}
+
+/* line 70, ../sass/screen.scss */
 #navigation {
-  background: #004A80;
+  background: #0D0A05;
   border-bottom-width: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* line 60, ../sass/screen.scss */
+/* line 76, ../sass/screen.scss */
 #navigation, #navigation a {
   color: #FFF;
 }
-/* line 66, ../sass/screen.scss */
+/* line 82, ../sass/screen.scss */
 #navigation .nav > li > a:hover, #navigation .nav > li > a:focus {
   color: #FFF;
-  background: #0064AD;
+  background: #852200;
 }
-/* line 72, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 #navigation .nav > li.active > a {
   color: #FFF;
-  background: #0064AD;
+  background: #852200;
 }
-/* line 79, ../sass/screen.scss */
+/* line 95, ../sass/screen.scss */
 #navigation .nav .open > a, #navigation .nav .open > a:hover, #navigation .nav .open > a:focus {
   color: #222;
   background: #EFC100;
 }
-/* line 87, ../sass/screen.scss */
+/* line 103, ../sass/screen.scss */
 #navigation .divider {
   background-color: #CAA300;
 }
-/* line 91, ../sass/screen.scss */
+/* line 107, ../sass/screen.scss */
 #navigation .dropdown-menu {
   background: #EFC100;
 }
-/* line 94, ../sass/screen.scss */
+/* line 110, ../sass/screen.scss */
 #navigation .dropdown-menu, #navigation .dropdown-menu a, #navigation .dropdown-menu .dropdown-header {
   color: #222;
 }
-/* line 99, ../sass/screen.scss */
+/* line 115, ../sass/screen.scss */
 #navigation .navbar-toggle {
-  border-color: #0064AD;
+  border-color: #852200;
 }
-/* line 102, ../sass/screen.scss */
+/* line 118, ../sass/screen.scss */
 #navigation .navbar-toggle .icon-bar {
-  background-color: #0064AD;
+  background-color: #852200;
 }
 
-/* line 109, ../sass/screen.scss */
+/* line 125, ../sass/screen.scss */
 legend + .input-group {
   margin-top: 0;
 }
 
-/* line 114, ../sass/screen.scss */
+/* line 130, ../sass/screen.scss */
 .input-group {
   margin: 1em 0;
 }
-/* line 117, ../sass/screen.scss */
+/* line 133, ../sass/screen.scss */
 .input-group input {
   margin: 0;
 }
 
-/* line 122, ../sass/screen.scss */
+/* line 138, ../sass/screen.scss */
 input {
   margin: 0.5em 0;
 }
-/* line 125, ../sass/screen.scss */
+/* line 141, ../sass/screen.scss */
 input:first-child {
   margin-top: 0;
 }
 
-/* line 171, ../sass/screen.scss */
+/* line 187, ../sass/screen.scss */
 textarea {
   width: 100%;
 }
 
-/* line 175, ../sass/screen.scss */
+/* line 191, ../sass/screen.scss */
 .hidden-accessible {
   position: absolute;
   clip: rect(0, 0, 0, 0);
 }
 
-/* line 180, ../sass/screen.scss */
+/* line 196, ../sass/screen.scss */
 .roboto {
   font-family: 'Roboto';
 }
 
-/* line 188, ../sass/screen.scss */
+/* line 204, ../sass/screen.scss */
 #content {
   padding: 4.723em 2em;
 }
 
-/* line 193, ../sass/screen.scss */
+/* line 209, ../sass/screen.scss */
 #client_bar .input-group {
   margin: 0;
 }
 
-/* line 198, ../sass/screen.scss */
+/* line 214, ../sass/screen.scss */
 .client-search {
   margin-right: 0;
 }
 
-/* line 204, ../sass/screen.scss */
+/* line 220, ../sass/screen.scss */
 .layout {
   display: table;
   width: 100%;
 }
-/* line 207, ../sass/screen.scss */
+/* line 223, ../sass/screen.scss */
 .layout .col {
   display: table-cell;
 }
-/* line 209, ../sass/screen.scss */
+/* line 225, ../sass/screen.scss */
 .layout .col:first-child .col-content {
   padding-left: 0;
 }
-/* line 212, ../sass/screen.scss */
+/* line 228, ../sass/screen.scss */
 .layout .col:last-child .col-content {
   padding-right: 0;
 }
-/* line 216, ../sass/screen.scss */
+/* line 232, ../sass/screen.scss */
 .layout.show-border .col {
   border: 1px solid #EAEAEA;
   border-right-width: 0;
   border-collapse: collapse;
 }
-/* line 221, ../sass/screen.scss */
+/* line 237, ../sass/screen.scss */
 .layout.show-border .col:last-child {
   border-right-width: 1px;
 }
-/* line 225, ../sass/screen.scss */
+/* line 241, ../sass/screen.scss */
 .layout.show-border .col .col-content {
   padding: 1em;
 }
-/* line 229, ../sass/screen.scss */
+/* line 245, ../sass/screen.scss */
 .layout .col-content {
   padding: 1em;
 }
-/* line 234, ../sass/screen.scss */
+/* line 250, ../sass/screen.scss */
 .layout.wid-30-70 .col:nth-child(1) {
   width: 30%;
 }
-/* line 237, ../sass/screen.scss */
+/* line 253, ../sass/screen.scss */
 .layout.wid-30-70 .col:nth-child(2) {
   width: 70%;
 }
-/* line 244, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 .layout.wid-50-50 .col:nth-child(1) {
   width: 50%;
 }
-/* line 247, ../sass/screen.scss */
+/* line 263, ../sass/screen.scss */
 .layout.wid-50-50 .col:nth-child(2) {
   width: 50%;
 }
-/* line 253, ../sass/screen.scss */
+/* line 269, ../sass/screen.scss */
 .layout.wid-33-33-33 .col {
   width: 33.333%;
 }
@@ -8720,55 +8742,63 @@ div.FixedHeader_Cloned table {
   margin: 0 !important;
 }
 
-/* line 263, ../sass/screen.scss */
+/* line 279, ../sass/screen.scss */
 table.stripes th, table.stripes.dataTable thead th, table.blues th, table.blues.dataTable thead th {
   background-color: #353535;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* line 266, ../sass/screen.scss */
+/* line 282, ../sass/screen.scss */
 table.stripes th, table.stripes th a, table.stripes.dataTable thead th, table.stripes.dataTable thead th a, table.blues th, table.blues th a, table.blues.dataTable thead th, table.blues.dataTable thead th a {
   color: #FFF;
 }
-/* line 270, ../sass/screen.scss */
+/* line 286, ../sass/screen.scss */
 table.stripes th, table.stripes td, table.blues th, table.blues td {
   border: 1px solid #FFF;
   padding: 0.5em 0.75em;
   text-align: left;
 }
-/* line 276, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 table.stripes tr {
   background: #EAEAEA;
 }
-/* line 278, ../sass/screen.scss */
+/* line 294, ../sass/screen.scss */
 table.stripes tr:nth-child(even) {
   background: #FAFAFA;
 }
-/* line 281, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 table.stripes tr:hover td {
   background: #DAEFFA;
 }
-/* line 285, ../sass/screen.scss */
+/* line 301, ../sass/screen.scss */
 table.blues tr {
   background: #C8E5F4;
 }
-/* line 287, ../sass/screen.scss */
+/* line 303, ../sass/screen.scss */
 table.blues tr:nth-child(even) {
   background: #DAEFFA;
 }
-/* line 290, ../sass/screen.scss */
+/* line 306, ../sass/screen.scss */
 table.blues tr:hover td {
   background: #EAF8FF;
 }
 
-/* line 296, ../sass/screen.scss */
+/* line 312, ../sass/screen.scss */
 th {
   background: #DBDBDB;
 }
 
-/* line 300, ../sass/screen.scss */
+/* line 316, ../sass/screen.scss */
 th, td {
   padding: 0.5em 0.75em;
   border: 1px solid #EAEAEA;
   text-align: left;
+}
+
+@media (min-height: 500px) and (max-width: 360px) {
+  /* line 323, ../sass/screen.scss */
+  #content {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

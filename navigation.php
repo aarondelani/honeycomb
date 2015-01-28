@@ -12,7 +12,7 @@
 		<span class="icon-bar"></span>
 	  </button>
 	  <a class="navbar-brand" href="<?php echo "$host";?>">
-	  	<img src="<?php echo "$host";?>/images/honeycomb-icon.svg" alt="Honeycomb Icon" height="20" width="20">
+	  	<img id="honeycomb_icon" src="<?php echo "$host";?>/images/honeycomb-ico-grad.svg" alt="Honeycomb Icon" height="20" width="20">
 	  </a>
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
@@ -24,8 +24,8 @@
 			<li><a href="<?php echo "$host"; ?>/admin/customers">View Customer List</a></li>
 			<li class="divider"></li>
 			<li class="dropdown-header">Tools</li>
-			<li><a href="<?php echo "$host"; ?>/admin/import_customers">Import and Compare Customer Lists</a></li>
 			<li><a href="<?php echo "$host"; ?>/admin/add">Add Contact or Customer</a></li>
+			<li><a href="<?php echo "$host"; ?>/admin/import_customers">Import and Compare Customer Lists</a></li>
 		  </ul>
 		</li>
 	  </ul>

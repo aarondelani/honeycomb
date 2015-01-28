@@ -1,0 +1,21 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="277.033px" height="319.05px" viewBox="0 0 277.033 319.05" enable-background="new 0 0 277.033 319.05"
+	 xml:space="preserve">
+<polygon fill="#EFC100" points="138.271,319.05 0,239.496 0.242,79.975 138.758,0 277.033,79.551 276.789,239.078 "/>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="252.1846" y1="273.1929" x2="105.6325" y2="126.6408">
+	<stop  offset="0" style="stop-color:#EFC100"/>
+	<stop  offset="1" style="stop-color:#EC6000"/>
+</linearGradient>
+<polygon fill="url(#SVGID_1_)" points="276.789,239.078 276.892,171.986 197.047,92.141 173.305,119.475 173.275,146.38 
+	148.955,147.507 133.849,164.899 106.871,165.278 104.541,198.64 79.986,226.909 159.735,306.658 "/>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="187.2539" y1="200.4595" x2="40.7019" y2="53.9075">
+	<stop  offset="0" style="stop-color:#EFC100"/>
+	<stop  offset="1" style="stop-color:#EC6000"/>
+</linearGradient>
+<polygon fill="url(#SVGID_2_)" points="109.847,92.249 163.957,146.525 102.517,146.525 "/>
+<g>
+	<path fill="#FFFFFF" d="M79.986,92.141h29.694v50.254h57.678V92.141h29.688v134.768h-29.688v-58.245H109.68v58.245H79.986V92.141z"
+		/>
+</g>
+</svg>
