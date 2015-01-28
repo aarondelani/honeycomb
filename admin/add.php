@@ -2,6 +2,11 @@
 <?php
 	// Need page preferences here
 
+	$page_short_title = "Add Customers";
+	$page_title = $page_short_title;
+	$customer_page_active = TRUE;
+	$add_customer_page_active = TRUE;
+
 	include 'headers.php';
 	include 'vars.php';
 
@@ -66,7 +71,7 @@
 	</div>
 </div>
 
-<?php include 'admin/footer.php'; ?>
+<?php include 'footer.php'; ?>
 
 <script type="text/javascript">
 $(document).ready(function(){

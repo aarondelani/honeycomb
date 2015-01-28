@@ -8,6 +8,8 @@
 	} else {
 		$page_title .= " | Honeycomb App";
 	}
+
+	$body_class = "loading";
 ?>
 <!DOCTYPE HTML>
 <head>
@@ -20,4 +22,4 @@
 	<script src="<?php echo "$host";?>/javascripts/jquery.min.js"></script>
 </head>
 
-<body>
+<body class="<?php echo $body_class; ?>">

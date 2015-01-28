@@ -1,5 +1,6 @@
 // @import "compass";
 // @import "normalize";
+@import "bootstrap-sprockets";
 @import "bootstrap-compass";
 @import "bootstrap-variables";
 @import "bootstrap";
@@ -24,6 +25,10 @@
 $ljgreen: #C0D22E;
 $dark-gray: #353535;
 
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
 body {
 	background: #FFF;
 	font: 14px/1.5 'Helvetica', Arial, sans-serif;
@@ -37,6 +42,13 @@ h1, h2, h3, h4, h5 {
 
 a {
 	text-decoration: none;
+}
+
+.loading #navigation .navbar-brand img {
+	-webkit-animation: spin 1s infinite; /* Safari 4+ */
+	-moz-animation:    spin 1s infinite; /* Fx 5+ */
+	-o-animation:      spin 1s infinite; /* Opera 12+ */
+	animation:         spin 1s infinite; /* IE 10+, Fx 29+ */
 }
 
 #navigation {
@@ -100,8 +112,10 @@ legend {
 }
 
 .input-group {
-		margin: 1em 0;
-	& + .input-group {
+	margin: 1em 0;
+
+	input {
+		margin: 0;
 	}
 }
 
