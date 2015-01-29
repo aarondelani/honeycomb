@@ -23,4 +23,22 @@ $paradox_db = "paradox";
 // $paradox_mysql_password = '';
 // $paradox_db = "paradox";
 
+// Check Honeycomb Install
+$mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
+
+if (mysqli_connect_errno()) {
+	printf("Connect failed: %s\n", mysqli_connect_error());
+
+	exit();
+}  else {
+	$tableCheck = $mysql_link->query('SELECT 1 from `setup_config`');
+
+	if ($tableCheck === TRUE) {
+			echo "tables exist!";
+	} else {
+		include 'setup_config.php';
+	}
+}
+
+$mysql_link->close();
 ?>

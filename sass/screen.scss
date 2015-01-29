@@ -68,7 +68,7 @@ a {
 }
 
 #navigation {
-	background: #0D0A05;
+	background: rgba(0,0,0,0.8);
 	border-bottom-width: 0;
 
 	@include anti-aliased;
@@ -119,6 +119,10 @@ a {
 			background-color: #852200;
 		}
 	}
+}
+
+#content {
+	@include anti-aliased;
 }
 
 legend {

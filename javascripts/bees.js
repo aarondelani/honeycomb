@@ -1,4 +1,3 @@
-// var search = location.search.substring(1);
 $body = $("body");
 
 $(document).on(
@@ -96,14 +95,18 @@ var buildRow = function (arr, table, params) {
 var jsonifyUrlQuery = function (query) {
 	search = query;
 
-	return search?JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}',
-		function(key, value) { return key===""?value:decodeURIComponent(value) }):{}
-}
+	return search?JSON.parse(
+		'{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}',
+		function(key, value) {
+			return key === ""?value:decodeURIComponent(value)}
+		):{}
+};
 
 // ajaxifyForm, takes a simple form magically ajaxify's it.
 // First parameter is the form itself. The form needs to have a designated action to it, otherwise it will not create a request.
 // Second parameter is for the action that happens if the transaction is a success.
 // The third parameter is whether or not we want to reset the form
+
 var ajaxifyForm = function (form, success, reset) {
 	var form = $(form);
 	var arg = success;
@@ -137,5 +140,3 @@ var ajaxifyForm = function (form, success, reset) {
 		}
 	);
 };
-
-// Filter Customer Page

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 	// Need page preferences here
 	$page_short_title = "Import Customers";
@@ -7,9 +8,10 @@
 
 	include 'headers.php';
 	include 'vars.php';
-	include '../navigation.php';
 
+	include '../navigation.php';
 ?>
+
 <script src="<?php echo "$host";?>/javascripts/jquery.csv.js"></script>
 
 <div id="wrapper" class="container-fluid theme-showcase" role="main">
@@ -55,8 +57,11 @@
 	</div>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php
 
+	include 'footer.php';
+
+?>
 <script type="text/javascript">
 <?php
 	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
@@ -221,35 +226,12 @@
 		function (event) {
 		$('#csv_table_display').toggleClass('display-matches');
 	});
-<?php /*
-function printTable(file) {
-	var reader = new FileReader();
-	reader.readAsText(file);
-	reader.onload = function(event){
-		var csv = event.target.result;
-		var data = $.csv.toArrays(csv);
-		var html = '';
-		console.log(data);
 
-		for(var row in data) {
-			html += '<tr>\r\n';
-
-			for(var item in data[row]) {
-				html += '<td>' + data[row][item] + '</td>\r\n';
+	$(document).ready(
+		function(){
+			if(isAPIAvailable()) {
+				$('#files').bind('change', handleFileSelect);
 			}
-
-			html += '</tr>\r\n';
 		}
-		$('#contents').html(html);
-	};
-	reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
-}
-*/ ?>
-
-$(document).ready(function(){
-	if(isAPIAvailable()) {
-		$('#files').bind('change', handleFileSelect);
-	}
-});
-
+	);
 </script>

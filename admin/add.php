@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 	// Need page preferences here
 
@@ -18,6 +17,7 @@
 		<?php include 'customer_navigation.php' ?>
 
 		<h1>Add Customer</h1>
+
 		<p>(Functionality is still under construction)</p>
 
 		<form name="submitUser" method="post" action="<?php echo $host; ?>/admin/reqs.php" id="submitUser">
@@ -25,6 +25,7 @@
 
 			<fieldset>
 				<legend>Name:</legend>
+
 				<div class="input-group">
 					<label class="input-group-addon" for="first_name">First Name:</label><input id="first_name" type="text" name="first_name" placeholder="First Name" value="" class="form-control" required>
 				</div>
@@ -34,6 +35,7 @@
 			</fieldset>
 			<fieldset>
 				<legend>Contact Information:</legend>
+
 				<div class="input-group">
 					<label class="input-group-addon" for="email">Email:</label><input id="email" type="email" name="e_mail" placeholder="your@email-address.com" class="form-control">
 				</div>
@@ -46,22 +48,17 @@
 		</form>
 
 		<h2>List of Current Users</h2>
+
 		<table id="user_table" class="table">
 			<thead>
 				<tr>
-					<!-- <th>#</th> -->
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
 					<th>Phone Number</th>
-					<!-- <th>Fax</th>
-					<th>User Assets</th>
-					<th>User Roles</th> -->
 				</tr>
 			</thead>
 			<?php
-				// include_once 'admin/vars.php';
-
 				if ($users_table->num_rows > 0) {
 					// output data of each row
 					while($row = $users_table->fetch_assoc()) {
