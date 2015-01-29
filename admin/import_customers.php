@@ -34,10 +34,18 @@
 					</div>
 				</div>
 
-				<ul class="nav nav-pills nav-stacked sr-only" id="navigate_tables">
-					<li role="presentation" class="active"><a href="#csvpreview">CSV Preview <span class="badge" id="csv_count"></span></a></li>
-					<li role="presentation"><a href="#csvmatches">Matches in Customer Database <span class="badge" id="match_count"></span></a></li>
-				</ul>
+				<div id="navigate_tables" class="panel panel-success sr-only">
+					<div class="panel-heading">
+						<h3 class="panel-title">CSV Preview <span class="badge" id="csv_count"></span> Entries</h3>
+					</div>
+					<div class="panel-body toggle-matches-area">
+						<span class="toggle-matches-form">
+							<input type="checkbox" aria-label="Toggle Matches in DB" name="toggle_matches" id="toggle_matches">
+							<label for="toggle_matches"><span class="label label-warning" id="match_count"></span> Matches in the Coolcat Database</label>
+						</span>
+					</div>
+				</div>
+
 				<p>Contacts are matched by First Name and Last Name and may appear multiple times on our Coolcat Records.</p>
 			</div>
 			<div class="col-md-8" id="table_holder"></div>
@@ -124,47 +132,12 @@
 		var file = files[0];
 
 		// read the file metadata
-		var output = ''
-			output += '<span style="font-weight:bold;">' + escape(file.name) + '</span><br />\n';
-			output += ' - FileType: ' + (file.type || 'n/a') + '<br />\n';
-			output += ' - FileSize: ' + file.size + ' bytes<br />\n';
-			output += ' - LastModified: ' + (file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() : 'n/a') + '<br />\n';
-
-		// read the file contents
-		// printTable(file);
-
-		$("<h3>").html("Preview of the CSV").attr('id', 'csvpreview').appendTo(content);
-
-		new buildTable(
-			{
-				table_id: "csv_non_match_data_table",
-				table_classes: "table blues",
-				table_headers: [
-					"Company Name",
-					"First Name",
-					"Last Name",
-					"Email"
-				]
-			},
-				content // insert into html
-			);
-
-		$("<h3>").html("Matches within the Customer Database").attr('id', 'csvmatches').appendTo(content);
-
-		new buildTable(
-			{
-				table_id: "csv_matches_table",
-				table_classes: "table stripes",
-				table_headers: [
-					"Coolcat Entry",
-					"Company Name",
-					"First Name",
-					"Last Name",
-					"Email"
-				]
-			},
-				content // insert into html
-			);
+		var output = '<strong class="csv-file-name">' + decodeURIComponent(escape(file.name)) + '</strong>\n'
+			output += '<ul>\n';
+			output += '<li>FileType: ' + (file.type || 'n/a') + '</li>\n';
+			output += '<li>FileSize: ' + file.size + ' bytes</li>\n';
+			output += '<li>LastModified: ' + (file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() : 'n/a') + '</li>\n';
+			output += '</ul><hr>';
 
 		new compareArrays(companiesArray, file);
 
@@ -189,45 +162,65 @@
 			var matches_count = 0;
 			var non_matches_count = 0;
 			var holder = [];
+			var cell_class = "";
 
 			csv_customer_array.push(data);
 
-			for(var row in data) {
-				new buildRow(data[row], $('#csv_non_match_data_table'));
-			}
+			$("<h3>").html("Matches within the Customer Database").attr('id', 'csvmatches').appendTo(content);
 
-			for (var j in data) {
+			new buildTable(
+				{
+					table_id: "csv_table_display",
+					table_classes: "table blues",
+					table_headers: data[0]
+				},
+					content // insert into html
+				);
+
+			loopcsv:
+			for (var j = data.length - 1; j >= 0; j--) {
+				tempCSVArr = data[j];
+
+				loopcontacts:
 				for (var i = c.length - 1; i >= 0; i--) {
-				// looping through customer Array
-				// for(var j = data.length - 1; j>=0 ;j--){
 					cust_lastName = String(c[i][2]).toLowerCase();
 					cust_firstName = String(c[i][1]).toLowerCase();
 					lastName = String(data[j][2]).toLowerCase();
 					firstName = String(data[j][1]).toLowerCase();
-					companyName = String(data[j][0]).toLowerCase();
 
 					if ((cust_firstName == firstName) && (cust_lastName == lastName)) {
-						// console.log(c[i].indexOf(companyName));
-						// console.log('email',String(c[i][3]).toLowerCase(), String(data[j][3]).toLowerCase(), (String(c[i][3]).toLowerCase() == String(data[j][3]).toLowerCase()));
 						matches_count = matches_count + 1;
-						tempArr = [c[i][0]];
-						tempArr = tempArr.concat(data[j]);
-						console.log(tempArr);
 
-						new buildRow(tempArr, $('#csv_matches_table'));
+						tempCSVArr = tempCSVArr.concat([c[i][0]]);
+						cell_class = "has-match";
 
 						$('#match_count').html(matches_count);
-						tempArr.length = 0;
 					}
 				}
+
+				new buildRow(tempCSVArr, $('#csv_table_display'), {cellClass: cell_class});
+
+				tempCSVArr.length = 0;
+				cell_class = "";
 			};
 
 			$('#csv_count').html(data.length);
 
 			$body.removeClass("loading");
+
+			if (matches_count <= 0) {
+				$('.toggle-matches-area').addClass('sr-only');
+			}
+
 			return true;
 		};
 	};
+
+	$('.toggle-matches-area').bind(
+		'change',
+		function (event) {
+		$('#csv_table_display').toggleClass('display-matches');
+	});
 <?php /*
 function printTable(file) {
 	var reader = new FileReader();

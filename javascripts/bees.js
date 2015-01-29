@@ -18,13 +18,6 @@ $(document).ready(
 	}
 );
 
-var jsonifyUrlQuery = function (query) {
-	search = query;
-
-	return search?JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}',
-		function(key, value) { return key===""?value:decodeURIComponent(value) }):{}
-}
-
 var buildTable = function (params, insert) {
 	table_id = params.table_id;
 	table_classes = params.table_classes;
@@ -41,7 +34,7 @@ var buildTable = function (params, insert) {
 	}
 
 	if (table_headers) {
-		buildRow(table_headers, table, true);
+		buildRow(table_headers, table, {hasHeading: true});
 	}
 
 	table.appendTo(insert);
@@ -60,32 +53,52 @@ var buildTable = function (params, insert) {
 // 		$("#wrapper") // insert into html
 // 	);
 
-var buildRow = function (arr, table, hasHeading) {
+var buildRow = function (arr, table, params) {
 	var arr = arr;
 	var table = $(table);
 	var row = $("<tr />");
 	var cell = $("<td />");
 
-	for (var i = 0; i < arr.length; i++) {
-		if (hasHeading && i < arr.length) {
+	if (params == undefined) {
+		var params = {
+			hasHeading: false,
+			cellClass: ""
+		};
+	} else {
+		var params = params;
+	}
+
+	for (var i = arr.length - 1; i >=0; i--) {
+		if (params.hasHeading && i < arr.length) {
 			cell = $("<th />");
 		} else {
 			cell = $("<td />");
 		}
 
-		arr[i];
-
 		if (arr[i] != undefined) {
 			t =  arr[i].toString();
 		} else {
-			t = ""
+			t = "";
 		}
 
-		cell.html(t).appendTo(row);
+		cell.html(t).prependTo(row);
 	};
+
+	console.log(params)
+
+	if (params.cellClass != "") {
+		row.addClass(params.cellClass);
+	}
 
 	row.appendTo(table);
 };
+
+var jsonifyUrlQuery = function (query) {
+	search = query;
+
+	return search?JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}',
+		function(key, value) { return key===""?value:decodeURIComponent(value) }):{}
+}
 
 // ajaxifyForm, takes a simple form magically ajaxify's it.
 // First parameter is the form itself. The form needs to have a designated action to it, otherwise it will not create a request.
@@ -105,7 +118,7 @@ var ajaxifyForm = function (form, success, reset) {
 				url: form.attr('action'),
 				data: form.serialize(),
 				dataType: 'text',
-				// processData: false,
+				processData: false,
 				contentType: 'application/x-www-form-urlencoded',
 				success: function (response) {
 					if (arg !== undefined) {

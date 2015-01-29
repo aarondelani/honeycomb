@@ -20,8 +20,8 @@
 		<h1>Add Customer</h1>
 		<p>(Functionality is still under construction)</p>
 
-		<form name="submitUser" method="post" action="reqs.php" id="submitUser">
-			<input type="hidden" name="update_user" value="add user">
+		<form name="submitUser" method="post" action="<?php echo $host; ?>/admin/reqs.php" id="submitUser">
+			<input type="hidden" name="update_user" value="add_user">
 
 			<fieldset>
 				<legend>Name:</legend>
@@ -86,10 +86,11 @@ $(document).ready(function(){
 		subUser,
 		function (form,data) {
 			var data = data;
+			console.log(data);
 
 			new buildRow(
 				form,
-				[data.first_name, data.last_name, data.e_mail, data.phone_1],
+				[data.first_name, data.last_name, escape(data.e_mail), data.phone_1],
 				$("#user_table")
 			);
 		},

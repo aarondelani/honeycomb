@@ -46,9 +46,9 @@ a {
 
 .loading #navigation .navbar-brand img {
 	-webkit-animation: spin 1s infinite; /* Safari 4+ */
-	-moz-animation:    spin 1s infinite; /* Fx 5+ */
-	-o-animation:      spin 1s infinite; /* Opera 12+ */
-	animation:         spin 1s infinite; /* IE 10+, Fx 29+ */
+	-moz-animation: spin 1s infinite; /* Fx 5+ */
+	-o-animation: spin 1s infinite; /* Opera 12+ */
+	animation: spin 1s infinite; /* IE 10+, Fx 29+ */
 }
 
 #welcome {
@@ -307,6 +307,31 @@ table {
 			background: #EAF8FF;
 		}
 	}
+}
+
+// Import CSV
+
+table#csv_table_display {
+	tr.has-match {
+		background-color: #EAEAEA;
+		display: none;
+
+		&:nth-child(even) {
+			background-color: #FAFAFA;
+		}
+	}
+
+	&.display-matches tr.has-match {
+		display: table-row;
+	}
+}
+
+.csv-file-name {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 100%;
+	text-overflow: ellipsis;
 }
 
 th {
