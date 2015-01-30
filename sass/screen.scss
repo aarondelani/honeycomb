@@ -29,6 +29,10 @@ $dark-gray: #353535;
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+html {
+	min-height: 100%;
+}
+
 body {
 	background: #FFF;
 	font: 14px/1.5 'Helvetica', Arial, sans-serif;
@@ -64,6 +68,32 @@ a {
 
 	+ #wrapper #content {
 		padding-top: 1em;
+	}
+}
+
+.login_page {
+	@include background-image(linear-gradient(top, #03212E 0%,#00415D 100%));
+
+	#welcome {
+		background: transparent;
+
+		h1, p {
+			text-align: center;
+		}
+
+		.jumbotron {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		form {
+			background: #FFF;
+			border-radius: 10px;
+			box-shadow: 0 4px 7px 4px rgba(0,0,0,0.25);
+			max-width: 320px;
+			padding: 0.5em 1em 0.85em;
+			margin: 0 auto;
+		}
 	}
 }
 

@@ -10,7 +10,7 @@ $setup_config = "CREATE TABLE setup_config (
 $installQ = "INSERT INTO setup_config (attribute, value) VALUES ('init', '1');";
 
 // UCID = Unique Company ID
-$setupUsers = "CREATE TABLE users_table (
+$installQ .= "CREATE TABLE users_table (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	UUID VARCHAR(30),
 	first_name VARCHAR(30) NOT NULL,
@@ -23,7 +23,7 @@ $setupUsers = "CREATE TABLE users_table (
 );";
 
 // UCID = Unique Company ID
-$setupClientTable = "CREATE TABLE clients_table (
+$installQ .= "CREATE TABLE clients_table (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	UCID VARCHAR(30),
 	company_name VARCHAR(100) NOT NULL,
@@ -40,8 +40,6 @@ $setupClientTable = "CREATE TABLE clients_table (
 // $mysql_link->query($setupUsers);
 
 $setup_config .= $installQ;
-$setup_config .= $setupUsers;
-$setup_config .= $setupClientTable;
 
 if (mysqli_multi_query($mysql_link, $setup_config)){
 	do {

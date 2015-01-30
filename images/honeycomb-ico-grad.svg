@@ -5,13 +5,13 @@
 <polygon fill="#EFC100" points="138.271,319.05 0,239.496 0.242,79.975 138.758,0 277.033,79.551 276.789,239.078 "/>
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="252.1846" y1="273.1929" x2="105.6325" y2="126.6408">
 	<stop  offset="0" style="stop-color:#EFC100"/>
-	<stop  offset="1" style="stop-color:#EC6000"/>
+	<stop  offset="1" style="stop-color:#EC6000" stop-opacity=".8"/>
 </linearGradient>
 <polygon fill="url(#SVGID_1_)" points="276.789,239.078 276.892,171.986 197.047,92.141 173.305,119.475 173.275,146.38 
 	148.955,147.507 133.849,164.899 106.871,165.278 104.541,198.64 79.986,226.909 159.735,306.658 "/>
 <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="187.2539" y1="200.4595" x2="40.7019" y2="53.9075">
 	<stop  offset="0" style="stop-color:#EFC100"/>
-	<stop  offset="1" style="stop-color:#EC6000"/>
+	<stop  offset="1" style="stop-color:#EC6000" stop-opacity=".8"/>
 </linearGradient>
 <polygon fill="url(#SVGID_2_)" points="109.847,92.249 163.957,146.525 102.517,146.525 "/>
 <g>

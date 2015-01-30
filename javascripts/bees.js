@@ -83,8 +83,6 @@ var buildRow = function (arr, table, params) {
 		cell.html(t).prependTo(row);
 	};
 
-	console.log(params)
-
 	if (params.cellClass != "") {
 		row.addClass(params.cellClass);
 	}
@@ -133,10 +131,24 @@ var ajaxifyForm = function (form, success, reset) {
 					if(reset) {
 						form.trigger('reset');
 					}
+
+					console.log(response);
+
+					return arg;
 				}
 			});
 
 			return false; // avoid to execute the actual submit of the form.
 		}
 	);
+};
+
+var logoutForm = $('#log_out_form');
+
+if (logoutForm) {
+	new ajaxifyForm(
+		logoutForm,
+		function (event) {
+			console.log('hello')
+		});
 };

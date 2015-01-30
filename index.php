@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 	// Need page preferences here
 

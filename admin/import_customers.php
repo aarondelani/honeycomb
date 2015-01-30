@@ -5,6 +5,7 @@
 	$page_title = $page_short_title;
 	$customer_page_active = TRUE;
 	$import_customer_page_active = TRUE;
+	// $dataTables = TRUE;
 
 	include 'headers.php';
 	include 'vars.php';
@@ -29,7 +30,7 @@
 						<h3 class="panel-title">Upload CSV</h3>
 					</div>
 					<div class="panel-body" id="inputs">
-						<p>Get started by uploading a csv file.</p>
+						<p>Get started by uploading a csv file:</p>
 						<input class="form-control" type="file" id="files" name="files[]" multiple />
 						<output id="list">
 						</output>
@@ -84,10 +85,6 @@
 		if ($mysql_link->query($insert) === TRUE){
 			// echo "Created Insert CSV DB";
 		}
-	}
-
-	if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-
 	}
 
 	$customers_table = $paradox_mysql_link->query("SELECT * from customers;");
