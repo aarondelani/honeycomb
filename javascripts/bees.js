@@ -132,9 +132,9 @@ var ajaxifyForm = function (form, success, reset) {
 						form.trigger('reset');
 					}
 
-					console.log(response);
+					// console.log(response);
 
-					return arg;
+					return {arg: arg,response: response};
 				}
 			});
 
@@ -143,12 +143,12 @@ var ajaxifyForm = function (form, success, reset) {
 	);
 };
 
-var logoutForm = $('#log_out_form');
+// var logoutForm = $('#log_out_form');
 
-if (logoutForm) {
-	new ajaxifyForm(
-		logoutForm,
-		function (event) {
-			console.log('hello')
-		});
-};
+// if (logoutForm) {
+// 	new ajaxifyForm(
+// 		logoutForm,
+// 		function (event) {
+// 			console.log('hello');
+// 		});
+// };

@@ -30,10 +30,10 @@
 			</li>
 		</ul>
 		<div class="nav navbar-nav navbar-right">
-		<form action="<?php echo $host ?>/core/login_reqs.php" method="POST" id="log_out_form">
-			<input type="hidden" name="log_out" value="log_out">
-			<input type="submit" name="log_out" value="Log Out">
-		</form>
+			<form action="<?php echo $host ?>/core/login_reqs.php" method="POST" id="log_out_form">
+				<input type="hidden" name="log_out" value="TRUE">
+				<input class="btn btn-default" type="submit" name="log_out" value="Log Out">
+			</form>
 		</div>
 	</div><!--/.nav-collapse -->
 	<!-- <div class="navbar-collapse collapse navbar-right">

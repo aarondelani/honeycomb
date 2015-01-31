@@ -24,8 +24,8 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 					$_SESSION['dev']=$UserLine["isdev"];
 					$_SESSION['salesadmin']=$UserLine["issalesadmin"];
 					$response = "true";
+
 					header("Location: ../index.php");
-					echo $response;
 				} else {
 					$response = "error";
 					return $response;
@@ -37,18 +37,15 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 			return $response;
 			echo $response;
 		}
+		echo "true";
 	} else {
 		echo "false";
 	}
 
-	if(isset($_POST["logout"])) {
-		$logout = $_GET["logout"];
-
-		if($logout=="true") {
+	if(isset($_POST["log_out"])) {
 			session_start();
 			session_destroy();
 			header("Location: ../login.php");
-		}
 	} else {
 		$logout="false";
 	}

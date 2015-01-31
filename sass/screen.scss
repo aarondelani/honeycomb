@@ -378,9 +378,19 @@ th, td {
 	text-align: left;
 }
 
-@media (min-height: 500px) and (max-width: 360px) {
+@media (min-height: 550px) and (max-width: 360px) {
 	#content {
-		padding-left: 0;
-		padding-right: 0;
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+	}
+}
+
+@media (min-height: 400px) {
+	.login_page #welcome {
+		padding-top: 0;
+
+		.jumbotron {
+			padding: 10px 0 10px;
+		}
 	}
 }
