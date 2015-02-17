@@ -55,6 +55,10 @@ a {
 	animation: spin 1s infinite; /* IE 10+, Fx 29+ */
 }
 
+.anti-aliased {
+	@include anti-aliased;
+}
+
 #welcome {
 	padding-top: 4.723em;
 	color: #FFF;
@@ -148,6 +152,10 @@ a {
 		.icon-bar {
 			background-color: #852200;
 		}
+	}
+
+	form {
+		padding: 0.55em;
 	}
 }
 
@@ -376,6 +384,59 @@ th, td {
 	padding: 0.5em 0.75em;
 	border: 1px solid #EAEAEA;
 	text-align: left;
+}
+
+.catalog-items {
+	&, li {
+		margin: 0;
+		padding: 0;
+	}
+
+	&:after {
+		content: '';
+		clear: both;
+		display: block;
+	}
+
+	li {
+		float: left;
+		list-style: none;
+		margin: 0 0.5% 1em;
+		text-align: center;
+		width: 24%;
+	}
+
+	a {
+		display: block;
+		color: #222;
+		padding-bottom: 0.5em;
+
+		&:hover, &:focus, &:active {
+			text-decoration: none;
+
+			.thumbnail {
+				border-width: 0;
+				box-shadow: 0 0 5px rgba(0,0,0, 0.4);
+			}
+		}
+	}
+
+	.thumbnail {
+		background: #FFF;
+		height: 200px;
+		margin-bottom: 0.5em;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+		}
+	}
+}
+
+#prod_description {
+	overflow: scroll;
+	height: 300px;
+	max-height: 300px;
 }
 
 @media (min-height: 550px) and (max-width: 360px) {

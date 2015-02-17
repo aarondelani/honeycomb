@@ -7,36 +7,6 @@ $setup_config = "CREATE TABLE setup_config (
 	reg_date TIMESTAMP
 );";
 
-$installQ = "INSERT INTO setup_config (attribute, value) VALUES ('init', '1');";
-
-// UCID = Unique Company ID
-$installQ .= "CREATE TABLE users_table (
-	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	UUID VARCHAR(30),
-	first_name VARCHAR(30) NOT NULL,
-	last_name VARCHAR(30) NOT NULL,
-	email VARCHAR(50),
-	phone_number VARCHAR(20),
-	user_assets BLOB,
-	user_roles TINYBLOB,
-	reg_date TIMESTAMP
-);";
-
-// UCID = Unique Company ID
-$installQ .= "CREATE TABLE clients_table (
-	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	UCID VARCHAR(30),
-	company_name VARCHAR(100) NOT NULL,
-	first_name VARCHAR(30) NOT NULL,
-	last_name VARCHAR(30) NOT NULL,
-	email VARCHAR(50),
-	phone_number VARCHAR(20),
-	fax_number VARCHAR(20),
-	user_assets BLOB,
-	client_roles TINYBLOB,
-	reg_date TIMESTAMP
-);";
-
 // $mysql_link->query($setupUsers);
 
 $setup_config .= $installQ;

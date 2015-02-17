@@ -41,6 +41,20 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 		$sql = "INSERT INTO users_table (first_name, last_name, email, phone_number) VALUES ('$first_name','$last_name','$email','$phone_1');";
 	}
 
+	if ($_POST['addProdCategory']=='addProdCategory') {
+		$categoryName = $_POST['categoryName'];
+		$categoryDescription = $_POST['categoryDescription'];
+
+		$sql = "INSERT INTO _catalogId (catalog_name, catalog_description) VALUES ('$categoryName', '$categoryDescription');";
+	}
+
+	if ($_POST['addProd']=='addProd') {
+		$prod_name = $_POST['prod_name'];
+		$categoryDescription = $_POST['categoryDescription'];
+
+		$sql = "INSERT INTO _prod_table (prod_name, prod_style, prod_material, prod_description) VALUES ('$prod_name', '$prod_style', '$prod_material', '$prod_description');";
+	}
+
 	// $mysql_link->query($sql);
 
 	// $result = $mysql_link->query("SELECT * from users_table;");

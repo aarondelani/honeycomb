@@ -22,14 +22,3 @@
 </div>
 
 <?php include 'admin/footer.php'; ?>
-<script type="text/javascript">
-// $(document).ready(
-// 	function (event) {
-// 	ajaxifyForm(
-// 		$("#login_form"),
-// 		function (event) {
-// 			console.log(event);
-// 		}
-// 	)
-// });
-</script>

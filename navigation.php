@@ -28,11 +28,13 @@
 					<li><a href="<?php echo "$host"; ?>/admin/import_customers">Import and Compare Customer Lists</a></li>
 				</ul>
 			</li>
+			<li class="<?php if ($product_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/product">Product Catalog</a></li>
+			<li><a href="<?php echo "$host"; ?>/wiki/index.php">Wiki</a></li>
 		</ul>
 		<div class="nav navbar-nav navbar-right">
 			<form action="<?php echo $host ?>/core/login_reqs.php" method="POST" id="log_out_form">
 				<input type="hidden" name="log_out" value="TRUE">
-				<input class="btn btn-default" type="submit" name="log_out" value="Log Out">
+				<button class="btn btn-default form-controls" type="submit" name="log_out" value="Log Out">Log Out <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
 			</form>
 		</div>
 	</div><!--/.nav-collapse -->

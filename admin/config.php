@@ -3,7 +3,7 @@
 $mysql_server = '127.0.0.1:3306';
 $mysql_user = 'honeycomb';
 $mysql_password = 'password';
-$honeycomb_db = "HONEYCOMB";
+$honeycomb_db = "_honeycomb";
 
 
 $host = "http://192.168.0.144/~aaron/honeycomb";

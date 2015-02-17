@@ -4,6 +4,7 @@
 	echo $prefs;
 
 	session_start();
+
 	if($_SESSION['siteuser'] !=0){
 		$loggedIn = TRUE;
 

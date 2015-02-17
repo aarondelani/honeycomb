@@ -1,0 +1,1 @@
+LOAD DATA INFILE '~/Desktop/attribute_library.csv' INTO TABLE _product_attr_library FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n';
