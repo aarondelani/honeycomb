@@ -29,7 +29,6 @@
 				</ul>
 			</li>
 			<li class="<?php if ($product_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/product">Product Catalog</a></li>
-			<li><a href="<?php echo "$host"; ?>/wiki/index.php">Wiki</a></li>
 		</ul>
 		<div class="nav navbar-nav navbar-right">
 			<form action="<?php echo $host ?>/core/login_reqs.php" method="POST" id="log_out_form">

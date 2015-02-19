@@ -5,6 +5,9 @@
 <script src="<?php echo "$host";?>/javascripts/dataTables.tableTools.min.js"></script>
 <script src="<?php echo "$host";?>/javascripts/dataTables.bootstrap.js"></script>
 <?php } ?>
+<?php if($charts) { ?>
+<script src="<?php echo "$host";?>/javascripts/Chart.min.js"></script>
+<?php } ?>
 <?php if ($bootstrapWYSIWYG) { ?>
 <script src="<?php echo "$host";?>/javascripts/bootstrap-wysiwyg.js"></script>
 <script src="<?php echo "$host";?>/javascripts/jquery.hotkeys.js"></script>
