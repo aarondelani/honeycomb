@@ -48,6 +48,20 @@ a {
 	text-decoration: none;
 }
 
+legend {
+	font-size: 1.5em;
+	font-weight: 400;
+	margin: 0;
+}
+
+fieldset + fieldset {
+	padding-top: 0.5em;
+
+	legend {
+		padding-top: 0.15em;
+	}
+}
+
 .loading #navigation .navbar-brand img {
 	-webkit-animation: spin 1s infinite; /* Safari 4+ */
 	-moz-animation: spin 1s infinite; /* Fx 5+ */
@@ -102,7 +116,8 @@ a {
 }
 
 #navigation {
-	background: rgba(0,0,0,0.8);
+	// background: rgba(0,0,0,0.8);
+	background: rgba(0, 33, 60, 0.86);
 	border-bottom-width: 0;
 
 	@include anti-aliased;
@@ -115,13 +130,13 @@ a {
 		> li > a {
 			&:hover, &:focus {
 				color: #FFF;
-				background: #852200;
+				background: #057DD3;
 			}
 		}
 
 		> li.active > a {
 			color: #FFF;
-			background: #852200;
+			background: #0069B5;
 		}
 
 		.open {
@@ -157,6 +172,17 @@ a {
 	form {
 		padding: 0.55em;
 	}
+}
+
+.navbar-nav>li>a.btn {
+	padding: 0.5em;
+	margin: 0.5em;
+}
+
+#logOutButton {
+	background: transparent;
+	border-color: transparent;
+	color: #FFF;
 }
 
 #content {
@@ -395,6 +421,12 @@ th, td {
 
 // Product Pages
 
+.navbar {
+	input {
+		margin: 0;
+	}
+}
+
 .product-info {
 	h3, h4 {
 		margin-top: 0;
@@ -413,10 +445,29 @@ th, td {
 	}
 }
 
+.editor {
+	overflow: scroll;
+	max-height: 200px;
+	min-height: 200px;
+}
+
+.typeahead.dropdown-menu {
+	li {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
 #prod_description {
 	overflow: scroll;
 	height: 300px;
 	max-height: 300px;
+}
+
+.add-order-form {
+	h3 {
+		margin-top: 0;
+	}
 }
 
 @media (min-height: 550px) and (max-width: 360px) {

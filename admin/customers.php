@@ -5,8 +5,8 @@
 	$customer_page_active = TRUE;
 	$dataTables = TRUE;
 
-	include 'headers.php';
 	include 'vars.php';
+	include 'headers.php';
 
 	include '../navigation.php';
 

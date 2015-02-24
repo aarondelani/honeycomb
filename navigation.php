@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <nav class="navbar navbar-fixed-top" id="navigation">
   <div class="container-fluid">
 	<div class="navbar-header">
@@ -18,6 +14,7 @@
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
 			<li class="<?php if ($home_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>">Home</a></li>
+			<li class="<?php if ($order_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/orders">Orders</a></li>
 			<li class="dropdown<?php if ($customer_page_active||$import_customer_page_active) {echo " active";} ?>">
 				<a href="<?php echo "$host"; ?>/admin/customers" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Customers<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
@@ -33,12 +30,9 @@
 		<div class="nav navbar-nav navbar-right">
 			<form action="<?php echo $host ?>/core/login_reqs.php" method="POST" id="log_out_form">
 				<input type="hidden" name="log_out" value="TRUE">
-				<button class="btn btn-default form-controls" type="submit" name="log_out" value="Log Out">Log Out <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+				<button id="logOutButton" class="btn btn-default form-controls" type="submit" name="log_out" value="Log Out"><span class="sr-only">Log Out</span> <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
 			</form>
 		</div>
-	</div><!--/.nav-collapse -->
-	<!-- <div class="navbar-collapse collapse navbar-right">
-		
-	</div> -->
+	</div>
   </div>
 </nav>

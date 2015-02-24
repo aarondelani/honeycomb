@@ -7,8 +7,8 @@
 	$page_title = "Login to Honeycomb";
 	$body_class = " login_page";
 
-	include 'admin/headers.php';
 	include 'admin/vars.php';
+	include 'admin/headers.php';
 ?>
 <div id="welcome">
 	<div class="container">

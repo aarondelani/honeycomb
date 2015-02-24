@@ -1,7 +1,8 @@
 <?php
-include '../admin/config.php';
+include '../admin/vars.php';
 
 $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
+
 	if((isset($_POST["login_process"])) || !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 		$process = $_POST["login_process"];
 		$clientname = $_POST["username"];

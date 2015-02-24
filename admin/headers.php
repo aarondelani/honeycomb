@@ -1,23 +1,4 @@
 <?php
-	include 'config.php';
-
-	echo $prefs;
-
-	session_start();
-
-	if($_SESSION['siteuser'] !=0){
-		$loggedIn = TRUE;
-
-		if ($login_page){
-			header("Location: index.php");
-		}
-	} else {
-		$loggedIn = FALSE;
-
-		if (!$login_page){
-			header("Location: login.php");
-		}
-	}
 
 	if ($page_title == "") {
 		$page_title = "Honeycomb App";

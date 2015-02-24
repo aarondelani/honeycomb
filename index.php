@@ -2,15 +2,19 @@
 	// Need page preferences here
 
 	$home_page_active = TRUE;
+	$autocomplete = TRUE;
+
+	include 'admin/vars.php';
 
 	include 'admin/headers.php';
-	include 'admin/vars.php';
 
 	include 'navigation.php';
 ?>
 <div id="wrapper">
 	<div id="content" class="container" role="main">
-		
+		<?php
+			echo $_SESSION['siteuser'];
+		?>
 	</div>
 </div>
 

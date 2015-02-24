@@ -7,10 +7,18 @@
 	$import_customer_page_active = TRUE;
 	// $dataTables = TRUE;
 
-	include 'headers.php';
 	include 'vars.php';
+	include 'headers.php';
 
 	include '../navigation.php';
+
+	$mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
+
+	$csvdata_check = $mysql_link->query('SELECT 1 from `csvdata`');
+
+	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
+
+	$customers_table = $paradox_mysql_link->query("SELECT * from customers;");
 ?>
 
 <script src="<?php echo "$host";?>/javascripts/jquery.csv.js"></script>
@@ -56,6 +64,25 @@
 			<div id="table_holder"></div>
 		</div>
 
+
+<?php
+	// if ($customers_table->num_rows > 0) {
+	// 	// output data of each row
+	// 	while($row = $customers_table->fetch_assoc()) {
+	// 		$mstrng = "/(\*DO NOT SELL\*|\*DO NOT QUOTE\*|\*DO NOT QTE\*|ACS\-|ZZB|S2L|ZZJ|ZZK|SCRN|ASI\-|ZZV|ZZE|RUN|RETAIL\-|NYRR\-|MAR\-|ZZDL|EM\-|BTL|BIKE\-|ALA\-|WA\-|TRI\-|CA|ZZSHOW|ZZS|ZZQ|ZZO|ATS|RRCA\-|ZZM|ZZMMAP|ZZLN|ZZLM|ZZLDR|ZZLDN|AHA\-|NY|ZZJFU|SHOW|SCRN\-A|RRCA\-|RRCA\-TX\-|RRCA\-VT\-|RRM|RSM|RRCA\-OH\-|RRCA\-NJ\-|RRCA\-NY|RFC\-WA\-|RFC|PROD\-|PRO\-|PRO|PARK\-|LLS\-WA)(.*)/";
+	// 		$custName_parsed = mysql_escape_string($row["cust_name"]);
+
+	// 		$replacement = '$2","$1';
+
+	// 		$custName_parsed = preg_replace($mstrng, $replacement, $custName_parsed);;
+	// 		$custName_parsed = strtolower($custName_parsed);
+
+	//  		echo "\"0\",\"" . mysql_escape_string($row["cust_id"]) . "\",\"" . ucwords($custName_parsed). "\"<br>";
+	// 	}
+	// } else {
+	// }
+?>
+
 	<!-- End Content Div -->
 	</div>
 </div>
@@ -67,10 +94,6 @@
 ?>
 <script type="text/javascript">
 <?php
-	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
-	$mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
-
-	$csvdata_check = $mysql_link->query('SELECT 1 from `csvdata`');
 
 	if ($csvdata_check === TRUE){
 	} else {
@@ -89,7 +112,6 @@
 		}
 	}
 
-	$customers_table = $paradox_mysql_link->query("SELECT * from customers;");
 	$company_table = "";
 
 	if ($customers_table->num_rows > 0) {
@@ -106,7 +128,6 @@
 ?>
 
 	var companiesArray = [<?php echo $company_table; ?>];
-	// var companiesArray = [["ZZJ WOUNDED WARRIOR PROJECT 2015", "ROGER", "JONES", "roger@pacificat-shirts.com"],["*DO NOT QUOTE* ALWAYS ADVANCING 2014", "CHRIS", "SEILER", "chris@alwaysadvancing.net"],["ZZK BIKE-YOUNG SURVIVAL COALITION 2014", "SASHA", "LATIMER", "Sasha.Latimer@cbr.nestle.com"],["*DO NOT QUOTE*COMP-ALANIC (APPAREL MANUFACTURER)", "ROD", "SAIF", "rod.saif@alanic.com"],["*DO NOT SELL* OSI-OREGON SCREEN IMPRESSIONS 2014", "MICHELLE", "SATTER", "purchasing@oregonscreen.comn / karaf@oregonscreen.com"],["..MAPQUEST..--see ANTENNA INTL 2011", "", "", ""],["2011 MILITARY KIDS FUNDRAISER", "MELISSA", "MIXAN", "BMIXAN@MSN.COM"],["20TH CLASS REUNION NAVAL ACADEMY 2011", "QUINCY", "FLEMMING", ""],["3V3 WORLD SOCCER 2010", "ADAM", "GERMEK", "adam.germek@3v3worldtour.com"],["A-T CHILDRENS PROJECT 2015 ATCP", "ALETIA", "PATTERSON", "aletia@atcp.org"],["AAA IDAHO 2006", "CELESTE", "NEWBERRY", "celeste.newberry@aaaidaho.com"],["AAHPERD-TAHPERD-AUSTIN TX 2002", "QUENTIN", "CHRISTIAN", ""],["ABS ENV & BUS SYSTEMS", "SCOTT", "MYERS", ""],["ABS PROMOTIONS 2008", "MARLA", "SINGER", "marlasinger@abspromotions.com"],["ACCA-AUSTIN CONTACT CENTER ALLIANCE 2011", "MARY", "REILLY", "Mary.Reilly@ni.com, jparker1988@austin.rr.com"],["ACCENTURE (GOV\'T MKT UNIT)2008", "JULIA", "KORSAKOVA", "h.jacob.brody@accenture.com"],["ACCENTURE/CHICAGO TRIATHLON 2006", "BOB", "MCHENRY", "joe.d.dandra@accenture.com"],["ACCUSTAT SPORTS TIMING 2012", "JOHN", "KERN", "johnwkern@yahoo.com"],["ACHIEVE FITNESS/1ST MARATHON 2009", "BRIAN", "COLLINS", "brian@1stmarathon.com"],["ACHILLES INTERNATIONAL 2015 FREEDOM TEAM", "MARY", "BRYANT McCour", "mbryant@achillesinternational.org"],["ACME RUNNING COMPANY 2008", "RICHARD", "WEINERT", "rweinerthcd.ca.gov / karenb@cityofwestsacramento.org"],["ACS-ALBANY NATL DETERMINATION PROCUREMENT 2012", "MICHELE", "MACK", "anthony.marino@cancer.org"],["ACS-CA-BERKELEY-RELAY FOR LIFE 2012", "JANNA", "KATZ", "denny.cone@cancer.org"],["ACS-EA MAKING STRIDES 2010 EASTERN DIVISION", "MICHELE", "LUISI", "michele.luisi@cancer.org/sue.ellen.kelly@cancer.org"],["ACS-GA-GEORGIA OFFICE 2011", "TIFFINY", "HUBBARD", "tiffiny.hubbard@cancer.org/karen.krause@cancer.org"],["ACS-ID-COEUR D\'ALENE-TOUR de COEUR 2012", "CYNTHIA", "ROZYLA", "cynthia@acsidaho.org   jhenr6906@aol.com"],["ACS-IL ACS CHICAGO 2010 MAKING STRIDES", "ANNE", "McNAMARA", "emily.hamilton@cancer.org/karli.smith@cancer.org"],["ACS-LA ACS-MID SOUTH NEW ORLEANS LOUISIANA 2012", "RHONDA", "CHISENHALL", "rhonda.chisenhall@cancer.org"]];
 	var content = $("#table_holder");
 
 	function isAPIAvailable() {
