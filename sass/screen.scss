@@ -182,7 +182,7 @@ fieldset + fieldset {
 #logOutButton {
 	background: transparent;
 	border-color: transparent;
-	color: #FFF;
+	display: block;
 }
 
 #content {
@@ -441,6 +441,20 @@ th, td {
 
 		img {
 			max-width: 100%;
+		}
+	}
+}
+#manage_product_bar {
+	border-width: 0 0 1px;
+	border-radius: 0;
+}
+.list-products {
+	.media {
+		margin-top: 0;
+
+		.media-object {
+			max-height: 2em;
+			max-width: 2em;
 		}
 	}
 }

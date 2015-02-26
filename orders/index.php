@@ -36,6 +36,10 @@
 				}
 			}
 		}
+
+		if ($_GET["oipid"]) {
+			
+		}
 	}
 
 	if (isset($_GET['ordst'])) {
@@ -208,24 +212,70 @@
 								</div>
 							</div>
 							<div class="description form-control editor" id="editor">Description</div>
+							 
 							<select class="form-control" name="material" id="material">
 								<option value="material">Material</option>
 
 <?php 
-	$materials = $mysql_link->query("SELECT * FROM _product_attr_library WHERE _product_type = 0;");
-	// print_r($materials);
-	if ($materials->num_rows > 0) {
-		// output data of each row
-		while($material = $materials->fetch_assoc()) {
-			// print_r($product);
+	// $materials = $mysql_link->query("SELECT * FROM _product_attr_library WHERE _product_type = 0;");
+	// // print_r($materials);
+	// if ($materials->num_rows > 0) {
+	// 	// output data of each row
+	// 	while($material = $materials->fetch_assoc()) {
+	// 		// print_r($product);
 
-			echo "<option value=\"" . mysql_escape_string($material["id"]) . "\">" . mysql_escape_string($material["name"]) . "</option>";
-		}
-	}
+	// 		echo "<option value=\"" . mysql_escape_string($material["id"]) . "\">" . mysql_escape_string($material["name"]) . "</option>";
+	// 	}
+	// }
  ?>
 
 
 							</select>
+								<?php
+									$product_options = $mysql_link->query("SELECT * FROM _prod_attributes_options;");
+									$product_option_library = $mysql_link->query("SELECT * FROM product_option_library WHERE _product_type = $product_primary_type;");
+									// print_r($product_options);
+
+									$other_print_opt = FALSE;
+									$other_print_list = NULL;
+									if ($product_options->num_rows > 0) {
+										// output data of each row
+										while($prod_option = $product_options->fetch_assoc()) {
+											$print_opt = FALSE;
+											$print_list = NULL;
+
+											if ($product_option_library->num_rows > 0) {
+												// output data of each row
+												while($options = $product_option_library->fetch_assoc()) {
+													if ($options["_prod_attr_option"] == $prod_option["id"]) {
+														$print_opt = TRUE;
+														$print_list .= "<option value=\"" . mysql_escape_string($options["id"]) . "\">" . mysql_escape_string($options["name"]) . " " . mysql_escape_string($options["val"]) . "</option>";
+													} else {
+														$other_print_opt = TRUE;
+														$other_print_list .= "<option value=\"" . mysql_escape_string($options["id"]) . "\">" . mysql_escape_string($options["name"]) . " " . mysql_escape_string($options["val"]) . "</option>";
+													}
+												}
+											}
+
+											if ($print_opt) {
+												echo "<select class=\"form-control\" data=\"" . mysql_escape_string($prod_option["id"]) . "\">";
+												echo $print_list;
+												echo "</select>";
+											}
+
+											if ($other_print_opt) {
+												echo "<select class=\"form-control\" data=\"" . mysql_escape_string($prod_option["id"]) . "\">";
+												echo $other_print_list;
+												echo "</select>";
+											}
+
+											$print_opt = FALSE;
+											$print_list = NULL;
+											$other_print_opt = FALSE;
+											$other_print_list = NULL;
+										}
+									}
+								?>
 						</div>
 						<div class="col-md-6">
 
@@ -264,6 +314,7 @@ if($add_order) {
 			// Some item from your model is active!
 			console.log(current.id, current.styleNumber, current.productType);
 			if (current.name == $addProductInput.val()) {
+				window.location = "index.php?oipid=" + current.id;
 				// This means the exact match is found. Use toLowerCase() if you want case insensitive match.
 			} else {
 				// This means it is only a partial match, you can either add a new item 

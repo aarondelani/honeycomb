@@ -132,7 +132,7 @@ var ajaxifyForm = function (form, success, reset) {
 						form.trigger('reset');
 					}
 
-					// console.log(response);
+					console.log(response);
 
 					return {arg: arg,response: response};
 				}

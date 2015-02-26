@@ -12,9 +12,8 @@
 ?>
 <div id="wrapper">
 	<div id="content" class="container" role="main">
-		<?php
-			echo $_SESSION['siteuser'];
-		?>
+		<h1>Hey <?php echo ucfirst($_SESSION["username"]);?>,</h1>
+		<p>Here&apos;s what&apos;s been going on:</p>
 	</div>
 </div>
 

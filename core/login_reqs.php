@@ -21,6 +21,7 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 					session_start();
 
 					$_SESSION['siteuser']=$UserLine["userid"];
+					$_SESSION['username']=$UserLine["username"];
 					$_SESSION['admin']=$UserLine["isadmin"];
 					$_SESSION['dev']=$UserLine["isdev"];
 					$_SESSION['salesadmin']=$UserLine["issalesadmin"];
