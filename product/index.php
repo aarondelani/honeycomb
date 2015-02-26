@@ -31,7 +31,6 @@
 		}
 	}
 
-
 	$searchValue = "";
 	if (isset($_GET["search"])) {
 		$searchQuery = htmlspecialchars($_GET["search"]);
@@ -250,6 +249,8 @@ $(document).ready(function(){
 		true //clear form
 	);
 
+	var attribute_table = $('#attribute_table');
+
 	var add_attr_form = $('#add_attr_form'),
 		add_attr_button = $('#add_attr_button');
 
@@ -259,11 +260,18 @@ $(document).ready(function(){
 			var data = data;
 			console.log(data);
 
-			// new buildRow(
-			// 	form,
-			// 	[data.first_name, data.last_name, escape(data.e_mail), data.phone_1],
-			// 	$("#user_table")
-			// );
+			if (!attribute_table) {
+				new buildTable(
+				{
+					table_id: 'attribute_table'
+				}, $("#product_contents"));
+			}
+
+			new buildRow(
+				form,
+				[data.attr, data.val],
+				$("#attribute_table")
+			);
 		},
 		true //clear form
 	);

@@ -10,6 +10,15 @@
 	</div>
 
 	<div class="collapse navbar-collapse" id="client_bar">
+	<form class="navbar-form navbar-right" action="index.php" method="get" name="id" id="searchProducts" role="search">
+			<div class="form-group">
+				<div class="input-group">
+					<input type="text" id="search_products" autocomplete="off" class="form-control" name="search" placeholder="Search for a Product" value="<?php echo $searchValue; ?>">
+					<!-- <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span> -->
+					<span class="input-group-btn"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Submit</span></button></span>
+				</div>
+			</div>
+		</form>
 		<ul class="nav navbar-nav">
 			<?php
 				$products_types_arr = "[";
@@ -52,14 +61,5 @@
 			  </ul>
 			</li>
 		</ul>
-		<form class="navbar-form navbar-right" action="index.php" method="get" name="id" id="searchProducts" role="search">
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" id="search_products" autocomplete="off" class="form-control" name="search" placeholder="Search for a Product" value="<?php echo $searchValue; ?>">
-					<!-- <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span> -->
-					<span class="input-group-btn"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Submit</span></button></span>
-				</div>
-			</div>
-		</form>
 	</div>
 </nav>

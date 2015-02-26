@@ -428,14 +428,22 @@ th, td {
 }
 
 .product-info {
+	h2 {
+		margin-top: 0.4em;
+	}
 	h3, h4 {
 		margin-top: 0;
 	}
+
+	h2, h3, h4 {
+		line-height: 1.5em;
+	}
+
 	.catalog-image {
 		border: 1px solid #EAEAEA;
 		display: inline-block;
 		margin: 0.45em;
-		max-width: 11.6em;
+		max-width: 11.95em;
 		overflow: hidden;
 		vertical-align: top;
 
@@ -444,10 +452,13 @@ th, td {
 		}
 	}
 }
+
 #manage_product_bar {
 	border-width: 0 0 1px;
 	border-radius: 0;
+	margin-bottom: 0;
 }
+
 .list-products {
 	.media {
 		margin-top: 0;

@@ -2,18 +2,18 @@
 	<div class="panel-heading">
 		<h2 class="heading">
 			<?php echo $_product_name; ?> <small style="background: <?php echo $primary_type_color; ?>" class="label label-primary">Style: <?php echo $_product_style; ?></small>
-			<a class="btn btn-default text-right" href="<?php echo $manage_product_link; ?>"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Manage <?php echo $_product_name; ?></span></a>
+			<a class="btn btn-default <?php if($manage_product) {echo "active";} ?>" href="<?php echo $manage_product_link; ?>"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Manage <?php echo $_product_name; ?></span></a>
 		</h2>
 	</div>
 	<?php if ($manage_product) { ?>
 		<nav class="navbar navbar-default" id="manage_product_bar">
 			<div class="container-fluid">
 				<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#addMaterial">Add Material Attribute</button>
-				<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#addMaterial">Add Option</button>
+				<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#addOption">Add Option</button>
 			</div>
 		</nav>
 	<?php } ?>
-	<div class="panel-body" data="">
+	<div class="panel-body" id="product_contents">
 		<?php
 			if ($_product_description != NULL) {
 				echo "<h3>Description</h3>";
@@ -71,7 +71,7 @@
 				if ($attrs_regular != "") {
 					echo
 						"<h4>Attributes</h4>" .
-						"<table class=\"table\">" .
+						"<table class=\"table\" id=\"attribute_table\">" .
 						"<thead><tr><th>Attribute</th><th>Value</th></tr></thead>" .
 						$attrs_regular .
 						"</table>";
@@ -87,70 +87,31 @@
 			} else {
 				echo "<hr><div class=\"alert alert-warning\" role=\"alert\">Couldn&apos;t find any attributes for ".$_product_name.".</div>";
 			}
-		?>
 
-			<?php
-				$product_options = $mysql_link->query("SELECT * FROM _prod_attributes_options;");
-				$product_option_library = $mysql_link->query("SELECT * FROM product_option_library WHERE _product_type = $product_primary_type;");
+			$product_options = $mysql_link->query("SELECT * FROM _prod_attributes_options;");
+			$product_option_library = $mysql_link->query("SELECT * FROM product_option_library WHERE _product_type = $product_primary_type;");
 
-				$print_opt = FALSE;
-				$print_list = NULL;
-				$other_print_opt = FALSE;
-				$other_print_list = NULL;
-				$pre_prnt_temp = "<li class=\"list-group-item\" data=\"";
-				$post_prnt_temp = "</li>";
+			$print_opt = FALSE;
+			$print_list = NULL;
+			$pre_prnt_temp = "<option class=\"\" value=\"";
+			$post_prnt_temp = "</option>\n";
+			$print_list_options = "";
 
-				if ($manage_product) {
-					$pre_prnt_temp = "<option class=\"\" value=\"";
-					$post_prnt_temp = "</option>\n";
-				}
+			if ($product_options->num_rows > 0) {
+				while($prod_option = $product_options->fetch_assoc()) {
+					$print_list_options .= $pre_prnt_temp . mysql_escape_string($prod_option["id"]) . "\">" . mysql_escape_string($prod_option["_attr_name"]) . $post_prnt_temp;
 
-				if ($product_options->num_rows > 0) {
-					while($prod_option = $product_options->fetch_assoc()) {
-						if ($product_option_library->num_rows > 0) {
-							while($options = $product_option_library->fetch_assoc()) {
-								if ($options["_prod_attr_option"] == $prod_option["id"]) {
-									$print_opt = TRUE;
-									$print_list .= $pre_prnt_temp . mysql_escape_string($options["id"]) . "\">" . mysql_escape_string($options["name"]) . " " . mysql_escape_string($options["val"]) . $post_prnt_temp;
-								} else {
-									$other_print_opt = TRUE;
-									$other_print_list .= $pre_prnt_temp . mysql_escape_string($options["id"]) . "\">" . mysql_escape_string($options["name"]) . " " . mysql_escape_string($options["val"]) . $post_prnt_temp;
-								}
+					if ($product_option_library->num_rows > 0) {
+						while($options = $product_option_library->fetch_assoc()) {
+							if ($options["_prod_attr_option"] == $prod_option["id"]) {
+								$print_opt = TRUE;
+								$print_list .= $pre_prnt_temp . mysql_escape_string($options["id"]) . "\">" . mysql_escape_string($options["name"]) . " " . mysql_escape_string($options["val"]) . $post_prnt_temp;
 							}
 						}
 					}
 				}
-
-				if ($manage_product) {
-					echo "<div class=\"\">";
-					if ($print_opt) {
-
-						echo "<div class=\"\" data=\"" . mysql_escape_string($prod_option["id"]) . "\"><strong>" . mysql_escape_string($prod_option["_attr_name"]) . "s available for " . $_product_name . "</strong>";
-						echo "<ul class=\"list-group\">" . $print_list . "</ul>";
-						echo "</div>";
-					}
-
-					if ($other_print_opt) {
-						echo "<div class=\"lm\" data=\"" . mysql_escape_string($prod_option["id"]) . "\"><strong>Other possible custom options available for " . $product_primary_type_name . "</strong>";
-						echo "<ul>" . $other_print_list;
-						echo "</ul></div>";
-					}
-					echo "</div>";
-				} else {
-
-
-				// if ($manage_product) {
-				//
-
-				// 	if ($other_print_opt) {
-				// 		echo "<select class=\"form-control\" data=\"" . mysql_escape_string($prod_option["id"]) . "\">";
-				// 		echo $other_print_list;
-				// 		echo "</select>";
-				// 	}
-				// }
-			?>
-
-			<?php } ?>
+			}
+		?>
 <div class="modal anti-aliased fade" id="addMaterial">
 	<div class="modal-dialog">
 		<form class="modal-content" id="add_attr_form" action="index.php" method="post" name="add_attribute">
@@ -193,11 +154,11 @@
 				<input type="hidden" name="add_attr" value="TRUE">
 				<input type="hidden" name="prod_id" value="<?php echo $id_product; ?>">
 				<input type="hidden" name="attr" value="0">
-				<label for="val">Material:</label>
+				<label for="val">Option:</label>
 				<?php
 					if ($print_opt) {
 						echo "<select name=\"val\" class=\"form-control\" data=\"" . mysql_escape_string($prod_option["id"]) . "\">";
-						echo $print_list;
+						echo $print_list_options;
 						echo "</select>";
 					}
 				 ?>

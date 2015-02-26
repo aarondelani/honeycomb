@@ -19,6 +19,7 @@
 	<script src="<?php echo "$host";?>/javascripts/jquery.min.js"></script>
 
 	<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
+	<meta name="theme-color" content="#223E55" />
 
 	<link rel="manifest" href="<?php echo $host; ?>/manifest.json">
 	<meta name="mobile-web-app-capable" content="yes">

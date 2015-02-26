@@ -142,13 +142,3 @@ var ajaxifyForm = function (form, success, reset) {
 		}
 	);
 };
-
-// var logoutForm = $('#log_out_form');
-
-// if (logoutForm) {
-// 	new ajaxifyForm(
-// 		logoutForm,
-// 		function (event) {
-// 			console.log('hello');
-// 		});
-// };
