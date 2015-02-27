@@ -79,7 +79,7 @@ $manage_product_link = "index.php?id=". $id . "&manage=" . TRUE;
 
 if (isset($_GET['manage'])) {
 	$manage_product = $_GET['manage'];
-
 	$manage_product_link = "index.php?id=". $id;
+	$bootstrapWYSIWYG = TRUE;
 }
 ?>

@@ -51,24 +51,18 @@
 		$foundProduct_type = TRUE;
 		$ptid = $_GET['ptid'];
 	}
-	// $bootstrapWYSIWYG = TRUE;
 
 	include '../navigation.php';
 ?>
 <div id="wrapper">
-	<div id="content" class="container" role="main">
+	<div id="content" class="container-fluid" role="main">
 		<?php include 'navbar.php'; ?>
+		<?php
+			if ($foundProduct) {
+				include 'display_product.php';
+			}
+		?>
 		<div class="catalog-wrapper">
-			<?php
-				if ($foundProduct) {
-					include 'display_product.php';
-				}
-			?>
-
-			<?php if (isset($_GET['id']) && !$foundProduct) { ?>
-				<div class="alert alert-danger" role="alert">Whoops, couldn&apos;t find the product you were looking for.</div>
-			<?php } ?>
-
 			<?php
 				if ($foundProduct){
 					$similar_products = $mysql_link->query("SELECT * FROM products WHERE _product_style LIKE '%$_product_style%' AND '$_product_style' != products._product_style;");
@@ -89,16 +83,14 @@
 			<?php
 					}
 				}
-			?>
 
-			<?php
 			if ($foundProduct_type || $searching) {
 				$query = NULL;
 
 				if ($ptid === "all") {
-					$query .= "SELECT * FROM products;";
-
 					$catalog_title = "Showing All Products";
+
+					$query .= "SELECT * FROM products;";
 				} else {
 					$query .="SELECT * FROM products WHERE $ptid = products._product_primary_type;";
 				}
@@ -111,7 +103,6 @@
 
 				$prod_cat_by_type = $mysql_link->query($query);
 			?>
-
 				<h1><?php echo $catalog_title; ?></h1>
 
 				<div class="list-group list-products">
@@ -136,7 +127,6 @@
 						}
 					?>
 				</div>
-
 			<?php
 			} else {
 				if (!$foundProduct){
@@ -151,12 +141,9 @@
 					</div>
 				</div>
 			<?php
-
 				}
 			}
 			?>
-			</div>
-
 		</div>
 	</div>
 </div>

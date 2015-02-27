@@ -93,6 +93,7 @@ fieldset + fieldset {
 	@include background-image(linear-gradient(top, #03212E 0%,#00415D 100%));
 
 	#welcome {
+		margin-top: 25%;
 		background: transparent;
 
 		h1, p {
@@ -467,6 +468,10 @@ th, td {
 			max-height: 2em;
 			max-width: 2em;
 		}
+
+		.media-object, .media-left, .media-body {
+			vertical-align: middle;
+		}
 	}
 }
 
@@ -504,6 +509,7 @@ th, td {
 
 @media (min-height: 400px) {
 	.login_page #welcome {
+		margin-top: 0;
 		padding-top: 0;
 
 		.jumbotron {

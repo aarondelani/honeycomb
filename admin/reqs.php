@@ -7,7 +7,6 @@ $mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb
 
 if (mysqli_connect_errno()) {
 	printf("Connect failed: %s\n", mysqli_connect_error());
-
 	exit();
 }  else {
 }

@@ -9,7 +9,13 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 		$clientpassword = $_POST["password"];
 		$response = "";
 
-		$uSQL="SELECT * FROM user where username like '".$clientname."';";
+		if (isset($_SESSION['login_tries'])) {
+			$_SESSION['login_tries'] = $_SESSION['login_tries'] + 1;
+		} else {
+			$_SESSION['login_tries'] = 0;
+		}
+
+		$uSQL="SELECT * FROM user where username like '" . $clientname . "';";
 
 		$rsUser = $paradox_mysql_link->query($uSQL) or die('Error querying database');
 
@@ -18,16 +24,14 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 		if($num_rows >0) {
 			while($UserLine = mysqli_fetch_array($rsUser)) {
 				if(md5($clientpassword)==$UserLine["userpassword"]) {
-					session_start();
 
 					$_SESSION['siteuser']=$UserLine["userid"];
 					$_SESSION['username']=$UserLine["username"];
 					$_SESSION['admin']=$UserLine["isadmin"];
 					$_SESSION['dev']=$UserLine["isdev"];
 					$_SESSION['salesadmin']=$UserLine["issalesadmin"];
-					$response = "true";
 
-					header("Location: ../index.php");
+					$response = "true";
 				} else {
 					$response = "error";
 					return $response;
@@ -39,6 +43,9 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 			return $response;
 			echo $response;
 		}
+
+		header("Location: ../index.php");
+
 		echo "true";
 	} else {
 		echo "false";

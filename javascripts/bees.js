@@ -142,3 +142,63 @@ var ajaxifyForm = function (form, success, reset) {
 		}
 	);
 };
+
+var compareVals = function(obj) {
+	inputs = obj;
+
+	inputs.each(function(i){
+		var i = $(this);
+		var discrepancy = 0;
+
+		i.on('keypress change', function (){
+			var inputVal = i.val();
+			var inputParent = i.parent('td');
+			var compareTo = $('.'+i.attr('data-compare')).val();
+
+			if (parseInt(inputVal) > parseInt(compareTo)) {
+				console.log(true, "still greater than");
+
+				if(inputParent.hasClass('has-warning')) {
+					inputParent.removeClass('has-warning');
+				}
+			} else {
+				console.log(false, "LESS THAN");
+
+				if(!inputParent.hasClass('has-warning')) {
+					inputParent.addClass('has-warning');
+				}
+			}
+		});
+
+		console.log(i.attr('data-compare'));
+	});
+};
+
+// var inputs = $('.input-data');
+// compareVals(inputs);
+// MARKUP:
+// <table class="table" id="sizing">
+// 		<thead>
+// 	<tr>
+// 			<th>Size 1</th>
+// 			<th>Size 2</th>
+// 			<th>Size 3</th>
+// 			<th>Size 4</th>
+// 			<th>Size 5</th>
+// 	</tr>
+// 		</thead>
+// 	<tr>
+// 		<td><input data-compare="size-1" class="input-data form-control" type="number" placeholder="0" value="0"></td>
+// 		<td><input data-compare="size-2" class="input-data form-control" type="number" placeholder="0" value="0"></td>
+// 		<td><input data-compare="size-3" class="input-data form-control" type="number" placeholder="0" value="0"></td>
+// 		<td><input data-compare="size-4" class="input-data form-control" type="number" placeholder="0" value="0"></td>
+// 		<td><input data-compare="size-5" class="input-data form-control" type="number" placeholder="0" value="0"></td>
+// 	</tr>
+// 	<tr>
+// 		<td><input class="form-control size-1" type="number" value="0"></td>
+// 		<td><input class="form-control size-2" type="number" value="2"></td>
+// 		<td><input class="form-control size-3" type="number" value="5"></td>
+// 		<td><input class="form-control size-4" type="number" value="8"></td>
+// 		<td><input class="form-control size-5" type="number" value="9"></td>
+// 	</tr>
+// </table>

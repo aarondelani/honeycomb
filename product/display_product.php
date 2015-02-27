@@ -112,6 +112,14 @@
 				}
 			}
 		?>
+
+
+		<?php if (isset($_GET['id']) && !$foundProduct) { ?>
+			<div class="alert alert-danger" role="alert">Whoops, couldn&apos;t find the product you were looking for.</div>
+		<?php } ?>
+	</div>
+</div>
+
 <div class="modal anti-aliased fade" id="addMaterial">
 	<div class="modal-dialog">
 		<form class="modal-content" id="add_attr_form" action="index.php" method="post" name="add_attribute">
@@ -140,8 +148,6 @@
 	</div>
 </div>
 
-	</div>
-</div>
 
 <div class="modal anti-aliased fade" id="addOption">
 	<div class="modal-dialog">
@@ -162,6 +168,7 @@
 						echo "</select>";
 					}
 				 ?>
+				 <input type="text" class="form-control" value="">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

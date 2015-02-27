@@ -1,24 +1,29 @@
 <?php
-
 include_once 'config.php';
+echo $prefs;
 
-	echo $prefs;
+session_start();
+$_SESSION['url'] = $_SERVER['HTTP_REFERER'];
 
-	session_start();
+if($_SESSION['siteuser'] !=0){
+	$loggedIn = TRUE;
 
-	if($_SESSION['siteuser'] !=0){
-		$loggedIn = TRUE;
+	// if(isset($_REQUEST['redirurl'])) {
+	// 	$url = $_REQUEST['redirurl']; // holds url for last page visited.
 
-		if ($login_page){
-			header("Location: index.php");
-		}
-	} else {
-		$loggedIn = FALSE;
+	// 	header("Location: $url");
+	// } else {
+		// header("Location: index.php");
+	// }
 
-		if (!$login_page){
-			header("Location: login.php");
-		}
+	$_SESSION['login_tries'] = 0;
+} else {
+	$loggedIn = FALSE;
+
+	if (!$login_page){
+		header("Location: ".$host."/login.php");
 	}
+}
 
 $mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
 

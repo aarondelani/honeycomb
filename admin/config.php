@@ -41,4 +41,5 @@ if (mysqli_connect_errno()) {
 }
 
 $mysql_link->close();
+
 ?>
