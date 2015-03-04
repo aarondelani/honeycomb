@@ -5,6 +5,8 @@
 @import "bootstrap-variables";
 @import "bootstrap";
 
+@import "fontawesome/font-awesome.scss";
+
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700|Roboto:400,300,500,700");
 
 @mixin anti-aliased {
@@ -74,8 +76,10 @@ fieldset + fieldset {
 }
 
 #welcome {
-	padding-top: 4.723em;
 	color: #FFF;
+	padding-top: 4.723em;
+	position: relative;
+	overflow: hidden;
 
 	@include anti-aliased;
 	@include background-image(linear-gradient(top, #03212E 0%,#00415D 100%));
@@ -86,6 +90,23 @@ fieldset + fieldset {
 
 	+ #wrapper #content {
 		padding-top: 1em;
+	}
+
+	.honeycomb-icon {
+		opacity: 0.8;
+		position: absolute;
+		top: -5%;
+		right: 0;
+		height: 125%;
+	}
+
+	&:hover .honeycomb-icon {
+		opacity: 1;
+
+		-webkit-animation: spin 1s 1; /* Safari 4+ */
+		-moz-animation: spin 1s 1; /* Fx 5+ */
+		-o-animation: spin 1s 1; /* Opera 12+ */
+		animation: spin 1s 1; /* IE 10+, Fx 29+ */
 	}
 }
 
@@ -218,41 +239,6 @@ input {
 	line-height: 1.5em;
 }
 
-// @mixin button() {
-// 	background: #E9E9E9;
-// 	border-width: 0;
-// 	color: #222;
-
-// 	@include box-shadow(0 -1px 0px 0px rgba(0,0,0,0.3) inset);
-// 	@include background(linear-gradient(to bottom, #EAEAEA 0%,#B9B9B9 100%));
-// 	@include transition-property(box-shadow, background-color);
-// 	@include transition-duration(0.1s);
-// 	@include anti-aliased;
-
-// 	&:hover, &:focus {
-// 		@include box-shadow(0 1px 3px 0px rgba(0, 0, 0, 0.8) inset);
-// 	}
-
-// 	&:active, &:focus {
-// 		color: #FFF;
-
-// 		@include background(linear-gradient(to bottom, #008fd9 0%,#005BCC 100%));
-// 	}
-// }
-
-// input, button, .button {
-// 	display: inline-block;
-// 	padding: 0.5em 0.75em;
-
-// 	@include border-radius(8px);
-// 	@include input-base();
-// }
-
-// input[type=button], button, .button, input[type=color] {
-
-// 	@include button();
-// }
-
 textarea {
 	width: 100%;
 }
@@ -264,10 +250,6 @@ textarea {
 
 .roboto {
 	font-family: 'Roboto';
-}
-
-header {
-
 }
 
 #content {
@@ -282,8 +264,6 @@ header {
 
 .client-search {
 	margin-right: 0;
-
-
 }
 
 .layout {
@@ -455,9 +435,13 @@ th, td {
 }
 
 #manage_product_bar {
-	border-width: 0 0 1px;
+	border-width: 1px 0 0;
 	border-radius: 0;
 	margin-bottom: 0;
+}
+
+#order_page_nav {
+	padding-top: 0.5em;
 }
 
 .list-products {
@@ -488,10 +472,10 @@ th, td {
 	}
 }
 
-#prod_description {
+#prod_description_edit {
 	overflow: scroll;
-	height: 300px;
-	max-height: 300px;
+	height: 100%;
+	min-height: 300px;
 }
 
 .add-order-form {

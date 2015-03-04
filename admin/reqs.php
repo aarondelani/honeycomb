@@ -1,93 +1,145 @@
 <?php
-
-include_once 'config.php';
-
-// Create connection
-$mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
-
-if (mysqli_connect_errno()) {
-	printf("Connect failed: %s\n", mysqli_connect_error());
-	exit();
-}  else {
-}
-
-// function mysql_insert($table, $inserts) {
-// 	$values = array_map('mysql_real_escape_string', array_values($inserts));
-// 	$keys = array_keys($inserts);
-
-// 	return mysql_query('INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
-// }
-// mysql_insert(
-// 	'cars', //table
-// 	array( //key value pair
-// 		'make' => 'Aston Martin',
-// 		'model' => 'DB9',
-// 		'year' => '2009',
-// 	)
-// );
-
-//is ajax
-
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-// if (isset($_POST['submit'])){
+	include_once 'config.php';
 
-	if ($_POST['update_user']=='add_user') {
-		$first_name = $_POST['first_name'];
-		$last_name = $_POST['last_name'];
-		$email = $_POST['e_mail'];
-		$phone_1 = $_POST['phone_1'];
+	// Create connection
+	$mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
+	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
 
-		$sql = "INSERT INTO users_table (first_name, last_name, email, phone_number) VALUES ('$first_name','$last_name','$email','$phone_1');";
-	}
+	if (mysqli_connect_errno()) {
+		printf("Connect failed: %s\n", mysqli_connect_error());
 
-	if ($_POST['addProdCategory']=='addProdCategory') {
-		$categoryName = $_POST['categoryName'];
-		$categoryDescription = $_POST['categoryDescription'];
+		exit();
+	} else {
+		if ($_GET['from']=='customers') {
+			if ($_GET['query'] != '') {
+				$query = "WHERE cust_name LIKE '%" . $_GET['query'] . "%' LIMIT 20";
+			} else {
+				$query = '';
+			}
 
-		$sql = "INSERT INTO _catalogId (catalog_name, catalog_description) VALUES ('$categoryName', '$categoryDescription');";
-	}
+			if ($_GET['query'] == 'all') {
+				$customers_table = $paradox_mysql_link->query("SELECT * FROM customers;");
+			} else {
+				$customers_table = $paradox_mysql_link->query("SELECT * FROM customers $query;");
+			}
 
-	if ($_POST['addProd']=='addProd') {
-		$prod_name = $_POST['prod_name'];
-		$categoryDescription = $_POST['categoryDescription'];
+			$customers_results = '[';
 
-		$sql = "INSERT INTO _prod_table (prod_name, prod_style, prod_material, prod_description) VALUES ('$prod_name', '$prod_style', '$prod_material', '$prod_description');";
-	}
+			if ($customers_table->num_rows > 0) {
+				// output data of each row
+				while($row = $customers_table->fetch_assoc()) {
+					// $mstrng = "/(\*DO NOT SELL\*|\*DO NOT QUOTE\*|\*DO NOT QTE\*|ACS\-|ZZB|S2L|ZZJ|ZZK|SCRN|ASI\-|ZZV|ZZE|RUN|RETAIL\-|NYRR\-|MAR\-|ZZDL|EM\-|BTL|BIKE\-|ALA\-|WA\-|TRI\-|CA|ZZSHOW|ZZS|ZZQ|ZZO|ATS|RRCA\-|ZZM|ZZMMAP|ZZLN|ZZLM|ZZLDR|ZZLDN|AHA\-|NY|ZZJFU|SHOW|SCRN\-A|RRCA\-|RRCA\-TX\-|RRCA\-VT\-|RRM|RSM|RRCA\-OH\-|RRCA\-NJ\-|RRCA\-NY|RFC\-WA\-|RFC|PROD\-|PRO\-|PRO|PARK\-|LLS\-WA)(.*)/";
+					$custName_parsed = mysql_escape_string($row["cust_name"]);
 
-	// $mysql_link->query($sql);
+					// $replacement = '$2","$1';
+					$replacement = '$2';
 
-	// $result = $mysql_link->query("SELECT * from users_table;");
+					// $custName_parsed = preg_replace($mstrng, $replacement, $custName_parsed);;
+					$custName_parsed = strtolower($custName_parsed);
 
-	// Perform Query
-	if ($sql) {
-		if ($mysql_link->query($sql) === TRUE) {
-		    echo "New record created successfully ". $result;
-		} else {
-			die('Error: ' . mysqli_error($mysql_link) . mysql_affected_rows());
-		    echo "Error: " . $sql . "<br>" . $mysql_link->error;
+					$customers_results .= '{id: ' . mysql_escape_string($row["cust_id"]) . ', name:"' . ucwords($custName_parsed) . '"},';
+
+					// array_push($customers_results, array(mysql_escape_string($row["cust_id"]),ucwords($custName_parsed)));
+					// echo "\"0\",\"" . mysql_escape_string($row["cust_id"]) . "\",\"" . ucwords($custName_parsed) . "\"<br>";
+				}
+			} else {
+			}
+
+			$customers_results .= ']';
+
+			echo utf8_encode(json_encode($customers_results));
 		}
-	}
 
-	// Perform Multiple Queries
-	if ($multi_sql) {
-		if (mysqli_multi_query($mysql_link, $multi_sql)){
-			do {
-				/* store first result set */
-				if ($result = mysqli_store_result($mysql_link)) {
-					while ($row = mysqli_fetch_row($result)) {
-						// printf("%s\n", $row[0]);
+		$sql = '';
+		$multi_sql = '';
+
+		if ($_POST['update_user']=='add_user') {
+			$first_name = $_POST['first_name'];
+			$last_name = $_POST['last_name'];
+			$email = $_POST['e_mail'];
+			$phone_1 = $_POST['phone_1'];
+
+			$sql = "INSERT INTO users_table (first_name, last_name, email, phone_number) VALUES ('$first_name','$last_name','$email','$phone_1');";
+		}
+
+		if ($_POST['addProdCategory']=='addProdCategory') {
+			$categoryName = $_POST['categoryName'];
+			$categoryDescription = $_POST['categoryDescription'];
+
+			$sql = "INSERT INTO _catalogId (catalog_name, catalog_description) VALUES ('$categoryName', '$categoryDescription');";
+		}
+
+		if ($_POST['addProd']=='addProd') {
+			$prod_name = $_POST['prod_name'];
+			$categoryDescription = $_POST['categoryDescription'];
+
+			$sql = "INSERT INTO _prod_table (prod_name, prod_style, prod_material, prod_description) VALUES ('$prod_name', '$prod_style', '$prod_material', '$prod_description');";
+		}
+
+		// $mysql_link->query($sql);
+		// $result = $mysql_link->query("SELECT * from users_table;");
+
+		if ($_POST['add_attr']==TRUE) {
+			$prod_id = $_POST['prod_id'];
+			$attr = $_POST['attr'];
+			$val = $_POST['val'];
+			$val_large = $_POST['val_large'];
+
+			$sql = "INSERT INTO _prod_attrs (_product_id, attr, val) VALUES ($prod_id, $attr, $val);";
+		}
+
+		if ($_POST['add_image']==TRUE) {
+			$prod_id = $_POST['prod_id'];
+			$attr = $_POST['attr'];
+			$val_large = $_POST['val_large'];
+
+			$sql = "$prod_id, $attr, NULL, $val_large";
+		}
+
+		// $sql = "INSERT INTO `_honeycomb`.`_prod_attrs` (_product_id, attr, val, val_large) VALUES ($sql);";
+
+		if($_POST['action'] == "update") {
+			$new_prod_desc = mysql_escape_string($_POST['prod_description_edit']);
+			$new_prod_desc = "\"" . $new_prod_desc . "\"";
+			$post_prod = $_POST['id_product'];
+
+			$sql = "UPDATE _product SET _description = $new_prod_desc WHERE id_product = $post_prod;";
+		}
+
+		// Perform Query
+		if ($sql) {
+			if ($mysql_link->query($sql) === TRUE) {
+			    echo "New record created successfully ". $result;
+			} else {
+				die('Error: ' . mysqli_error($mysql_link) . mysql_affected_rows());
+			    echo "Error: " . $sql . "<br>" . $mysql_link->error;
+			}
+		}
+
+		// Perform Multiple Queries
+		if ($multi_sql) {
+			if (mysqli_multi_query($mysql_link, $multi_sql)){
+				do {
+					/* store first result set */
+					if ($result = mysqli_store_result($mysql_link)) {
+						while ($row = mysqli_fetch_row($result)) {
+							// printf("%s\n", $row[0]);
+						}
+
+						mysqli_free_result($result);
 					}
-
-					mysqli_free_result($result);
-				}
-				/* print divider */
-				if (mysqli_more_results($mysql_link)) {
-					// printf("-----------------\n");
-				}
-			} while (mysqli_next_result($mysql_link));
+					/* print divider */
+					if (mysqli_more_results($mysql_link)) {
+						// printf("-----------------\n");
+					}
+				} while (mysqli_next_result($mysql_link));
+			}
 		}
 	}
+
 }
 
+$paradox_mysql_link->close();
 $mysql_link->close();
 ?>

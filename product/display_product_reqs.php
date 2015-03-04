@@ -1,33 +1,4 @@
 <?php
-if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-	if ($_POST['add_attr']=='TRUE') {
-		$prod_id = $_POST['prod_id'];
-		$attr = $_POST['attr'];
-		$val = $_POST['val'];
-		$val_large = $_POST['val_large'];
-		// $sql = "$prod_id, $attr, $val, $val_large";
-		$sql = "INSERT INTO _prod_attrs (_product_id, attr, val) VALUES ($prod_id, $attr, $val);";
-	}
-
-	if ($_POST['add_image']==TRUE) {
-		$prod_id = $_POST['prod_id'];
-		$attr = $_POST['attr'];
-		$val_large = $_POST['val_large'];
-		$sql = "$prod_id, $attr, NULL, $val_large";
-	}
-
-	// $sql = "INSERT INTO `_honeycomb`.`_prod_attrs` (_product_id, attr, val, val_large) VALUES ($sql);";
-
-	if ($sql) {
-		if ($mysql_link->query($sql) === TRUE) {
-		    echo "New record created successfully ". $result;
-		} else {
-			die('Error: ' . mysqli_error($mysql_link) . mysql_affected_rows());
-		    echo "Error: " . $sql . "<br>" . $mysql_link->error;
-		}
-	}
-}
-
 if (isset($_GET['id'])) {
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];

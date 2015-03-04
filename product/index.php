@@ -49,6 +49,7 @@
 
 	if (isset($_GET['ptid'])) {
 		$foundProduct_type = TRUE;
+
 		$ptid = $_GET['ptid'];
 	}
 
@@ -64,7 +65,7 @@
 		?>
 		<div class="catalog-wrapper">
 			<?php
-				if ($foundProduct){
+				if ($foundProduct && !$manage_product){
 					$similar_products = $mysql_link->query("SELECT * FROM products WHERE _product_style LIKE '%$_product_style%' AND '$_product_style' != products._product_style;");
 
 					if ($similar_products->num_rows > 0) {
@@ -123,7 +124,7 @@
 								}
 							}
 						} else {
-							echo "<div class=\"alert alert-warning\">Sorry, couldn&apos;t find any items in the query you&apos;re browsing.</div>";
+							echo "<div class=\"alert alert-warning\">Sorry, couldn&apos;t find any items in the query you&apos;ve searched.</div>";
 						}
 					?>
 				</div>
@@ -134,10 +135,12 @@
 				<div class="row">
 					<div class="col-md-6">
 						<h1>Products</h1>
-						<canvas id="productChart" width="300" height="300"></canvas>
-						<p>Here&apos;s a quick view of our product statistics.</p>
+						<p>Welcome to the unified product catalog.</p>
 					</div>
 					<div class="col-md-6">
+					<h2>Statistics:</h2>
+						<p>Here&apos;s a quick view of our product statistics.</p>
+						<canvas id="productChart" width="300" height="300"></canvas>
 					</div>
 				</div>
 			<?php
@@ -154,6 +157,30 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	<?php if($manage_product) { ?>
+
+		var save_product_info_button = $('#save_product_info');
+		var prod_description = $('#prod_description_edit');
+		var prod_description_val = $('#prod_description_edit_val');
+
+		var traverseProd = function (i) {
+			prod_description_val.html(i);
+		};
+
+		prod_description.on('blur', function () {
+			traverseProd(this.innerHTML);
+			// console.log(prod_description_val.innerHTML);
+		}).wysiwyg();
+
+		new ajaxifyForm(
+			$('#modify_product'),
+			function (form,data) {
+				var data = data;
+			},
+			false
+		);
+	<?php } ?>
+
 	<?php if($charts) { ?>
 	var productChart = $("#productChart");
 
@@ -226,16 +253,6 @@ $(document).ready(function(){
 	});
 
 	var addCategoryForm = $('#addProdCategory');
-	// $('#prod_description').wysiwyg();
-
-	new ajaxifyForm(
-		addCategoryForm,
-		function (form,data) {
-			var data = data;
-		},
-		true //clear form
-	);
-
 	var attribute_table = $('#attribute_table');
 
 	var add_attr_form = $('#add_attr_form'),

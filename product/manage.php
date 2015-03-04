@@ -43,7 +43,6 @@
 				</form>
 			</div>
 		<?php } ?>
-		
 			<div class="panel panel-default" id="add_product">
 				<div class="panel-heading"><h3 class="panel-title">Add Product</h3></div>
 				<form class="panel-body" name="addProd_form" method="post" action="<?php echo $host; ?>/admin/reqs.php" id="addProd">

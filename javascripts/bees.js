@@ -14,6 +14,7 @@ $(document).on(
 $(document).ready(
 	function (event) {
 		$body.removeClass("loading");
+		$('[data-toggle="tooltip"]').tooltip();
 	}
 );
 

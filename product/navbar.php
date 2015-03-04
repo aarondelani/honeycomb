@@ -18,7 +18,7 @@
 					<span class="input-group-btn"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Submit</span></button></span>
 				</div>
 			</div>
-		</form>
+	</form>
 		<ul class="nav navbar-nav">
 			<?php
 				$products_types_arr = "[";
@@ -53,9 +53,8 @@
 			<li class="dropdown">
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Manage <span class="caret"></span></a>
 			  <ul class="dropdown-menu" role="menu">
-				<li><a href="#">Categores</a></li>
+				<li><a href="#">Categories &amp; Product Attributes</a></li>
 				<li><a href="#">Products</a></li>
-				<li><a href="#">Product Attributes</a></li>
 				<li class="divider"></li>
 				<li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
 			  </ul>

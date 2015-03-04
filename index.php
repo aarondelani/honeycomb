@@ -9,11 +9,17 @@
 	include 'admin/headers.php';
 
 	include 'navigation.php';
+
+	$productCount = $mysql_link->query("SELECT id_product, _product_style, _product_name FROM products;");
 ?>
 <div id="wrapper">
 	<div id="content" class="container" role="main">
-		<h1>Hey <?php echo ucfirst($_SESSION["username"]);?>,</h1>
-		<p>Here&apos;s what&apos;s been going on:</p>
+		<div id="welcome" class="jumbotron">
+			<img src="images/honeycomb-ico-grad.svg" alt="Honey Comb Icon" class="honeycomb-icon">
+			<h1>Welcome <?php echo ucfirst($_SESSION["username"]);?>,</h1>
+			<p>Honeycomb is an experimental lab...</p>
+			<a class="btn btn-lg btn-primary" href="about.php">Learn More</a>
+		</div>
 	</div>
 </div>
 

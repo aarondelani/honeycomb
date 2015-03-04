@@ -3,8 +3,8 @@
 
 	$home_page_active = TRUE;
 
-	include 'admin/headers.php';
 	include 'admin/vars.php';
+	include 'admin/headers.php';
 
 	include 'navigation.php';
 ?>
@@ -25,30 +25,39 @@
 				</div>
 
 				<p>Well, maybe not too confusing.</p>
-				<p><strong>Why do we need two products?</strong> <br>It is actually not two products. Applications developed in Honeycomb will be plugged into Coolcat in furthur development. Its a testing ground. Testing grounds have been known to draw crowds who are expecting explosions. Maybe expect a few.</p>
+				<p><strong>Why do we need two products, what&apos;s the difference between Coolcat and Honeycomb?</strong> <br>It is actually not two products. Applications developed in Honeycomb will be plugged into Coolcat in furthur development. Its a testing ground. Testing grounds have been known to draw crowds who are expecting explosions. Maybe expect a few.</p>
 				<p><strong>Then why not develop these new and experimental features on Coolcat?</strong> <br>Dean and Aaron&apos;s coding style hasn&apos;t merged into one <code>coding</code> super-power yet. So when Aaron was tasked to produce a simple program that compares a spreadsheet of potential clients to our customer database, it had been decided that he develop it as separate &#8220;thing.&#8221;</p>
 				<p><strong>Why is it called &#8220;Honeycomb?&#8221;</strong> Aaron Delani needed an arbitrary name to call the project. First thing to come to mind was productivity and connectivity. Beehives provide that for bees, who are apparently always busy, and honeycombs are where they store the honey.</p>
-				<p>This separate thing is starting to shape like a pluggable framework.</p>
+				<p><i>Honeycomb</i> is a pluggable framework and playground for experimental Coolcat Features.</p>
 
 				<h3>Development:</h3>
 
-				<p>It&apos;s currently still in development. So don&apos;t be surprised if a few things break.</p>
+				<div class="alert alert-warning">
+					<p><i>Honeycomb</i> is in rapid development. So don&apos;t be surprised if a few things break.</p>
+				</div>
 
 				<h4>Features:</h4>
 
 				<ul>
 					<li>A UI Framework that provides consistency throughout the application</li>
 					<li>Coolcat Integration for Viewing Customer List</li>
-					<li>Compare a CSV to current Customer Database (Coolcat)</li>
+					<li>Compare an Event CSV to current Customer Database (from Coolcat)</li>
 					<li>Mobile Web App ready</li>
+					<li>Integrated Authentication with Coolcat</li>
+					<li>Product Library, with attributes and options (Continuing to improve the library)</li>
 				</ul>
 
 				<h4>Upcoming Features:</h4>
+				<p>(<i>Features are being produced concurrently.</i>)</p>
 
 				<ul>
-					<li>Customer Company Hierarchy Table (to be used for any queries related to our customers) <br> This will improve sales, inventory, and updates with our customers.</li>
+					<li>Customer Company Hierarchy Table (to be used for any queries related to our customers) <br> This will improve prospects, inventory, and updates with our customers.</li>
 					<li>Customer Contact List</li>
-					<li>Integrated Authentication with Coolcat</li>
+					<li>Robust and Concise Quote and Sales Order Creation</li>
+					<li>Sales Order, Notes, and Product Notifications</li>
+					<li>Sales Order and Purchase Order workflow process (So nothing drops between the cracks)</li>
+					<li>User Dashboard, get information on what&apos;s going on within the company, including what you&apos;re working on. <br>Making it easier to pick up where you left off.</li>
+					<li>Notes app for users. <br>When you create a note on a product, sales order, or anything, you should be able to find it for posterity and documentation.</li>
 				</ul>
 
 				<p>Please be advised, the whole look, feel, and functionality of Honeycomb could change in a second.</p>
