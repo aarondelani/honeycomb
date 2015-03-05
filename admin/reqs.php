@@ -1,6 +1,6 @@
 <?php
+include_once 'config.php';
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-	include_once 'config.php';
 
 	// Create connection
 	$mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
@@ -12,19 +12,14 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 		exit();
 	} else {
 		if ($_GET['from']=='customers') {
-			if ($_GET['query'] != '') {
-				$query = "WHERE cust_name LIKE '%" . $_GET['query'] . "%' LIMIT 20";
-			} else {
-				$query = '';
-			}
+			$query = "WHERE cust_name LIKE '%" . $_GET['query'] . "%' LIMIT 10";
+			$customers_results = array();
 
 			if ($_GET['query'] == 'all') {
 				$customers_table = $paradox_mysql_link->query("SELECT * FROM customers;");
 			} else {
-				$customers_table = $paradox_mysql_link->query("SELECT * FROM customers $query;");
+				$customers_table = $paradox_mysql_link->query("SELECT cust_id, cust_name FROM customers $query;");
 			}
-
-			$customers_results = '[';
 
 			if ($customers_table->num_rows > 0) {
 				// output data of each row
@@ -38,17 +33,34 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 					// $custName_parsed = preg_replace($mstrng, $replacement, $custName_parsed);;
 					$custName_parsed = strtolower($custName_parsed);
 
-					$customers_results .= '{id: ' . mysql_escape_string($row["cust_id"]) . ', name:"' . ucwords($custName_parsed) . '"},';
+					// $customers_results .= '{id: \"' . mysql_escape_string($row["cust_id"]) . '\", name:"' . ucwords($custName_parsed) . '"},';
 
-					// array_push($customers_results, array(mysql_escape_string($row["cust_id"]),ucwords($custName_parsed)));
+					array_push($customers_results, array("id" => $row["cust_id"], "name" => ucwords($custName_parsed)));
+
 					// echo "\"0\",\"" . mysql_escape_string($row["cust_id"]) . "\",\"" . ucwords($custName_parsed) . "\"<br>";
 				}
-			} else {
 			}
 
-			$customers_results .= ']';
-
 			echo utf8_encode(json_encode($customers_results));
+		}
+		if ($_GET['from']=='products') {
+			$query = "WHERE _product_name LIKE '%" . $_GET['query'] . "%' OR _product_style LIKE '%" . $_GET['query'] . "%' LIMIT 10";
+			$product_results = array();
+
+			if ($_GET['query'] == 'all') {
+				$products_table = $mysql_link->query("SELECT * FROM products;");
+			} else {
+				$products_table = $mysql_link->query("SELECT id_product, _product_style, _product_name FROM products $query;");
+			}
+
+			if ($products_table->num_rows > 0) {
+				// output data of each row
+				while($row = $products_table->fetch_assoc()) {
+					array_push($product_results, array("id" => $row["id_product"], "name" => $row["_product_style"] . " " . $row["_product_name"], "prodName" => $row["_product_name"], "style" => $row["_product_style"]));
+				}
+			}
+
+			echo utf8_encode(json_encode($product_results));
 		}
 
 		$sql = '';
@@ -142,4 +154,5 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
 $paradox_mysql_link->close();
 $mysql_link->close();
+die();
 ?>

@@ -152,58 +152,26 @@ if($add_order) {
 	// Begin Customer Page JS
 	if ($cust_info) {
 ?>
-
-var getQuery = function(from, query) {
-	var table = from;
-	var query = query;
-
-	$.ajax({
-		type: 'GET',
-		url: "<?php echo $host; ?>/admin/reqs.php",
-		dataType: 'text',
-		processData: true,
-		data: {
-			from: table,
-			query: '%' + query + '%'
-		},
-		contentType: 'application/x-www-form-urlencoded',
-		success: function (resp) {
-			console.log(resp);
-			return resp;
-		}
-	});
-};
-
+// Declaring Input
+var companyNameInput = $('#company_name_input');
 var companies = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('id'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		prefetch: '<?php echo $host; ?>/admin/reqs.php?from=customers&query=all',
 		remote: '<?php echo $host; ?>/admin/reqs.php?from=customers&query=%QUERY',
-		datumTokenizer: function(d) {
-			return Bloodhound.tokenizers.whitespace(d.val);
-		},
-		queryTokenizer: Bloodhound.tokenizers.whitespace
+		limit: 10 // also set in reqs.php for speed
 	});
 
 companies.initialize();
 
-console.log(companies);
-
-var companyNameInput = $('#company_name_input');
-
 companyNameInput.typeahead({
-		hint: true,
-		highlight: true,
-		minLength: 3
-	},{
-		name: 'name',
-		displayKey: 'name',
 		source: companies.ttAdapter(),
-		autoSelect: true
-	}
-);
+		autoSelect: false
+	});
 
-companyNameInput.change(function() {
+companyNameInput.change(function(event) {
 	var current = companyNameInput.typeahead("getActive");
-	console.log(current);
+	console.log(current,event.target);
 
 	if (current) {
 		console.log('Text',current, current.name);
@@ -218,7 +186,6 @@ companyNameInput.change(function() {
 		// Nothing is active so it is a new value (or maybe empty value)
 	}
 });
-
 <?php
 	} // End Customer Page JS
 
@@ -227,7 +194,6 @@ companyNameInput.change(function() {
 ?>
 	var addProductForm = $('#add_order_item_form');
 	var addProductInput = $('#add_product_input');
-	var productList = [<?php echo $productsList; ?>];
 
 	var newOrderItem = function (id, style, prodName) {
 		var order_item_node = $('<div class="order-item">');
@@ -238,10 +204,17 @@ companyNameInput.change(function() {
 		addProductForm.append(order_item_node);
 	};
 
-	$('.editor').wysiwyg();
+	var products = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('id'),
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			prefetch: '<?php echo $host; ?>/admin/reqs.php?from=products&query=all',
+			remote: '<?php echo $host; ?>/admin/reqs.php?from=products&query=%QUERY',
+			limit: 10 // also set in reqs.php for speed
+		});
+	products.initialize();
 
 	addProductInput.typeahead({
-		source: productList,
+		source: products.ttAdapter(),
 		autoSelect: true
 		});
 
@@ -251,7 +224,7 @@ companyNameInput.change(function() {
 		if (current) {
 			// Some item from your model is active!
 			if (current.name == addProductInput.val()) {
-				console.log(current.id, current.styleNumber, current.name);
+				console.log(current.id, current.style, current.name);
 
 				new newOrderItem(current.id, current.styleNumber, current.name);
 
@@ -266,13 +239,15 @@ companyNameInput.change(function() {
 			// Nothing is active so it is a new value (or maybe empty value)
 		}
 	});
+	$('.editor').wysiwyg();
+
 <?php
 	}
 }
 ?>
 
 });
+</script>
 <?php
 	$mysql_link->close();
- ?>
-</script>
+?>

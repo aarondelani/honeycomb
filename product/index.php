@@ -226,25 +226,32 @@ $(document).ready(function(){
 		console.log(productChart.segments[0]);
 	}
 	<?php } //end Charts ?>
-	var productList = [<?php echo $productsList; ?>];
 
-	var $searchProducts = $('#search_products');
+	var addProductInput = $('#search_products');
 
-	$searchProducts.typeahead({
-		source: productList,
-		autoSelect: false
+	var products = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('id'),
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			prefetch: '<?php echo $host; ?>/admin/reqs.php?from=products&query=all',
+			remote: '<?php echo $host; ?>/admin/reqs.php?from=products&query=%QUERY',
+			limit: 10 // also set in reqs.php for speed
+		});
+	products.initialize();
+
+	addProductInput.typeahead({
+		source: products.ttAdapter(),
+		autoSelect: true
 		});
 
-	$searchProducts.change(function() {
-		var current = $searchProducts.typeahead("getActive");
+		addProductInput.change(function() {
+		var current = addProductInput.typeahead("getActive");
 		if (current) {
 			// Some item from your model is active!
-			console.log(current.id, current.styleNumber);
-			if (current.name == $searchProducts.val()) {
+			if (current.name == addProductInput.val()) {
 				// This means the exact match is found. Use toLowerCase() if you want case insensitive match.
 				window.location = "index.php?id=" + current.id;
 			} else {
-				// This means it is only a partial match, you can either add a new item 
+				// This means it is only a partial match, you can either add a new item
 				// or take the active if you don't want new items
 			}
 		} else {
