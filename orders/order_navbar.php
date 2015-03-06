@@ -15,7 +15,7 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li>
-				<a href="index.php?order=add_order" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add</a>
+				<a href="index.php?action=add_order" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Order</a>
 			</li>
 			<li>
 				<form class="navbar-form" action="index.php" method="get" name="id" id="searchProducts" role="search">

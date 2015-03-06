@@ -5,7 +5,7 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 
 	if((isset($_POST["login_process"])) || !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 		$process = $_POST["login_process"];
-		$clientname = $_POST["username"];
+		$username = $_POST["username"];
 		$clientpassword = $_POST["password"];
 		$response = "";
 
@@ -15,7 +15,7 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 			$_SESSION['login_tries'] = 0;
 		}
 
-		$uSQL="SELECT * FROM user where username like '" . $clientname . "';";
+		$uSQL="SELECT * FROM user where username like '" . $username . "';";
 
 		$rsUser = $paradox_mysql_link->query($uSQL) or die('Error querying database');
 
@@ -30,6 +30,7 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 					$_SESSION['admin']=$UserLine["isadmin"];
 					$_SESSION['dev']=$UserLine["isdev"];
 					$_SESSION['salesadmin']=$UserLine["issalesadmin"];
+					$_SESSION['user_full_name']=$UserLine["userrealname"];
 
 					$response = "true";
 				} else {

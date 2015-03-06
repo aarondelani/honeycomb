@@ -18,6 +18,22 @@ $(document).ready(
 	}
 );
 
+var createInputProperty = function (attr, val, appendTo) {
+	var inputHidden = $('<input type="hidden">');
+	var appendToForm = appendTo;
+	var checkInput = $('input[name='+ attr +']');
+
+	// Check first to see if this input exists
+	if (checkInput.length == 0) {
+		inputHidden.attr('name', attr);
+		inputHidden.attr('value', val);
+		inputHidden.appendTo(appendToForm);
+	} else {
+		// If it does, replace the value
+		checkInput.attr('value', val);
+	}
+}
+
 var buildTable = function (params, insert) {
 	table_id = params.table_id;
 	table_classes = params.table_classes;
@@ -126,16 +142,16 @@ var ajaxifyForm = function (form, success, reset) {
 					if (arg !== undefined) {
 						data = jsonifyUrlQuery(decodeURIComponent(form.serialize()));
 
-						arg(form,data);
+						arg({success: true, response: response});
 					}
 
 					if(reset) {
 						form.trigger('reset');
 					}
 
-					console.log(response);
+					// console.log(response);
 
-					return {arg: arg,response: response};
+					return response;
 				}
 			});
 

@@ -43,6 +43,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
 			echo utf8_encode(json_encode($customers_results));
 		}
+
 		if ($_GET['from']=='products') {
 			$query = "WHERE _product_name LIKE '%" . $_GET['query'] . "%' OR _product_style LIKE '%" . $_GET['query'] . "%' LIMIT 10";
 			$product_results = array();
@@ -119,10 +120,43 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 			$sql = "UPDATE _product SET _description = $new_prod_desc WHERE id_product = $post_prod;";
 		}
 
+		// Generates a JSON Response for New Orders
+		if($_POST['action'] == "new_order") {
+			$id = "\"" . mysql_escape_string($_POST['id']) . "\"";
+			$company_id = "\"" . mysql_escape_string($_POST['company_id']) . "\"";
+			$company = "\"" . mysql_escape_string($_POST['company']) . "\"";
+			$job_name = "\"" . mysql_escape_string($_POST['job_name']) . "\"";
+			$new_order_hash = "\"" . mysql_escape_string($_POST['new_order_hash']) . "\"";
+			$created_by = "\"" . mysql_escape_string($_POST['created_by']) . "\"";
+			$userId = "\"" . mysql_escape_string($_POST['userId']) . "\"";
+
+			$addNewOrderQ = "INSERT INTO _orders (id, company_id, job_name, company, order_hash, user_id, created_by) VALUES ($id, $company_id, $job_name, $company, $new_order_hash, $userId, $created_by);";
+
+			if ($mysql_link->query($addNewOrderQ) === TRUE) {
+				$new_order = $mysql_link->query("SELECT * FROM _orders WHERE order_hash = $new_order_hash LIMIT 1;");
+
+				$new_order_results = array();
+
+				if ($new_order->num_rows > 0) {
+					// output data of each row
+					while($row = $new_order->fetch_assoc()) {
+						array_push($new_order_results, array("id" => $row["id"], "job_name" => $row["job_name"]));
+					}
+				}
+
+				echo utf8_encode(json_encode($new_order_results));
+			} else {
+				die('Error: ' . mysqli_error($mysql_link) . mysql_affected_rows());
+			    echo "Error: " . $sql . "<br>" . $mysql_link->error;
+			}
+		}
+
 		// Perform Query
 		if ($sql) {
 			if ($mysql_link->query($sql) === TRUE) {
-			    echo "New record created successfully ". $result;
+			    // echo "New record created successfully ". $result;
+
+				echo json_encode($result, mysql_affected_rows());
 			} else {
 				die('Error: ' . mysqli_error($mysql_link) . mysql_affected_rows());
 			    echo "Error: " . $sql . "<br>" . $mysql_link->error;

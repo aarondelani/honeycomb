@@ -1,6 +1,12 @@
 body {
 	font-family: 'Helvetica', 'Arial';
 }
+
 header {
+	display: none;
+}
+
+#navigation,
+.product-navbar {
 	display: none;
 }
