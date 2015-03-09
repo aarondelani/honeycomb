@@ -89,6 +89,7 @@
 				$order_hash = $row["order_hash"];
 				$order_timestamp = $row["timestamp"];
 				$english_timestamp = date('D, F jS, Y, g:i:sa T', strtotime($order_timestamp));
+				$created_by = $row["created_by"];
 			}
 		}
 	}
@@ -126,9 +127,9 @@
 		<?php include 'order_navbar.php'; ?>
 		<?php if (isset($_GET["ordst"])) { ?>
 			<h1><?php echo $order_title; ?></h1>
+
 			<div class="list-group">
-			<?php
-				$order = $mysql_link->query("SELECT * from _orders WHERE order_status = $ordst;");
+			<?php $order = $mysql_link->query("SELECT * from _orders WHERE order_status = $ordst;");
 				if ($order->num_rows > 0) {
 					// output data of each row
 					while($row = $order->fetch_assoc()) {
@@ -143,10 +144,11 @@
 						$order_hash = $row["order_hash"];
 						$order_timestamp = $row["timestamp"];
 						$english_timestamp = date('D, F jS, Y', strtotime($order_timestamp));
+						$created_by = $row["created_by"];
 			?>
 				<a href="index.php?orderId=<?php echo $order_id; ?>&page=order_info" class="list-group-item"><strong><?php echo $job_name; ?></strong> | <?php echo $company_name; ?> <span class="label anti-aliased label-info">Date: <?php echo $english_timestamp; ?></span></a>
 
-			<?php } } // Ending loop here ?>
+			<?php } } // Ending Order List loop here ?>
 			</div>
 		<?php }; ?>
 		<?php if ($add_order) { ?>
@@ -178,7 +180,7 @@
 		<?php } ?>
 
 		<?php if ($browsing_order) { ?>
-			<div class="panel panel-default">
+			<div class="panel order-panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
 
@@ -189,7 +191,12 @@
 							</p>
 						</div>
 						<div class="col-md-6">
-							<p>Created <?php echo $english_timestamp; ?></p>
+							<div class="btn-group fl-right">
+								<a href="<?php echo $_SESSION["url"]; ?>&action=manage" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit Order</a>
+							</div>
+							<h4>Info</h4>
+							<p><strong>Created</strong> <?php echo $english_timestamp; ?> <br>
+							<strong>by</strong> <?php echo $created_by; ?></p>
 						</div>
 					</div>
 				</div>
@@ -200,30 +207,29 @@
 						<li role="presentation"><a href="#">Other</a></li>
 					</ul>
 
-					<?php if (!$manage_order): ?>
-						<p><?php echo $order_id; ?></p>
-						<p></p>
-						<p><?php echo $purchase_order; ?></p>
-						<p><?php echo $job_name; ?></p>
-						<p><?php echo $company_name; ?></p>
-						<p><?php echo $order_hash; ?></p>
-					<?php endif; ?>
+					<?php print_r($_SESSION["URL"]) ?>
+
+					<?php if (!$manage_order) { ?>
+						<?php if ($cust_info): ?>
+							<p><?php echo $order_id; ?></p>
+							<p><?php echo $purchase_order; ?></p>
+							<p><?php echo $job_name; ?></p>
+							<p><?php echo $company_name; ?></p>
+							<p><?php echo $order_hash; ?></p>
+						<?php endif; ?>
+					<?php } else {; ?>
 
 					<?php if ($add_order_item) { ?>
 					<form class="add-order-form" action="" method="get" id="add_order_item_form">
 						<input type="hidden">
 						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span> Add an Item</span>
 							<input type="text" class="form-control" id="add_product_input" autocomplete="off" name="order_item_style" placeholder="Search Style Number or Product Name">
-							<span class="input-group-btn"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add an Item</button></span>
 						</div>
 					</form>
-					<form class="" action="<?php echo $host; ?>/admin/reqs.php" method="post">
 
-
-						<?php //include 'wysiwyg.php' ?>
-
-					</form>
-					<?php } ?>
+					<?php //include 'wysiwyg.php' ?>
+					<?php } } ?>
 				</div>
 
 				<?php if ($manage_order): ?>
@@ -310,15 +316,49 @@ companyNameInput.change(function(event) {
 ?>
 	var addProductForm = $('#add_order_item_form');
 	var addProductInput = $('#add_product_input');
+	var temp_items_node = $('<div class="temp-order-items list-group">');
+	var add_temp_items_btn = $('<button class="btn btn-primary" name="add_vals">Add Selected Items <span class="glyphicon glyphicon-plus"></span></button>')
+	var added_temps_node = false;
 
-	var newOrderItem = function (id, style, prodName) {
-		var order_item_node = $('<div class="order-item">');
-		var stuff = '<strong>' + prodName + '</strong>';
+	var newOrderItem = function (params) {
+		// {id, style, name, node}
+		var order_item_node = $('<label class="order-item list-group-item checkbox">');
+		var checkbox = $('<input type="checkbox" name="' + params.id + '-add' + '">');
+		var stuff = '<strong>' + params.name + '</strong> <span class="label label-info">' + params.style + '</span> <a class="arv-right" data-toggle="tooltip" data-placement="top" title="Preview ' + params.name + " " + params.style + ' (Opens in new window)" href="../product/index.php?id=' + params.id + '" target="_blank">Preview <span class="fa fa-eye"></span></a>';
 
+		checkbox.attr('data-prod-id', params.id);
+		checkbox.attr('data-order-id', <?php echo $order_id ?>);
+
+		order_item_node.append(checkbox);
 		order_item_node.append(stuff);
 
-		addProductForm.append(order_item_node);
+		checkbox.on(
+			'change',
+			function(event) {
+				console.log(event.currentTarget.checked);
+			});
+
+		$(params.node).append(order_item_node);
+		$('[data-toggle="tooltip"]').tooltip();
 	};
+
+	var addOrderItems = function () {
+		var items = temp_items_node.children('.order-item');
+
+		// Checking to see the value of the item's children .val() does not work.
+		// Jquery return's the value of a checkbox as "checked" with the true or false
+		console.log(items.children('input[type=checkbox]').checked);
+	};
+
+	console.l
+
+	add_temp_items_btn.on(
+		'click',
+		function (event) {
+			event.preventDefault();
+			addOrderItems();
+		}
+	);
 
 	// Prefetch and get JSON Object for Products
 	var products = new Bloodhound({
@@ -344,10 +384,21 @@ companyNameInput.change(function(event) {
 			if (current.name == addProductInput.val()) {
 				console.log(current.id, current.style, current.name);
 
-				new newOrderItem(current.id, current.styleNumber, current.name);
+				if (!added_temps_node) {
+					addProductForm.append(temp_items_node);
+					addProductForm.after(add_temp_items_btn);
+
+					added_temps_node = true;
+				}
+
+				new newOrderItem({
+						id: current.id,
+						style: current.style,
+						name: current.name,
+						node: temp_items_node
+					});
 
 				addProductInput.val('');
-
 				// This means the exact match is found. Use toLowerCase() if you want case insensitive match.
 			} else {
 				// This means it is only a partial match, you can either add a new item
@@ -360,7 +411,6 @@ companyNameInput.change(function(event) {
 
 	var prod_description = $('#prod_description_edit');
 	var prod_description_val = $('#prod_description_edit_val');
-
 
 	var traverseProd = function (i) {
 		prod_description_val.html(i);

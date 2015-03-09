@@ -24,4 +24,6 @@
 	<input type="Submit" class="btn btn-primary" value="Login">
 </form>
 
+<?php } else { header("Location: index.php"); ?>
+
 <?php } ?>
