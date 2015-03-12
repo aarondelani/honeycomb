@@ -7,7 +7,7 @@
 
 @import "fontawesome/font-awesome.scss";
 
-@import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700|Roboto:400,300,500,700");
+// @import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700|Roboto:400,300,500,700");
 
 @mixin anti-aliased {
 	-webkit-font-smoothing: antialiased;
@@ -19,10 +19,10 @@
 	@include anti-aliased;
 }
 
-@mixin roboto {
-	font-family: 'Roboto', sans-serif;
-	@include anti-aliased;
-}
+// @mixin roboto {
+// 	font-family: 'Roboto', sans-serif;
+// 	@include anti-aliased;
+// }
 
 $ljgreen: #C0D22E;
 $dark-gray: #353535;
@@ -248,9 +248,9 @@ textarea {
 	clip: rect(0, 0, 0, 0);
 }
 
-.roboto {
-	font-family: 'Roboto';
-}
+// .roboto {
+// 	font-family: 'Roboto';
+// }
 
 #content {
 	padding: 4.723em 2em;

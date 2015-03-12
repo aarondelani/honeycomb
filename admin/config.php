@@ -31,13 +31,6 @@ if (mysqli_connect_errno()) {
 
 	exit();
 }  else {
-	$tableCheck = $mysql_link->query('SELECT 1 from `setup_config`');
-
-	if ($tableCheck === TRUE) {
-			echo "tables exist!";
-	} else {
-		include 'setup_config.php';
-	}
 }
 
 $mysql_link->close();

@@ -6,6 +6,10 @@
 		$page_title .= " | Honeycomb App";
 	}
 
+	if ($body_class == "") {
+		$body_class = "";
+	}
+
 	$body_class .= " loading";
 ?>
 <!DOCTYPE HTML>

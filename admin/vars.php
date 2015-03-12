@@ -1,9 +1,22 @@
 <?php
 include_once 'config.php';
-echo $prefs;
+
+$dataTables = FALSE;
+$charts = FALSE;
+$autocomplete = FALSE;
+$bootstrapWYSIWYG = FALSE;
+$errs = TRUE;
+
+if ($errs) {
+	error_reporting(E_ALL);
+	ini_set('display_errors','On');
+}
 
 session_start();
-$_SESSION['url'] = $_SERVER['HTTP_REFERER'];
+
+// if ($_SERVER['HTTP_REFERER'] != "") {
+// 	$_SESSION['url'] = $_SERVER['HTTP_REFERER'];
+// }
 
 if($_SESSION['siteuser'] !=0){
 	$loggedIn = TRUE;

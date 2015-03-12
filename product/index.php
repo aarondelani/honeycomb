@@ -1,14 +1,14 @@
 <?php
 	// Need page preferences here
-
-	include '../admin/vars.php';
-	include '../admin/headers.php';
-
 	$page_title = "Products";
 	$product_page_active = TRUE;
 	$body_class .= " product-page";
 	$searching = FALSE;
 	$autocomplete = TRUE;
+
+	include '../admin/vars.php';
+	include '../admin/headers.php';
+
 
 	$ptid = NULL;
 
@@ -22,14 +22,14 @@
 
 	$productsList = "";
 
-	if ($products->num_rows > 0) {
-		// output data of each row
-		while($product = $products->fetch_assoc()) {
-			// print_r($product);
+	// if ($products->num_rows > 0) {
+	// 	// output data of each row
+	// 	while($product = $products->fetch_assoc()) {
+	// 		// print_r($product);mysql_real_escape_string()
 
-			$productsList .= "{id: \"" . mysql_escape_string($product["id_product"]) . "\", name: \"" . mysql_escape_string($product["_product_style"]) . " " . mysql_escape_string($product["_product_name"]) . "\", styleNumber: \"" . mysql_escape_string($product["_product_style"]) . "\"},";
-		}
-	}
+	// 		$productsList .= "{id: \"" . mysqli_real_escape_string($product["id_product"]) . "\", name: \"" . mysqli_real_escape_string($product["_product_style"]) . " " . mysqli_real_escape_string($product["_product_name"]) . "\", styleNumber: \"" . mysqli_real_escape_string($product["_product_style"]) . "\"},";
+	// 	}
+	// }
 
 	$searchValue = "";
 	if (isset($_GET["search"])) {
@@ -152,6 +152,7 @@
 </div>
 <?php
 	$mysql_link->close();
+	$autocomplete = TRUE;
 	include '../admin/footer.php';
 ?>
 

@@ -1,16 +1,13 @@
 <?php
 	// Need page preferences here
-
+	$page_title = "";
+	$body_class = "";
 	$home_page_active = TRUE;
 	$autocomplete = TRUE;
 
 	include 'admin/vars.php';
-
 	include 'admin/headers.php';
-
 	include 'navigation.php';
-
-	$productCount = $mysql_link->query("SELECT id_product, _product_style, _product_name FROM products;");
 ?>
 <div id="wrapper">
 	<div id="content" class="container" role="main">
