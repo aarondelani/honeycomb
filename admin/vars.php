@@ -5,7 +5,7 @@ $dataTables = FALSE;
 $charts = FALSE;
 $autocomplete = FALSE;
 $bootstrapWYSIWYG = FALSE;
-$errs = TRUE;
+$errs = FALSE;
 
 if ($errs) {
 	error_reporting(E_ALL);

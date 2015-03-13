@@ -10,21 +10,21 @@
 	include 'navigation.php';
 
 	$upload_dir = "uploads/";
-	$target_file = $upload_dir . basename($_FILES["files"]["name"]);
+	$target_file = $upload_dir . basename($_FILES["file"]["name"]);
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	$file_state_upload = false;
 
-// Check if image file is a actual image or fake image
-$upload_result_msg = "";
+	$upload_result_msg = "";
 
-if(isset($_POST["upload"]) && $_POST["action"] == "upload_file") {
-	if (move_uploaded_file($_FILES["files"]['tmp_name'], $target_file)) {
-	    $upload_result_msg .= "File is valid, and was successfully uploaded.\n";
-	    $file_state_upload = TRUE;
-	} else {
-	    $upload_result_msg .= "Possible file upload attack!\n";
+	if(isset($_POST["upload"]) && $_POST["action"] == "upload_file") {
+		// Check if image file is a actual image or fake image
+		if (move_uploaded_file($_FILES["file"]['tmp_name'], $target_file)) {
+			$upload_result_msg .= "File is valid, and was successfully uploaded.\n";
+			$file_state_upload = TRUE;
+		} else {
+			$upload_result_msg .= "Possible file upload attack!\n";
+		}
 	}
-}
 ?>
 <div id="wrapper">
 	<div id="content" class="container" role="main">
@@ -32,13 +32,13 @@ if(isset($_POST["upload"]) && $_POST["action"] == "upload_file") {
 
 		<form action="upload_test.php" id="upload_form" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="action" value="upload_file">
-			<input class="form-control" type="file" name="files[]">
+			<input class="form-control" type="file" name="file">
 			<input class="btn btn-primary" type="submit" name="upload" value="Upload">
 		</form>
 
 		<?php if ($file_state_upload):
-		print_r($_FILES);
-		echo $upload_result_msg;
+			print_r($_FILES);
+			echo $upload_result_msg;
 		endif ?>
 	</div>
 </div>
