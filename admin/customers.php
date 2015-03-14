@@ -3,7 +3,7 @@
 	$page_short_title = "Customers";
 	$page_title = $page_short_title;
 	$customer_page_active = TRUE;
-	$dataTables = TRUE;
+
 
 	include 'vars.php';
 	include 'headers.php';
@@ -51,7 +51,7 @@
 <?php
 
 $paradox_mysql_link->close();
-
+$dataTables = TRUE;
 include 'footer.php';
 
 ?>
