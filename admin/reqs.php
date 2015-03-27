@@ -24,20 +24,18 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 			if ($customers_table->num_rows > 0) {
 				// output data of each row
 				while($row = $customers_table->fetch_assoc()) {
-					// $mstrng = "/(\*DO NOT SELL\*|\*DO NOT QUOTE\*|\*DO NOT QTE\*|ACS\-|ZZB|S2L|ZZJ|ZZK|SCRN|ASI\-|ZZV|ZZE|RUN|RETAIL\-|NYRR\-|MAR\-|ZZDL|EM\-|BTL|BIKE\-|ALA\-|WA\-|TRI\-|CA|ZZSHOW|ZZS|ZZQ|ZZO|ATS|RRCA\-|ZZM|ZZMMAP|ZZLN|ZZLM|ZZLDR|ZZLDN|AHA\-|NY|ZZJFU|SHOW|SCRN\-A|RRCA\-|RRCA\-TX\-|RRCA\-VT\-|RRM|RSM|RRCA\-OH\-|RRCA\-NJ\-|RRCA\-NY|RFC\-WA\-|RFC|PROD\-|PRO\-|PRO|PARK\-|LLS\-WA)(.*)/";
+					$mstrng = "/(\*DO NOT SELL\*|\*DO NOT QUOTE\*|\*DO NOT QTE\*|ACS\-|ZZB|S2L|ZZJ|ZZK|SCRN|ASI\-|ZZV|ZZE|RUN|RETAIL\-|NYRR\-|MAR\-|ZZDL|EM\-|BTL|BIKE\-|ALA\-|WA\-|TRI\-|CA|ZZSHOW|ZZS|ZZQ|ZZO|ATS|RRCA\-|ZZM|ZZMMAP|ZZLN|ZZLM|ZZLDR|ZZLDN|AHA\-|NY|ZZJFU|SHOW|SCRN\-A|RRCA\-|RRCA\-TX\-|RRCA\-VT\-|RRM|RSM|RRCA\-OH\-|RRCA\-NJ\-|RRCA\-NY|RFC\-WA\-|RFC|PROD\-|PRO\-|PRO|PARK\-|LLS\-WA)(.*)/";
 					$custName_parsed = mysql_escape_string($row["cust_name"]);
 
 					// $replacement = '$2","$1';
 					$replacement = '$2';
 
-					// $custName_parsed = preg_replace($mstrng, $replacement, $custName_parsed);;
+					$custName_parsed = preg_replace($mstrng, $replacement, $custName_parsed);;
 					$custName_parsed = strtolower($custName_parsed);
 
 					// $customers_results .= '{id: \"' . mysql_escape_string($row["cust_id"]) . '\", name:"' . ucwords($custName_parsed) . '"},';
 
 					array_push($customers_results, array("id" => $row["cust_id"], "name" => ucwords($custName_parsed)));
-
-					// echo "\"0\",\"" . mysql_escape_string($row["cust_id"]) . "\",\"" . ucwords($custName_parsed) . "\"<br>";
 				}
 			}
 

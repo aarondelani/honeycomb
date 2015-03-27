@@ -43,14 +43,6 @@
 		}
 	}
 
-	if ($_GET["page"] == "order_info") {
-		$cust_info = TRUE;
-	}
-
-	if ($_GET["page"] == "items") {
-		$add_order_item = TRUE;
-	}
-
 	if (isset($_GET["hash"])) {
 		$get_by_hash = TRUE;
 		$browsing_order = TRUE;
@@ -93,6 +85,35 @@
 			}
 		}
 	}
+
+	if ($_GET["page"] == "order_info") {
+		$cust_info = TRUE;
+		$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
+		$cQuery = "SELECT * FROM customers WHERE cust_id = $company_id LIMIT 1";
+		$company_info = $paradox_mysql_link->query($cQuery);
+
+		if ($company_info->num_rows > 0) {
+					// output data of each row
+			while($row = $company_info->fetch_assoc()) {
+				// print_r($row);
+				$comp_contact = $row["cust_cont_firstname"] . " " . $row["cust_cont_lastname"];
+				$comp_contact_email = $row["cust_cont_email"];
+				$comp_address = $row["cust_address1"];
+				$comp_address_cont = $row["cust_address2"];
+				$comp_address_city = $row["cust_city"];
+				$comp_address_state = $row["cust_state"];
+				$comp_address_zip = $row["cust_zip"];
+
+			}
+		}
+
+		$paradox_mysql_link->close();
+	}
+
+	if ($_GET["page"] == "items") {
+		$add_order_item = TRUE;
+	}
+
 	// Building Navbar for Orders
 	$pr_int = 0;
 	$order_navs = "";
@@ -115,7 +136,7 @@
 
 			$pr_int = $pr_int+1;
 
-			$order_navs .= "<li". $itemClass ."><a data=\"id:".$order_state["id"]."\" href=\"index.php?ordst=" . $order_state["id"] . "\"><span class=\"name\">". $order_state["proper_name"] . "</span> <span class=\"badge\">".$order_state_count."</span></a></li>";
+			$order_navs .= "<li". $itemClass ."><a data=\"id:" . $order_state["id"] . "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"" . $order_state["description"] . "\" href=\"index.php?ordst=" . $order_state["id"] . "\"><span class=\"name\">". $order_state["proper_name"] . "</span> <span class=\"badge\">".$order_state_count."</span></a></li>";
 		}
 	} else {
 
@@ -180,6 +201,9 @@
 		<?php } ?>
 
 		<?php if ($browsing_order) { ?>
+		<div class="container">
+			
+
 			<div class="panel order-panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
@@ -192,7 +216,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="btn-group fl-right">
-								<a href="<?php echo $_SESSION["url"]; ?>&action=manage" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit Order</a>
+								<a href="index.php?orderId=<?php echo $order_id; ?>&page=order_info&action=manage" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit Order</a>
 							</div>
 							<h4>Info</h4>
 							<p><strong>Created</strong> <?php echo $english_timestamp; ?> <br>
@@ -208,28 +232,57 @@
 					</ul>
 
 					<?php print_r($_SESSION["URL"]) ?>
-
-					<?php if (!$manage_order) { ?>
 						<?php if ($cust_info): ?>
-							<p><?php echo $order_id; ?></p>
-							<p><?php echo $purchase_order; ?></p>
-							<p><?php echo $job_name; ?></p>
-							<p><?php echo $company_name; ?></p>
-							<p><?php echo $order_hash; ?></p>
+							<div class="row">
+								<div class="col-md-4">
+									<p>The following information comes from the customer database.</p>
+
+									<ul class="list-group">
+										<li class="list-group-item"><strong>Company Contact:</strong> <?php echo $comp_contact; ?></li>
+										<li class="list-group-item"><strong>Email:</strong> <?php echo $comp_contact_email; ?></li>
+										<li class="list-group-item">
+											<strong>Address:</strong><br>
+											<?php
+												echo $comp_address . "<br>";
+												if ($comp_address_cont != "") {
+													echo $comp_address_cont . "<br>";
+												}
+
+												echo $comp_address_city . ", " . $comp_address_state . ", " .  $comp_address_zip;
+											 ?>
+										</li>
+									</ul>
+								</div>
+								<div class="col-md-4">Shipping Information</div>
+								<div class="col-md-4"></div>
+							</div>
+
+							<?php 
+								// echo $comp_contact . "<br>";
+								// echo $comp_address . "<br>";
+								// echo $comp_address_cont . "<br>";
+								// echo $comp_address_city . "<br>";
+								// echo $comp_address_state . "<br>";
+								// echo $comp_address_zip . "<br>";
+							 ?>
 						<?php endif; ?>
+
+					<?php if ($manage_order) { ?>
+						<?php if ($add_order_item) { ?>
+						<form class="add-order-form" action="" method="get" id="add_order_item_form">
+							<input type="hidden">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span> Add an Item</span>
+								<input type="text" class="form-control" id="add_product_input" autocomplete="off" name="order_item_style" placeholder="Search Style Number or Product Name">
+							</div>
+						</form>
+
+						<?php } //include 'wysiwyg.php' ?>
 					<?php } else {; ?>
 
-					<?php if ($add_order_item) { ?>
-					<form class="add-order-form" action="" method="get" id="add_order_item_form">
-						<input type="hidden">
-						<div class="input-group">
-							<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span> Add an Item</span>
-							<input type="text" class="form-control" id="add_product_input" autocomplete="off" name="order_item_style" placeholder="Search Style Number or Product Name">
-						</div>
-					</form>
+					<?php 
 
-					<?php //include 'wysiwyg.php' ?>
-					<?php } } ?>
+					} ?>
 				</div>
 
 				<?php if ($manage_order): ?>
@@ -239,6 +292,7 @@
 					</div>
 				<?php endif; ?>
 			</div>
+		</div>
 		<?php } ?>
 	</div>
 </div>
@@ -324,7 +378,7 @@ companyNameInput.change(function(event) {
 		// {id, style, name, node}
 		var order_item_node = $('<label class="order-item list-group-item checkbox">');
 		var checkbox = $('<input type="checkbox" name="' + params.id + '-add' + '">');
-		var stuff = '<strong>' + params.name + '</strong> <span class="label label-info">' + params.style + '</span> <a class="arv-right" data-toggle="tooltip" data-placement="top" title="Preview ' + params.name + " " + params.style + ' (Opens in new window)" href="../product/index.php?id=' + params.id + '" target="_blank">Preview <span class="fa fa-eye"></span></a>';
+		var stuff = ' <strong>' + params.name + '</strong> <span class="label label-info">' + params.style + '</span> <a class="arv-right" data-toggle="tooltip" data-placement="top" title="Preview ' + params.name + " " + params.style + ' (Opens in new window)" href="../product/index.php?id=' + params.id + '" target="_blank">Preview <span class="fa fa-eye"></span></a>';
 
 		checkbox.attr('data-prod-id', params.id);
 		checkbox.attr('data-order-id', <?php echo $order_id ?>);
