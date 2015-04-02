@@ -15,6 +15,7 @@
 		<ul class="nav navbar-nav">
 			<li class="<?php if ($home_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>">Home</a></li>
 			<li class="<?php if ($order_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/orders">Orders</a></li>
+			<li class="<?php if ($inventory_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/inventory">Inventory</a></li>
 			<li class="dropdown<?php if ($customer_page_active||$import_customer_page_active) {echo " active";} ?>">
 				<a href="<?php echo "$host"; ?>/admin/customers" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Customers<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">

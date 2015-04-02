@@ -52,7 +52,7 @@
 
 $paradox_mysql_link->close();
 $dataTables = TRUE;
-include 'footer.php';
+include '../admin/footer.php';
 
 ?>
 <script type="text/javascript">

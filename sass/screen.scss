@@ -64,6 +64,10 @@ fieldset + fieldset {
 	}
 }
 
+.text-center, td.text-center {
+	text-align: center;
+}
+
 .loading #navigation .navbar-brand img {
 	-webkit-animation: spin 1s infinite; /* Safari 4+ */
 	-moz-animation: spin 1s infinite; /* Fx 5+ */
@@ -335,7 +339,6 @@ table {
 		th, td {
 			border: 1px solid #FFF;
 			padding: 0.5em 0.75em;
-			text-align: left;
 		}
 	}
 	&.stripes tr {
@@ -506,10 +509,61 @@ th, td {
 	}
 }
 
-
 .add-order-form {
 	h3 {
 		margin-top: 0;
+	}
+}
+
+.inventory-page {
+	#report_table_wrapper {
+		padding-top: 1em;
+	}
+
+	#report_table {
+		td {
+			vertical-align: middle;
+		}
+		.product-image img {
+			width: 50px;
+		}
+	}
+}
+
+@import "inventory_page_print";
+
+.inventory-page-print {
+	background: #CCC;
+
+	.page {
+		width: 8in;
+		height: 11in;
+		padding: 0 0.25in;
+		margin: 0.5in auto;
+
+		box-shadow: 0px 10px 32px -9px rgba(0,0,0, 0.6);
+	}
+
+	.print-product-item {
+		width: 2.35in;
+
+		.deets .fit, .deets .style-number, .product-footer {
+			font-size: 0.6em;
+		}
+
+		.product-row .item-details .deets {
+			padding-top: 0.1em;
+		}
+	}
+
+	table {
+		thead th {
+			text-align: center;
+		}
+		th, td {
+			font-size: 7pt;
+			padding: 0 0.025em;
+		}
 	}
 }
 

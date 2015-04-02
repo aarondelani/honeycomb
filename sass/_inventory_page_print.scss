@@ -1,0 +1,164 @@
+.inventory-page-print {
+	background: #CCC;
+	font-size: 12pt;
+	margin: 0;
+	padding: 0;
+
+	-webkit-print-color-adjust: exact;
+
+	h1, h2, h3, h4, h5 {
+		font-weight: 400;
+	}
+
+	.header-cont {
+		padding: 0.25in 0 0.125in;
+		border-bottom: 2pt solid #CCC;
+		margin-bottom: 0.125in;
+		clear: both;
+
+		h2 {
+			margin: 0;
+			vertical-align: middle
+		}
+
+		.contact-details {
+			float: right;
+			font-size: 9pt;
+			line-height: 1.25em;
+
+			ul, li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			li {
+				text-align: right;
+			}
+		}
+	}
+
+	.page {
+		background: #FFF;
+		margin-bottom: 1em;
+		height: 10.75in;
+		overflow: hidden;
+		position: relative;
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	#content {
+		// background: #FFF;
+		width: 8in;
+		padding: 0 1px;
+		margin: 0 auto;
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+	}
+
+	.print-product-item {
+		background: #FFF;
+		border: 1px solid #CCC;
+		// display: inline-block;
+		float: left;
+		width: 2.5in;
+		max-height: 2.25in;
+		overflow: hidden;
+		border-radius: 4px;
+		margin: 0 0.0725in 0.15in;
+
+		// &:nth-child(odd) {
+		// 	margin-right: 0;
+		// }
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		.product-header, .product-footer {
+			clear: both;
+			font-size: 9pt;
+			font-weight: 700;
+			padding: 0.5em 0.5em 0;
+		}
+
+		.product-footer {
+			padding: 0 0.5em 0.5em;
+		}
+
+		.inventory-stats {
+			font-size: 7pt;
+
+			.row-header {
+				background: #EAEAEA;
+			}
+		}
+
+		.product-row {
+			padding: 0.5em;
+			padding-left: 1.25in;
+
+			.item-details {
+				float: left;
+				margin-left: -1.125in;
+				width: 1in;
+
+				.deets {
+					font-size: 10pt;
+					padding: 1em 0 0;
+					vertical-align: top;
+				}
+
+				img {
+					display: block;
+					max-width: 100%;
+					max-height: 1.425in;
+				}
+
+				.style-number {
+					background: #CCC;
+					border-radius: 4px;
+					display: inline-block;
+					padding: 0.25em 0.35em 0.125em;
+					line-height: 1em;
+				}
+
+				.fit {
+					display: inline-block;
+					padding: 0.125em;
+				}
+			}
+		}
+	}
+
+	.footer-cont {
+		border-top: 1px solid #EAEAEA;
+		clear: both;
+		font-size: 10pt;
+		left: 0;
+		padding: 0.125in 0.125in;
+		position: absolute;
+		right: 0;
+		top: 10.25in;
+
+		.page-number {
+			display: block;
+			float: right;
+		}
+	}
+}

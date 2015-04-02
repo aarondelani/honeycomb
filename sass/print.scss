@@ -1,3 +1,7 @@
+
+$ljgreen: #C0D22E;
+$dark-gray: #353535;
+
 body {
 	font-family: 'Helvetica', 'Arial';
 }
@@ -6,7 +10,107 @@ header {
 	display: none;
 }
 
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+
+	&, td {
+		border: 1px solid #EAEAEA;
+	}
+
+	&.layout {
+		width: 100%;
+	}
+
+	td, th {
+		padding: 0.25em;
+	}
+
+	&.stripes, &.blues {
+		th, &.dataTable thead th {
+			background-color: $dark-gray;
+
+			&, a {
+				color: #FFF;
+			}
+		}
+		th, td {
+			border: 1px solid #FFF;
+			padding: 0.5em 0.75em;
+		}
+	}
+	&.stripes tr {
+		background: #EAEAEA;
+		&:nth-child(even) {
+			background: #FAFAFA;
+		}
+		&:hover td {
+			background: #DAEFFA;
+		}
+	}
+	&.blues tr {
+		background: #C8E5F4;
+		&:nth-child(even) {
+			background: #DAEFFA;
+		}
+		&:hover td {
+			background: #EAF8FF;
+		}
+	}
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
 #navigation,
 .product-navbar {
 	display: none;
+}
+
+@page {
+	// size: 8.5in 11in;
+	margin: 0 0.25in;
+	padding: 0;
+
+	:left {
+		content: 'hello';
+		display: block;
+		margin: 0;
+	}
+
+	:right {
+		margin: 0;
+	}
+}
+
+@import "inventory_page_print";
+
+.inventory-page {
+	font-size: 12pt;
+	margin: 0;
+	padding: 0;
+
+	#content {
+		width: 10in;
+		-webkit-print-color-adjust: exact;
+
+		.dataTables_wrapper {
+			.row:first-child {
+				display: none;
+			}
+		}
+
+		#report_table {
+			max-width: 100%;
+
+			img {
+				width: 0.5in;
+			}
+		}
+	}
 }

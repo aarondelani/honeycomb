@@ -202,8 +202,6 @@
 
 		<?php if ($browsing_order) { ?>
 		<div class="container">
-			
-
 			<div class="panel order-panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
