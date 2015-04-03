@@ -91,6 +91,8 @@ table {
 	display: none;
 }
 
+@import "inventory_page_print";
+
 .page {
 	background: #FFF;
 	height: 10.5in;
@@ -109,8 +111,6 @@ table {
 		margin-bottom: 0;
 	}
 }
-
-@import "inventory_page_print";
 
 .inventory-page {
 	font-size: 12pt;

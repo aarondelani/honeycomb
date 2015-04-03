@@ -6,7 +6,7 @@
 
 	$show_all = FALSE;
 
-	if (isset($_GET["ass"])) {
+	if (isset($_GET["q"])) {
 		$show_all = TRUE;
 	}
 

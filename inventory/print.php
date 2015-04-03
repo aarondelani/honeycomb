@@ -66,7 +66,7 @@ if (isset($_GET["rep"])) {
 		<div class="print-product-item" data-inv-id="<?php echo $item_id; ?>" data-inv-keyword="<?php echo $repor["item_keyword"]; ?>">
 			<div class="product-row">
 				<div class="item-details text-center">
-					<img src="<?php echo $imghost . $item_image; ?>" alt="">
+					<a href="http://lesliejordan.com"><img src="<?php echo $imghost . $item_image; ?>" alt=""></a>
 
 					<div class="deets">
 						<span class="style-number"><?php echo $repor["Style"]; ?></span><br>
