@@ -14,6 +14,7 @@
 	$lji_rack_page = TRUE;
 	$closeout_page = FALSE;
 	$current_page = "LJI Rack Report";
+
 if (isset($_GET["rep"])) {
 	if ($_GET["rep"] == "rack") {
 		$filterQuery = "lji rack";
@@ -35,31 +36,33 @@ if (isset($_GET["rep"])) {
 <div id="wrapper">
 	<div id="content" class="container-fluid" role="main">
 		<?php include 'navbar.php'; ?>
+
 		<h2><?php echo $current_page; ?></h2>
+
 		<table class="table stripes layout" id="report_table">
-		<thead>
-			<tr>
-				<th>Preview</th>
-				<th>Style</th>
-				<th>Color</th>
-				<th>Fabric</th>
-				<th>Brand</th>
-				<th>Pattern</th>
-				<th>Fit</th>
-				<th>Origin</th>
-				<th>OS</th>
-				<th>2XS</th>
-				<th>XS</th>
-				<th>S</th>
-				<th>M</th>
-				<th>L</th>
-				<th>XL</th>
-				<th>2XL</th>
-				<th>3XL</th>
-				<th>4XL</th>
-				<th>Total Available</th>
-			</tr>
-		</thead>
+			<thead>
+				<tr>
+					<th>Preview</th>
+					<th>Style</th>
+					<th>Color</th>
+					<th>Fabric</th>
+					<th>Brand</th>
+					<th>Pattern</th>
+					<th>Fit</th>
+					<th>Origin</th>
+					<th class="text-center">OS</th>
+					<th class="text-center">2XS</th>
+					<th class="text-center">XS</th>
+					<th class="text-center">S</th>
+					<th class="text-center">M</th>
+					<th class="text-center">L</th>
+					<th class="text-center">XL</th>
+					<th class="text-center">2XL</th>
+					<th class="text-center">3XL</th>
+					<th class="text-center">4XL</th>
+					<th class="text-center">Total</th>
+				</tr>
+			</thead>
 		<?php if ($par_rep->num_rows > 0) {
 				while($repor = $par_rep->fetch_assoc()) {
 					// print_r($repor);

@@ -1,9 +1,26 @@
-
 $ljgreen: #C0D22E;
 $dark-gray: #353535;
 
+@page {
+	size: 8.5in 11in;
+	margin: 0 0.25in;
+	padding: 0;
+
+	:left {
+		content: 'hello';
+		display: block;
+		margin: 0;
+	}
+
+	:right {
+		margin: 0;
+	}
+}
+
 body {
 	font-family: 'Helvetica', 'Arial';
+
+	-webkit-print-color-adjust: exact;
 }
 
 header {
@@ -13,6 +30,8 @@ header {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+
+	page: tables;
 
 	&, td {
 		border: 1px solid #EAEAEA;
@@ -72,19 +91,22 @@ table {
 	display: none;
 }
 
-@page {
-	// size: 8.5in 11in;
-	margin: 0 0.25in;
-	padding: 0;
+.page {
+	background: #FFF;
+	height: 10.5in;
+	overflow: hidden;
+	page-break-after: always;
+	padding-bottom: 0.5in;
+	position: relative;
 
-	:left {
-		content: 'hello';
+	&:after {
+		content: '';
 		display: block;
-		margin: 0;
+		clear: both;
 	}
 
-	:right {
-		margin: 0;
+	&:last-child {
+		margin-bottom: 0;
 	}
 }
 

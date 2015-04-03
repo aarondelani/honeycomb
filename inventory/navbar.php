@@ -6,7 +6,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="<?php echo $host; ?>/product">Inventory</a>
+		<a class="navbar-brand" href="<?php echo $host; ?>/inventory">Inventory</a>
 	</div>
 
 	<div class="collapse navbar-collapse" id="client_bar">
@@ -16,7 +16,7 @@
 	</ul>
 		<form class="navbar-form navbar-right" action="index.php" method="get" name="id" id="searchProducts" role="search">
 			<div class="form-group">
-				<a href="print.php?rep=<?php echo $_GET["rep"]; ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" data-placement="bottom" title="This will print the Short Sleeve / Long Sleeve <?php echo $current_page; ?> Catalog"><span class="glyphicon glyphicon-print"></span> Print Catalog</a></span>
+				<a href="print.php?rep=<?php if (isset($_GET["rep"])) {echo $_GET["rep"];} else { echo "rack";} ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" data-placement="bottom" title="This will print the Short Sleeve / Long Sleeve <?php echo $current_page; ?> Catalog"><span class="glyphicon glyphicon-print"></span> Print Catalog</a></span>
 			</div>
 		</form>
 	</div>
