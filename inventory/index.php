@@ -10,26 +10,34 @@
 	include '../navigation.php';
 	$imghost = "http://www.lesliejordan.com/inventory/prodimages/";
 // Setting Default Report
-	$filterQuery = "lji rack";
-	$lji_rack_page = TRUE;
-	$closeout_page = FALSE;
-	$current_page = "LJI Rack Report";
+	$all_inventory = FALSE;
+
+	$query = "SELECT `paradox`.`inv_item`.`itemid` AS `itemid`, inv_item.item_keyword AS item_keyword, inv_item.style AS Style, inv_item.color AS Color, inv_item.styleinfo AS Fabric, inv_item.item_brand AS Brand, inv_item.item_pattern, inv_item.item_fit AS Fit, inv_item.item_origin AS Origin, inv_item.image AS image, (`oh`.`size_os_oh` - `so`.`size_os_commit`) AS `OS`, (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) AS `2XS`, (`oh`.`size_xs_oh` - `so`.`size_xs_commit`) AS `XS`, (`oh`.`size_s_oh` - `so`.`size_s_commit`) AS `S`, (`oh`.`size_m_oh` - `so`.`size_m_commit`) AS `M`, (`oh`.`size_l_oh` - `so`.`size_l_commit`) AS `L`, (`oh`.`size_xl_oh` - `so`.`size_xl_commit`) AS `XL`, (`oh`.`size_2xl_oh` - `so`.`size_2xl_commit`) AS `2XL`, (`oh`.`size_3xl_oh` - `so`.`size_3xl_commit`) AS `3XL`, (`oh`.`size_4xl_oh` - `so`.`size_4xl_commit`) AS `4XL`, ( ( ( ( ( ( ( ( ( (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) + (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) ) + (`oh`.`size_xs_oh` - `so`.`size_xs_commit`) ) + (`oh`.`size_s_oh` - `so`.`size_s_commit`) ) + (`oh`.`size_m_oh` - `so`.`size_m_commit`) ) + (`oh`.`size_l_oh` - `so`.`size_l_commit`) ) + (`oh`.`size_xl_oh` - `so`.`size_xl_commit`) ) + (`oh`.`size_2xl_oh` - `so`.`size_2xl_commit`) ) + (`oh`.`size_3xl_oh` - `so`.`size_3xl_commit`) ) + (`oh`.`size_4xl_oh` - `so`.`size_4xl_commit`) ) AS `size_avail_total` FROM ( (`paradox`.`inv_item` JOIN `paradox`.`view_item_oh_counts` `oh` ON ( (`oh`.`itemid` = `paradox`.`inv_item`.`itemid`) ) ) JOIN `paradox`.`view_item_so_counts` `so` ON ( (`so`.`itemid` = `paradox`.`inv_item`.`itemid`) ) ) WHERE inv_item.item_remove = 'active' AND inv_item.hide = 'n' GROUP BY `paradox`.`inv_item`.`itemid`;";
+	$lji_rack_page = FALSE;
+	$all_inventory = TRUE;
+	$current_page = "Viewing All Inventory";
 
 if (isset($_GET["rep"])) {
 	if ($_GET["rep"] == "rack") {
 		$filterQuery = "lji rack";
+		$lji_rack_page = TRUE;
+		$current_page = "LJI Rack Report";
 	}
 
 	if ($_GET["rep"] == "close") {
-		$lji_rack_page = FALSE;
 		$closeout_page = TRUE;
 		$filterQuery = "closeout";
 		$current_page = "Closeout Report";
 	}
-}
 
+	if ($_GET["rep"] == "all") {
+	}
 
 	$query = "SELECT `paradox`.`inv_item`.`itemid` AS `itemid`, inv_item.item_keyword AS item_keyword, inv_item.style AS Style, inv_item.color AS Color, inv_item.styleinfo AS Fabric, inv_item.item_brand AS Brand, inv_item.item_pattern, inv_item.item_fit AS Fit, inv_item.item_origin AS Origin, inv_item.image AS image, (`oh`.`size_os_oh` - `so`.`size_os_commit`) AS `OS`, (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) AS `2XS`, (`oh`.`size_xs_oh` - `so`.`size_xs_commit`) AS `XS`, (`oh`.`size_s_oh` - `so`.`size_s_commit`) AS `S`, (`oh`.`size_m_oh` - `so`.`size_m_commit`) AS `M`, (`oh`.`size_l_oh` - `so`.`size_l_commit`) AS `L`, (`oh`.`size_xl_oh` - `so`.`size_xl_commit`) AS `XL`, (`oh`.`size_2xl_oh` - `so`.`size_2xl_commit`) AS `2XL`, (`oh`.`size_3xl_oh` - `so`.`size_3xl_commit`) AS `3XL`, (`oh`.`size_4xl_oh` - `so`.`size_4xl_commit`) AS `4XL`, ( ( ( ( ( ( ( ( ( (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) + (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) ) + (`oh`.`size_xs_oh` - `so`.`size_xs_commit`) ) + (`oh`.`size_s_oh` - `so`.`size_s_commit`) ) + (`oh`.`size_m_oh` - `so`.`size_m_commit`) ) + (`oh`.`size_l_oh` - `so`.`size_l_commit`) ) + (`oh`.`size_xl_oh` - `so`.`size_xl_commit`) ) + (`oh`.`size_2xl_oh` - `so`.`size_2xl_commit`) ) + (`oh`.`size_3xl_oh` - `so`.`size_3xl_commit`) ) + (`oh`.`size_4xl_oh` - `so`.`size_4xl_commit`) ) AS `size_avail_total` FROM ( (`paradox`.`inv_item` JOIN `paradox`.`view_item_oh_counts` `oh` ON ( (`oh`.`itemid` = `paradox`.`inv_item`.`itemid`) ) ) JOIN `paradox`.`view_item_so_counts` `so` ON ( (`so`.`itemid` = `paradox`.`inv_item`.`itemid`) ) ) WHERE inv_item.item_keyword LIKE '%". $filterQuery ."%' AND inv_item.item_remove = 'active' AND inv_item.hide = 'n' GROUP BY `paradox`.`inv_item`.`itemid`;";
+}
+
+if (!$all_inventory) {
+}
 	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
 	$par_rep = $paradox_mysql_link->query($query);
 ?>
@@ -50,8 +58,8 @@ if (isset($_GET["rep"])) {
 					<th>Pattern</th>
 					<th>Fit</th>
 					<th>Origin</th>
-					<th class="text-center">OS</th>
-					<th class="text-center">2XS</th>
+					<!-- <th class="text-center">OS</th> -->
+					<!-- <th class="text-center">2XS</th> -->
 					<th class="text-center">XS</th>
 					<th class="text-center">S</th>
 					<th class="text-center">M</th>
@@ -59,7 +67,7 @@ if (isset($_GET["rep"])) {
 					<th class="text-center">XL</th>
 					<th class="text-center">2XL</th>
 					<th class="text-center">3XL</th>
-					<th class="text-center">4XL</th>
+					<!-- <th class="text-center">4XL</th> -->
 					<th class="text-center">Total</th>
 				</tr>
 			</thead>
@@ -78,8 +86,8 @@ if (isset($_GET["rep"])) {
 			<td><?php echo $repor["item_pattern"]; ?></td>
 			<td><?php echo $repor["Fit"]; ?></td>
 			<td><?php echo $repor["Origin"]; ?></td>
-			<td class="text-center"><?php echo $repor["OS"]; ?></td>
-			<td class="text-center"><?php echo $repor["2XS"]; ?></td>
+			<!-- <td class="text-center"><?php echo $repor["OS"]; ?></td> -->
+			<!-- <td class="text-center"><?php echo $repor["2XS"]; ?></td> -->
 			<td class="text-center"><?php echo $repor["XS"]; ?></td>
 			<td class="text-center"><?php echo $repor["S"]; ?></td>
 			<td class="text-center"><?php echo $repor["M"]; ?></td>
@@ -87,7 +95,7 @@ if (isset($_GET["rep"])) {
 			<td class="text-center"><?php echo $repor["XL"]; ?></td>
 			<td class="text-center"><?php echo $repor["2XL"]; ?></td>
 			<td class="text-center"><?php echo $repor["3XL"]; ?></td>
-			<td class="text-center"><?php echo $repor["4XL"]; ?></td>
+			<!-- <td class="text-center"><?php echo $repor["4XL"]; ?></td> -->
 			<td class="text-center"><?php echo $repor["size_avail_total"]; ?></td>
 		</tr>
 		<?php }

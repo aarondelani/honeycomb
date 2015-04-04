@@ -34,10 +34,16 @@ if (isset($_GET["rep"])) {
 		$filterQuery = "inv_item.item_keyword LIKE '%closeout%' AND inv_item.item_keyword LIKE '%Short Sleeve Shirts%' OR inv_item.item_keyword LIKE '%Long Sleeve Shirts' AND inv_item.item_keyword NOT LIKE '%jacket%' AND inv_item.closeout = 'y' AND inv_item.item_keyword NOT LIKE '%accessory%'";
 		$current_page = "Closeout Catalog";
 	}
-}
-
 
 	$query = "SELECT `paradox`.`inv_item`.`itemid` AS `itemid`, inv_item.item_keyword AS item_keyword, inv_item.style AS Style, inv_item.color AS Color, inv_item.styleinfo AS Fabric, inv_item.item_brand AS Brand, inv_item.item_pattern, inv_item.item_fit AS Fit, inv_item.item_origin AS Origin, inv_item.image AS image, (`oh`.`size_os_oh` - `so`.`size_os_commit`) AS `OS`, (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) AS `2XS`, (`oh`.`size_xs_oh` - `so`.`size_xs_commit`) AS `XS`, (`oh`.`size_s_oh` - `so`.`size_s_commit`) AS `S`, (`oh`.`size_m_oh` - `so`.`size_m_commit`) AS `M`, (`oh`.`size_l_oh` - `so`.`size_l_commit`) AS `L`, (`oh`.`size_xl_oh` - `so`.`size_xl_commit`) AS `XL`, (`oh`.`size_2xl_oh` - `so`.`size_2xl_commit`) AS `2XL`, (`oh`.`size_3xl_oh` - `so`.`size_3xl_commit`) AS `3XL`, (`oh`.`size_4xl_oh` - `so`.`size_4xl_commit`) AS `4XL`, ( ( ( ( ( ( ( ( ( (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) + (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) ) + (`oh`.`size_xs_oh` - `so`.`size_xs_commit`) ) + (`oh`.`size_s_oh` - `so`.`size_s_commit`) ) + (`oh`.`size_m_oh` - `so`.`size_m_commit`) ) + (`oh`.`size_l_oh` - `so`.`size_l_commit`) ) + (`oh`.`size_xl_oh` - `so`.`size_xl_commit`) ) + (`oh`.`size_2xl_oh` - `so`.`size_2xl_commit`) ) + (`oh`.`size_3xl_oh` - `so`.`size_3xl_commit`) ) + (`oh`.`size_4xl_oh` - `so`.`size_4xl_commit`) ) AS `size_avail_total` FROM ( (`paradox`.`inv_item` JOIN `paradox`.`view_item_oh_counts` `oh` ON ( (`oh`.`itemid` = `paradox`.`inv_item`.`itemid`) ) ) JOIN `paradox`.`view_item_so_counts` `so` ON ( (`so`.`itemid` = `paradox`.`inv_item`.`itemid`) ) ) WHERE " . $filterQuery . " AND inv_item.item_remove = 'active' AND inv_item.hide = 'n' GROUP BY `paradox`.`inv_item`.`itemid`;";
+
+	if($_GET["rep"] == "all") {
+		$query = "SELECT `paradox`.`inv_item`.`itemid` AS `itemid`, inv_item.item_keyword AS item_keyword, inv_item.style AS Style, inv_item.color AS Color, inv_item.styleinfo AS Fabric, inv_item.item_brand AS Brand, inv_item.item_pattern, inv_item.item_fit AS Fit, inv_item.item_origin AS Origin, inv_item.image AS image, (`oh`.`size_os_oh` - `so`.`size_os_commit`) AS `OS`, (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) AS `2XS`, (`oh`.`size_xs_oh` - `so`.`size_xs_commit`) AS `XS`, (`oh`.`size_s_oh` - `so`.`size_s_commit`) AS `S`, (`oh`.`size_m_oh` - `so`.`size_m_commit`) AS `M`, (`oh`.`size_l_oh` - `so`.`size_l_commit`) AS `L`, (`oh`.`size_xl_oh` - `so`.`size_xl_commit`) AS `XL`, (`oh`.`size_2xl_oh` - `so`.`size_2xl_commit`) AS `2XL`, (`oh`.`size_3xl_oh` - `so`.`size_3xl_commit`) AS `3XL`, (`oh`.`size_4xl_oh` - `so`.`size_4xl_commit`) AS `4XL`, ( ( ( ( ( ( ( ( ( (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) + (`oh`.`size_2xs_oh` - `so`.`size_2xs_commit`) ) + (`oh`.`size_xs_oh` - `so`.`size_xs_commit`) ) + (`oh`.`size_s_oh` - `so`.`size_s_commit`) ) + (`oh`.`size_m_oh` - `so`.`size_m_commit`) ) + (`oh`.`size_l_oh` - `so`.`size_l_commit`) ) + (`oh`.`size_xl_oh` - `so`.`size_xl_commit`) ) + (`oh`.`size_2xl_oh` - `so`.`size_2xl_commit`) ) + (`oh`.`size_3xl_oh` - `so`.`size_3xl_commit`) ) + (`oh`.`size_4xl_oh` - `so`.`size_4xl_commit`) ) AS `size_avail_total` FROM ( (`paradox`.`inv_item` JOIN `paradox`.`view_item_oh_counts` `oh` ON ( (`oh`.`itemid` = `paradox`.`inv_item`.`itemid`) ) ) JOIN `paradox`.`view_item_so_counts` `so` ON ( (`so`.`itemid` = `paradox`.`inv_item`.`itemid`) ) ) WHERE inv_item.item_remove = 'active' AND inv_item.hide = 'n' GROUP BY `paradox`.`inv_item`.`itemid`;";
+		$all_inventory = TRUE;
+		$current_page = "Viewing All Inventory";
+	}
+}
+
 	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
 	$par_rep = $paradox_mysql_link->query($query);
 ?>
@@ -46,12 +52,12 @@ if (isset($_GET["rep"])) {
 		<div class="header-cont">
 			<div class="contact-details">
 				<ul>
-					<li>www.lesliejordan.com</li>
+					<li><a href="http://www.lesliejordan.com">www.lesliejordan.com</a></li>
 					<li>Call 803-935-3343 for availability</li>
 					<li>ljsales@lesliejordan.com</li>
 				</ul>
 			</div>
-			<h2><img src="images/lj-logo.svg" alt="Leslie Jordan Logo"> <?php echo $current_page; ?></h2>
+			<h2><a href="http://www.lesliejordan.com"><img src="images/lj-logo.svg" alt="Leslie Jordan Logo"></a> <?php echo $current_page; ?></h2>
 		</div>
 
 		<?php
@@ -66,7 +72,7 @@ if (isset($_GET["rep"])) {
 		<div class="print-product-item" data-inv-id="<?php echo $item_id; ?>" data-inv-keyword="<?php echo $repor["item_keyword"]; ?>">
 			<div class="product-row">
 				<div class="item-details text-center">
-					<a href="http://lesliejordan.com"><img src="<?php echo $imghost . $item_image; ?>" alt=""></a>
+					<img src="<?php echo $imghost . $item_image; ?>" alt="">
 
 					<div class="deets">
 						<span class="style-number"><?php echo $repor["Style"]; ?></span><br>
@@ -82,8 +88,12 @@ if (isset($_GET["rep"])) {
 						<th colspan="2">Inventory</th>
 					</tr>
 				</thead>
+				<?php if ($repor["OS"] > 0) { ?>
 					<tr><td class="text-right row-header">OS</td><td class="text-center"><?php echo $repor["OS"]; ?></td></tr>
+				<?php } ?>
+				<?php if ($repor["2XS"] > 0) { ?>
 					<tr><td class="text-right row-header">2XS</td><td class="text-center"><?php echo $repor["2XS"]; ?></td></tr>
+				<?php } ?>
 					<tr><td class="text-right row-header">XS</td><td class="text-center"><?php echo $repor["XS"]; ?></td></tr>
 					<tr><td class="text-right row-header">S</td><td class="text-center"><?php echo $repor["S"]; ?></td></tr>
 					<tr><td class="text-right row-header">M</td><td class="text-center"><?php echo $repor["M"]; ?></td></tr>
@@ -91,7 +101,9 @@ if (isset($_GET["rep"])) {
 					<tr><td class="text-right row-header">XL</td><td class="text-center"><?php echo $repor["XL"]; ?></td></tr>
 					<tr><td class="text-right row-header">2XL</td><td class="text-center"><?php echo $repor["2XL"]; ?></td></tr>
 					<tr><td class="text-right row-header">3XL</td><td class="text-center"><?php echo $repor["3XL"]; ?></td></tr>
+				<?php if ($repor["4XL"] > 0) { ?>
 					<tr><td class="text-right row-header">4XL</td><td class="text-center"><?php echo $repor["4XL"]; ?></td></tr>
+				<?php } ?>
 					<tr><td class="text-right row-header">Total</td><td class="text-center"><?php echo $repor["size_avail_total"]; ?></td></tr>
 				</table>
 			</div><div class="product-footer text-center">
