@@ -9,16 +9,6 @@
 	include 'admin/headers.php';
 	include 'navigation.php';
 ?>
-<!-- <div id="wrapper">
-	<div id="content" class="container" role="main">
-		<div id="welcome" class="jumbotron">
-			<img src="images/honeycomb-ico-grad.svg" alt="Honey Comb Icon" class="honeycomb-icon">
-			<h1>Welcome <?php echo ucfirst($_SESSION["username"]);?>,</h1>
-			<p>Honeycomb is an experimental lab...</p>
-			<a class="btn btn-lg btn-primary" href="about.php">Learn More</a>
-		</div>
-	</div>
-</div> -->
 <div id="welcome">
 	<div class="container">
 		<div class="jumbotron">
