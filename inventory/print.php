@@ -68,6 +68,10 @@ if (isset($_GET["rep"])) {
 					// print_r($repor);
 					$item_id = $repor["itemid"];
 					$item_image = $repor["image"];
+
+					if ($item_image != "" || NULL) {
+
+
 		?>
 		<div class="print-product-item" data-inv-id="<?php echo $item_id; ?>" data-inv-keyword="<?php echo $repor["item_keyword"]; ?>">
 			<div class="product-row">
@@ -94,24 +98,25 @@ if (isset($_GET["rep"])) {
 				<?php if ($repor["2XS"] > 0) { ?>
 					<tr><td class="text-right row-header">2XS</td><td class="text-center"><?php echo $repor["2XS"]; ?></td></tr>
 				<?php } ?>
-					<tr><td class="text-right row-header">XS</td><td class="text-center"><?php echo $repor["XS"]; ?></td></tr>
-					<tr><td class="text-right row-header">S</td><td class="text-center"><?php echo $repor["S"]; ?></td></tr>
-					<tr><td class="text-right row-header">M</td><td class="text-center"><?php echo $repor["M"]; ?></td></tr>
-					<tr><td class="text-right row-header">L</td><td class="text-center"><?php echo $repor["L"]; ?></td></tr>
-					<tr><td class="text-right row-header">XL</td><td class="text-center"><?php echo $repor["XL"]; ?></td></tr>
-					<tr><td class="text-right row-header">2XL</td><td class="text-center"><?php echo $repor["2XL"]; ?></td></tr>
-					<tr><td class="text-right row-header">3XL</td><td class="text-center"><?php echo $repor["3XL"]; ?></td></tr>
+					<tr><td class="text-right row-header">XS</td><td class="text-center"><?php if ($repor["XS"] > 0) { echo $repor["XS"]; } else { echo "0"; } ?></td></tr>
+					<tr><td class="text-right row-header">S</td><td class="text-center"><?php if ($repor["S"] > 0) { echo $repor["S"]; } else { echo "0"; } ?></td></tr>
+					<tr><td class="text-right row-header">M</td><td class="text-center"><?php if ($repor["M"] > 0) { echo $repor["M"]; } else { echo "0"; } ?></td></tr>
+					<tr><td class="text-right row-header">L</td><td class="text-center"><?php if ($repor["L"] > 0) { echo $repor["L"]; } else { echo "0"; } ?></td></tr>
+					<tr><td class="text-right row-header">XL</td><td class="text-center"><?php if ($repor["XL"] > 0) { echo $repor["XL"]; } else { echo "0"; } ?></td></tr>
+					<tr><td class="text-right row-header">2XL</td><td class="text-center"><?php if ($repor["2XL"] > 0) { echo $repor["2XL"]; } else { echo "0"; } ?></td></tr>
+					<tr><td class="text-right row-header">3XL</td><td class="text-center"><?php if ($repor["3XL"] > 0) { echo $repor["3XL"]; } else { echo "0"; } ?></td></tr>
 				<?php if ($repor["4XL"] > 0) { ?>
 					<tr><td class="text-right row-header">4XL</td><td class="text-center"><?php echo $repor["4XL"]; ?></td></tr>
 				<?php } ?>
-					<tr><td class="text-right row-header">Total</td><td class="text-center"><?php echo $repor["size_avail_total"]; ?></td></tr>
+					<!-- <tr><td class="text-right row-header">Total</td><td class="text-center"><?php echo $repor["size_avail_total"]; ?></td></tr> -->
 				</table>
 			</div><div class="product-footer text-center">
 				<?php echo $repor["Color"]; ?>
 				<?php echo $repor["Fabric"]; ?>
 			</div>
 		</div>
-		<?php }
+			<?php }
+			}
 		} ?>
 		<div class="footer-cont">
 			<div class="footer-cont-content">
