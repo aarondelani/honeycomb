@@ -171,6 +171,14 @@
 
 			<?php } } // Ending Order List loop here ?>
 			</div>
+		<?php } else { ?>
+			<div class="container">
+				<div class="alert alert-danger">
+					<h3>STOP</h3>
+					<strong>Whoa... wait right there...</strong> This is not the order page you are looking for.
+				</div>
+				<p>This is a testing page/research for possible upcoming features.</p>
+			</div>
 		<?php }; ?>
 		<?php if ($add_order) { ?>
 			<div class="panel panel-default">

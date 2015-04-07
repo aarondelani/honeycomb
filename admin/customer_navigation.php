@@ -20,7 +20,7 @@
 			</div>
 		</form>
 		<ul class="nav navbar-nav">
-			<li<?php if ($show_all) {echo " class=\"active\"";} ?>><a href="customers.php?q=all"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Customer List</a></li>
+			<li<?php if ($show_all) {echo " class=\"active\"";} ?>><a href="customers.php?q=all"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Customer List</a></li>
 			<li<?php if ($add_customer_page_active) {echo " class=\"active\"";} ?>><a href="add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add A Customer</a></li>
 			<li<?php if ($import_customer_page_active) {echo " class=\"active\"";} ?>><a href="import_customers"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Import Customers (CSV)</a></li>
 		</ul>

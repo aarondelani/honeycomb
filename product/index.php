@@ -136,6 +136,8 @@
 					<div class="col-md-6">
 						<h1>Products</h1>
 						<p>Welcome to the unified product catalog.</p>
+						<p>This database contains a list of all known products.</p>
+						<p>Right now, only to be used for reference.</p>
 					</div>
 					<div class="col-md-6">
 					<h2>Statistics:</h2>

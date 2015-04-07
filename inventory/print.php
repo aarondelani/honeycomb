@@ -1,4 +1,38 @@
 <?php
+function resizeImage($imagePath, $width, $height, $filterType, $blur, $bestFit, $cropZoom) {
+    //The blur factor where &gt; 1 is blurry, &lt; 1 is sharp.
+    $imagick = new \Imagick(realpath($imagePath));
+
+    $imagick->resizeImage($width, $height, $filterType, $blur, $bestFit);
+
+    $cropWidth = $imagick->getImageWidth();
+    $cropHeight = $imagick->getImageHeight();
+
+    if ($cropZoom) {
+        $newWidth = $cropWidth / 2;
+        $newHeight = $cropHeight / 2;
+
+        $imagick->cropimage(
+            $newWidth,
+            $newHeight,
+            ($cropWidth - $newWidth) / 2,
+            ($cropHeight - $newHeight) / 2
+        );
+
+        $imagick->scaleimage(
+            $imagick->getImageWidth() * 4,
+            $imagick->getImageHeight() * 4
+        );
+    }
+
+
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+
+?>
+
+<?php
 	// Need page preferences here
 	$page_title = "Inventory Reports";
 	$body_class .= " inventory-page-print";
@@ -21,7 +55,7 @@ if (isset($_GET["rep"])) {
 	if ($_GET["rep"] == "rack") {
 		// $filterQuery = "lji rack";
 
-		$filterQuery = "inv_item.item_keyword LIKE '%lji rack%' AND inv_item.item_keyword LIKE '%Short Sleeve Shirts%' OR inv_item.item_keyword LIKE '%Long Sleeve Shirts' AND inv_item.item_keyword NOT LIKE '%jacket%' AND inv_item.item_keyword NOT LIKE '%accessory%'";
+		$filterQuery = "inv_item.item_keyword LIKE '%lji rack%' AND inv_item.item_keyword NOT LIKE '%accessory%' AND inv_item.item_keyword NOT LIKE '%currently in stock%'";
 	}
 
 	if ($_GET["t"] == 1){
@@ -31,7 +65,7 @@ if (isset($_GET["rep"])) {
 	if ($_GET["rep"] == "close") {
 		$lji_rack_page = FALSE;
 		$closeout_page = TRUE;
-		$filterQuery = "inv_item.item_keyword LIKE '%closeout%' AND inv_item.item_keyword LIKE '%Short Sleeve Shirts%' OR inv_item.item_keyword LIKE '%Long Sleeve Shirts' AND inv_item.item_keyword NOT LIKE '%jacket%' AND inv_item.closeout = 'y' AND inv_item.item_keyword NOT LIKE '%accessory%'";
+		$filterQuery = "inv_item.item_keyword LIKE '%closeout%' AND inv_item.item_keyword NOT LIKE '%accessory%' AND inv_item.item_keyword NOT LIKE '%currently in stock%'";
 		$current_page = "Closeout Catalog";
 	}
 
@@ -44,8 +78,8 @@ if (isset($_GET["rep"])) {
 	}
 }
 
-	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
-	$par_rep = $paradox_mysql_link->query($query);
+$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
+$par_rep = $paradox_mysql_link->query($query);
 ?>
 <div id="wrapper">
 	<div id="content" class="container-fluid" role="main">
@@ -76,7 +110,14 @@ if (isset($_GET["rep"])) {
 		<div class="print-product-item" data-inv-id="<?php echo $item_id; ?>" data-inv-keyword="<?php echo $repor["item_keyword"]; ?>">
 			<div class="product-row">
 				<div class="item-details text-center">
-					<img src="<?php echo $imghost . $item_image; ?>" alt="">
+				<?php
+					$imgURL = $imghost . $item_image;
+
+					// $imgURL = new resizeImage($imgURL, 95, 127);
+
+				// , $filterType, $blur, $bestFit, $cropZoom)
+				 ?>
+					<img src="<?php echo $imgURL; ?>" alt="">
 
 					<div class="deets">
 						<span class="style-number"><?php echo $repor["Style"]; ?></span><br>

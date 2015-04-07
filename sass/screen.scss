@@ -524,8 +524,13 @@ th, td {
 		td {
 			vertical-align: middle;
 		}
-		.product-image img {
-			width: 50px;
+		.product-image {
+			max-width: 80px;
+			word-wrap: break-word;
+
+				img {
+				width: 50px;
+			}
 		}
 	}
 }

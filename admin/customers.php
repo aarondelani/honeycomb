@@ -47,7 +47,20 @@
 					}
 				?>
 			</table>
-			<?php } ?>
+			<?php } else {
+				?>
+				<div class="container">
+					<div class="alert alert-danger">
+						<h3>STOP</h3>
+						<strong>Whoa... wait right there...</strong> This is not the customers page you are looking for.
+					</div>
+					<div class="alert alert-warning">
+						<strong>Unless:</strong> you&apos;re only going to use this list for reference purposes, go right ahead.
+					</div>
+					<p>This is a testing page/research for possible upcoming features.</p>
+				</div>
+				<?php
+				} ?>
 
 		<!-- End Content Div -->
 	</div>

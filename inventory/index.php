@@ -50,7 +50,7 @@ if (!$all_inventory) {
 		<table class="table stripes layout" id="report_table">
 			<thead>
 				<tr>
-					<th>Preview</th>
+					<th class="product-image">Preview</th>
 					<th>Style</th>
 					<th>Color</th>
 					<th>Fabric</th>
@@ -78,7 +78,13 @@ if (!$all_inventory) {
 					$item_image = $repor["image"];
 		?>
 		<tr data-item-keywords="<?php echo $repor["item_keyword"]; ?>">
-			<td class="product-image text-center"><img src="<?php echo $imghost . $item_image; ?>" alt=""></td>
+			<td class="product-image text-center">
+			<?php if ($item_image != NULL || "") { ?>
+				<img src="<?php echo $imghost . $item_image; ?>" alt="">
+				<?php } else { ?>
+				<span class="glyphicon glyphicon-picture"></span><span> No Preview</span>
+			<?php } ?>
+			</td>
 			<td><?php echo $repor["Style"]; ?></td>
 			<td><?php echo $repor["Color"]; ?></td>
 			<td><?php echo $repor["Fabric"]; ?></td>
@@ -113,18 +119,25 @@ include '../admin/footer.php';
 ?>
 
 <script type="text/javascript">
+pageHeight = window.innerHeight - 400 + "px";
+
 $(document).ready(function(){
 	body = $('body');
 	body.removeClass('loading');
 
 	var report_table = $('#report_table').DataTable({
 		"pageLength": 100,
+		stateSave: true,
+		"scrollY": pageHeight,
+		"scrollX": true,
+        "scrollCollapse": true,
 		"search": {
 			"regex": true,
 			"smart": true,
 		}
 	});
 });
+
 </script>
 
 <?php
