@@ -7,8 +7,8 @@
 	$import_customer_page_active = TRUE;
 	// $dataTables = TRUE;
 
-	include 'vars.php';
-	include 'headers.php';
+	include '../admin/vars.php';
+	include '../admin/headers.php';
 
 	include '../navigation.php';
 
@@ -89,7 +89,7 @@
 
 <?php
 
-	include 'footer.php';
+	include '../admin/footer.php';
 
 ?>
 <script type="text/javascript">

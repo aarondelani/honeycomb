@@ -1,3 +1,11 @@
+
+<?php
+
+$leads_count = $sugar_link->query("SELECT id FROM _leads WHERE eligable = 1;");
+$leads_count = $leads_count->num_rows;
+
+?>
+
 <nav class="navbar navbar-fixed-top" id="navigation">
   <div class="container-fluid">
 	<div class="navbar-header">
@@ -16,21 +24,22 @@
 			<li class="<?php if ($home_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>">Home</a></li>
 			<li class="<?php if ($order_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/orders">Orders</a></li>
 			<li class="<?php if ($inventory_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/inventory">Inventory</a></li>
-			<li class="dropdown<?php if ($customer_page_active||$import_customer_page_active) {echo " active";} ?>">
-				<a href="<?php echo "$host"; ?>/admin/customers" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Customers<span class="caret"></span></a>
+			<li class="dropdown<?php if ($customer_page_active||$import_customer_page_active||$lead_page_active) {echo " active";} ?>">
+				<a href="<?php echo "$host"; ?>/admin/customers" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Customers <span class="badge"><?php echo $leads_count; ?></span><span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="<?php echo "$host"; ?>/admin/customers">View Customer List</a></li>
+					<li><a href="<?php echo "$host"; ?>/customers">View Customer List</a></li>
+					<li<?php if ($lead_page_active) {echo " class=\"active\"";} ?>><a href="<?php echo "$host"; ?>/customers/leads">Leads <span class="badge"><?php echo $leads_count; ?></span></a></li>
 					<li class="divider"></li>
 					<li class="dropdown-header">Tools</li>
-					<li><a href="<?php echo "$host"; ?>/admin/add">Add Contact or Customer</a></li>
-					<li><a href="<?php echo "$host"; ?>/admin/import_customers">Import and Compare Customer Lists</a></li>
+					<li><a href="<?php echo "$host"; ?>/customers/add">Add Contact or Customer</a></li>
+					<li><a href="<?php echo "$host"; ?>/customers/import_customers">Import and Compare Customer Lists</a></li>
 				</ul>
 			</li>
 			<li class="<?php if ($product_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/product">Product Catalog</a></li>
 		</ul>
 		<div class="nav navbar-nav navbar-right">
 			<li class="dropdown">
-				<a href="<?php echo "$host"; ?>/user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo ucfirst($_SESSION["username"]); ?> <span class="caret"></span></a>
+				<a href="<?php echo "$host"; ?>/user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php echo ucfirst($_SESSION["username"]); ?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="<?php echo "$host"; ?>/user">Account</a></li>
 					<li class="divider"></li>

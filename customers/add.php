@@ -6,8 +6,8 @@
 	$customer_page_active = TRUE;
 	$add_customer_page_active = TRUE;
 
-	include 'vars.php';
-	include 'headers.php';
+	include '../admin/vars.php';
+	include '../admin/headers.php';
 
 	include '../navigation.php';
 ?>
@@ -72,7 +72,7 @@
 	</div>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php include '../admin/footer.php'; ?>
 
 <script type="text/javascript">
 $(document).ready(function(){

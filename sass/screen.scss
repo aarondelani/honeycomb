@@ -152,11 +152,20 @@ fieldset + fieldset {
 		color: #FFF;
 	}
 
+	.badge {
+		background: #057DD3;
+		vertical-align: middle;
+	}
+
 	.nav {
 		> li > a {
 			&:hover, &:focus {
 				color: #FFF;
 				background: #057DD3;
+
+				.badge {
+					background: #223E55;
+				}
 			}
 		}
 
@@ -533,6 +542,11 @@ th, td {
 			}
 		}
 	}
+}
+
+.inv-filter-box {
+	// display: inline-block;
+
 }
 
 @import "inventory_page_print";

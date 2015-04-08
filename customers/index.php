@@ -10,8 +10,8 @@
 		$show_all = TRUE;
 	}
 
-	include 'vars.php';
-	include 'headers.php';
+	include '../admin/vars.php';
+	include '../admin/headers.php';
 
 	include '../navigation.php';
 
@@ -71,6 +71,7 @@
 
 $paradox_mysql_link->close();
 $dataTables = TRUE;
+
 include '../admin/footer.php';
 
 ?>

@@ -192,6 +192,7 @@
 					<input type="hidden" name="new_order_hash" value="<?php echo $new_order_hash; ?>">
 					<input type="hidden" name="created_by" value="<?php echo $_SESSION['user_full_name']; ?>">
 					<input type="hidden" name="userId" value="<?php echo $_SESSION['siteuser']; ?>">
+
 					<div class="panel-body">
 						<input type="text" class="form-control" id="company_name_input" name="company_name" placeholder="Company">
 						<input type="text" class="form-control" name="job_name" placeholder="Job Name" required>
@@ -312,62 +313,65 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+
 <?php
 if($add_order) {
 	// Begin Customer Page JS
 ?>
-var stage1Form = $('#stage_1_order_form');
 
-if (stage1Form.length == 1) {
-	new ajaxifyForm(
-			stage1Form,
-			function(resp) {
-				console.log(resp);
-				if (resp.success) {
-					window.location = '<?php echo $host; ?>/orders/index.php?hash=<?php echo $new_order_hash ?>&action=manage&page=order_info';
-				}
-			},
-			true
-		);
-}
+	var stage1Form = $('#stage_1_order_form');
+
+	if (stage1Form.length == 1) {
+		new ajaxifyForm(
+				stage1Form,
+				function(resp) {
+					console.log(resp);
+					if (resp.success) {
+						window.location = '<?php echo $host; ?>/orders/index.php?hash=<?php echo $new_order_hash ?>&action=manage&page=order_info';
+					}
+				},
+				true
+			);
+	}
 
 // Declaring Input
-var companyNameInput = $('#company_name_input');
+	var companyNameInput = $('#company_name_input');
 
-// Prefetch and get JSON Object for Companies
-var companies = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('id'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		prefetch: '<?php echo $host; ?>/admin/reqs.php?from=customers&query=all',
-		remote: '<?php echo $host; ?>/admin/reqs.php?from=customers&query=%QUERY',
-		limit: 10 // also set in reqs.php for speed
-	});
+	// Prefetch and get JSON Object for Companies
+	var companies = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('id'),
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			prefetch: '<?php echo $host; ?>/admin/reqs.php?from=customers&query=all',
+			remote: '<?php echo $host; ?>/admin/reqs.php?from=customers&query=%QUERY',
+			limit: 10 // also set in reqs.php for speed
+		});
 
-companies.initialize();
+	companies.initialize();
 
-companyNameInput.typeahead({
+	companyNameInput.typeahead({
 		source: companies.ttAdapter(),
 		autoSelect: false
 	});
 
-companyNameInput.change(function(event) {
-	var current = companyNameInput.typeahead("getActive");
-		console.log(current);
+	companyNameInput.change(function(event) {
+		var current = companyNameInput.typeahead("getActive");
+			console.log(current);
 
-	if (current) {
-		// Some item from your model is active!
-		if (current.name == companyNameInput.val()) {
-			// This means the exact match is found. Use toLowerCase() if you want case insensitive match.
-			new createInputProperty('company_id', current.id , stage1Form);
-			new createInputProperty('company', current.name , stage1Form);
+		if (current) {
+			// Some item from your model is active!
+			if (current.name == companyNameInput.val()) {
+				// This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+				new createInputProperty('company_id', current.id , stage1Form);
+				new createInputProperty('company', current.name , stage1Form);
+			} else {
+				// This means it is only a partial match, you can either add a new item
+				// or take the active if you don't want new items
+			}
 		} else {
-			// This means it is only a partial match, you can either add a new item
-			// or take the active if you don't want new items
+			// Nothing is active so it is a new value (or maybe empty value)
 		}
-	} else {
-		// Nothing is active so it is a new value (or maybe empty value)
-	}
-});
+	});
+
 <?php
  // End Customer Page JS
 }

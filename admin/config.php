@@ -18,13 +18,15 @@ $paradox_mysql_user = 'lesliejordan';
 $paradox_mysql_password = '8L5w2V5';
 $paradox_db = "paradox";
 
-// $paradox_mysql_server = '127.0.0.1:3306';
-// $paradox_mysql_user = 'root';
-// $paradox_mysql_password = '';
-// $paradox_db = "paradox";
+// For Leads
+$sugar_mysql_server = '127.0.0.1:3306';
+$sugar_mysql_user = 'honeycomb';
+$sugar_mysql_password = 'password';
+$sugar_db = "_sugar";
 
 // Check Honeycomb Install
 $mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
+$sugar_link = new mysqli($sugar_mysql_server, $sugar_mysql_user, $sugar_mysql_password, $sugar_db);
 
 if (mysqli_connect_errno()) {
 	printf("Connect failed: %s\n", mysqli_connect_error());
