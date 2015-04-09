@@ -10,7 +10,7 @@ $host = "http://192.168.0.144/~aaron/honeycomb";
 // $host = "http://localhost/~aaron/HONEYCOMB";
 
 // $site_location = "/Users/~aaron/Sites/HONEYCOMB";
-$site_location = "/Users/~aaron/Sites/HONEYCOMB";
+$site_location = "/Users/~aaron/Sites/honeycomb";
 
 //PARADOX SERVER LEGACY
 $paradox_mysql_server = '192.168.0.118:3306';

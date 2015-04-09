@@ -192,6 +192,14 @@ var compareVals = function(obj) {
 	});
 };
 
+function _removeFromArr (arr, string) {
+	var index = arr.indexOf(string);
+
+	if (index > -1) {
+		arr.splice(index, 1);
+	}
+};
+
 // var inputs = $('.input-data');
 // compareVals(inputs);
 // MARKUP:
@@ -220,3 +228,4 @@ var compareVals = function(obj) {
 // 		<td><input class="form-control size-5" type="number" value="9"></td>
 // 	</tr>
 // </table>
+console.log('Hello... is it me you\'re looking for?');
