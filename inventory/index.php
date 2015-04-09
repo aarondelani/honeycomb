@@ -119,7 +119,7 @@ include '../admin/footer.php';
 ?>
 
 <script type="text/javascript">
-pageHeight = window.innerHeight - 400 + "px";
+pageHeight = window.innerHeight - 200 + "px";
 
 $(document).ready(function(){
 	body = $('body');

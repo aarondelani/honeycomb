@@ -48,6 +48,7 @@ if (!$all_inventory) {
 <div id="wrapper">
 	<div id="content" class="container-fluid" role="main">
 		<?php include 'navbar.php'; ?>
+		<div id="inv_filters">
 		<?php
 			if ($filters->num_rows > 0) {
 				while ($filter = $filters->fetch_assoc()) {
@@ -56,13 +57,13 @@ if (!$all_inventory) {
 					<?php
 				}
 			}
-
 		 ?>
+		 </div>
 
 		<h2><?php echo $current_page; ?></h2>
 
 		<table class="table stripes layout" id="report_table">
-			<thead>
+			<thead id="inventory_table_head">
 				<tr>
 					<th class="product-image">Preview</th>
 					<th>Style</th>
@@ -133,13 +134,16 @@ include '../admin/footer.php';
 ?>
 
 <script type="text/javascript">
-pageHeight = window.innerHeight - 400 + "px";
+pageHeight = window.innerHeight - 200 + "px";
 
 $(document).ready(function(){
 	body = $('body');
 	body.removeClass('loading');
+	table_head = $('#inventory_table_head');
 
-	var report_table = $('#report_table').DataTable({
+	var report_table = $('#report_table');
+
+	report_table.DataTable({
 		"pageLength": 100,
 		stateSave: true,
 		"scrollY": pageHeight,
@@ -154,6 +158,4 @@ $(document).ready(function(){
 
 </script>
 
-<?php
-$paradox_mysql_link->close();
-?>
+<?php $paradox_mysql_link->close(); ?>

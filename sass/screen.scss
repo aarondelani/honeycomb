@@ -525,6 +525,19 @@ th, td {
 }
 
 .inventory-page {
+	#inv_filters {
+		.inv-filter-box {
+			display: inline-block;
+			margin: 0.25em 0;
+			width: 12.5%;
+			vertical-align: top;
+
+			input:first-child {
+				margin-top: 4px;
+			}
+		}
+	}
+
 	#report_table_wrapper {
 		padding-top: 1em;
 	}
@@ -533,21 +546,18 @@ th, td {
 		td {
 			vertical-align: middle;
 		}
+
 		.product-image {
 			max-width: 80px;
 			word-wrap: break-word;
 
-				img {
+			img {
 				width: 50px;
 			}
 		}
 	}
 }
 
-.inv-filter-box {
-	// display: inline-block;
-
-}
 
 @import "inventory_page_print";
 
