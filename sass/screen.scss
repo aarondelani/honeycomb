@@ -79,11 +79,53 @@ fieldset + fieldset {
 	@include anti-aliased;
 }
 
+.info-comp {
+	bottom: 0;
+	color: #FFF;
+	display: none;
+	font-weight: 400;
+	font-size: 1.25em;
+	opacity: 0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	text-align: center;
+	z-index: 100;
+
+	@include anti-aliased;
+	@include transition-property(all);
+	@include transition-duration(0.2s);
+	@include transition-timing-function(ease-in);
+
+	&.in {
+		display: block;
+	}
+
+	&.displayed {
+		bottom: 2em;
+		opacity: 1;
+	}
+
+	&.out {
+		bottom: 0em;
+		opacity: 0;
+	}
+
+	.info-comp-content {
+		background: rgba(0,0,0, 0.75);
+		border-radius: 10px;
+		display: inline-block;
+		padding: 1em;
+		margin: 0 auto;
+	}
+}
+
 #welcome {
 	color: #FFF;
 	padding-top: 4.723em;
 	position: relative;
 	overflow: hidden;
+	margin-top: -20px;
 
 	@include anti-aliased;
 	@include background-image(linear-gradient(top, #03212E 0%,#00415D 100%));
@@ -220,10 +262,6 @@ fieldset + fieldset {
 	display: block;
 }
 
-#content {
-	@include anti-aliased;
-}
-
 legend {
 	& + .input-group {
 		margin-top: 0;
@@ -266,7 +304,9 @@ textarea {
 // }
 
 #content {
-	padding: 4.723em 2em;
+	padding: 0 2em 4.723em;
+
+	@include anti-aliased;
 }
 
 #client_bar {
@@ -525,19 +565,6 @@ th, td {
 }
 
 .inventory-page {
-	#inv_filters {
-		.inv-filter-box {
-			display: inline-block;
-			margin: 0.25em 0;
-			width: 12.5%;
-			vertical-align: top;
-
-			input:first-child {
-				margin-top: 4px;
-			}
-		}
-	}
-
 	#report_table_wrapper {
 		padding-top: 1em;
 	}
@@ -545,15 +572,40 @@ th, td {
 	#report_table {
 		td {
 			vertical-align: middle;
+			cursor: pointer;
 		}
 
 		.product-image {
 			max-width: 80px;
 			word-wrap: break-word;
+			position: relative;
 
 			img {
 				width: 50px;
 			}
+		}
+
+		.item-checkbox {
+			margin-top: -7px;
+			position: absolute;
+			left: 5px;
+			top: 50%;
+			visibility: hidden;
+		}
+	}
+
+	#custom_catalog_controls {
+		opacity: 0;
+		margin-bottom: -2em;
+
+		@include anti-aliased;
+		@include transition-property(all);
+		@include transition-duration(0.2s);
+		@include transition-timing-function(ease-in);
+
+		&.active {
+			opacity: 1;
+			margin-bottom: 0em;
 		}
 	}
 }

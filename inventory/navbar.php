@@ -24,7 +24,7 @@ if ($all_inventory) {
 	</ul>
 		<form class="navbar-form navbar-right" action="index.php" method="get" name="id" id="searchProducts" role="search">
 			<div class="form-group">
-				<a href="print.php?rep=<?php if (isset($_GET["rep"])) {echo $_GET["rep"];} else { echo "rack";} ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?php echo $tooltip; ?>"><span class="glyphicon glyphicon-print"></span> Print Catalog</a></span>
+				<a href="print.php?rep=<?php if (isset($_GET["rep"])) {echo $_GET["rep"];} else { echo "all";} ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?php echo $tooltip; ?>"><span class="glyphicon glyphicon-print"></span> Print Catalog</a></span>
 			</div>
 		</form>
 	</div>

@@ -57,6 +57,42 @@ var buildTable = function (params, insert) {
 	table.appendTo(insert);
 }
 
+var _disp_info = function (string) {
+	var body = $('body');
+	var comp = $('<div class="info-comp">');
+	var compContent = $('<div class="info-comp-content">');
+
+	compContent.html(string);
+
+	comp.append(compContent);
+	body.append(comp);
+
+	comp.addClass('in');
+
+	// Displaying and hiding func through js for browser support
+	setTimeout(
+		function(){
+			comp.addClass('displayed');
+		}, 1);
+	setTimeout(
+		function(){
+			comp.addClass('out');
+		}, 2000);
+	setTimeout(
+		function(){
+			comp.removeClass('displayed');
+		}, 3000);
+	setTimeout(
+		function(){
+			comp.removeClass('in');
+			comp.removeClass('out');
+		}, 3500);
+	setTimeout(
+		function(){
+			comp.remove()
+		}, 3501);
+};
+
 // new buildTable(
 // 	{
 // 		table_id: "constantinople",
