@@ -55,53 +55,54 @@
 					<th class="text-center">Total</th>
 				</tr>
 			</thead>
-		<?php if ($par_rep->num_rows > 0) {
+		<?php
+			if ($par_rep->num_rows > 0) {
 				while($repor = $par_rep->fetch_assoc()) {
 					// print_r($repor);
 					$item_id = $repor["itemid"];
 					$item_image = $repor["image"];
 		?>
-		<tr data-item-keywords="<?php echo $repor["item_keyword"]; ?>" class="item-row">
-			<td class="product-image text-center">
-				<input type="checkbox" id="<?php echo $item_id; ?>" class="item-checkbox" data-item-name="<?php echo $repor["Style"] . " " . $repor["Color"] . " " . $repor["Fabric"] . " " . $repor["Brand"]; ?>">
-			<?php if ($item_image != NULL || "") { ?>
-				<img src="<?php echo $imghost . $item_image; ?>" alt="">
-				<?php } else { ?>
-				<span class="glyphicon glyphicon-picture"></span><span> No Preview</span>
-			<?php } ?>
-			</td>
-			<td><?php echo $repor["Style"]; ?></td>
-			<td><?php echo $repor["Color"]; ?></td>
-			<td><?php echo $repor["Fabric"]; ?></td>
-			<td><?php echo $repor["Brand"]; ?></td>
-			<td><?php echo $repor["item_pattern"]; ?></td>
-			<td><?php echo $repor["Fit"]; ?></td>
-			<td><?php echo $repor["Origin"]; ?></td>
-			<!-- <td class="text-center"><?php echo $repor["OS"]; ?></td> -->
-			<!-- <td class="text-center"><?php echo $repor["2XS"]; ?></td> -->
-			<td class="text-center"><?php echo $repor["XS"]; ?></td>
-			<td class="text-center"><?php echo $repor["S"]; ?></td>
-			<td class="text-center"><?php echo $repor["M"]; ?></td>
-			<td class="text-center"><?php echo $repor["L"]; ?></td>
-			<td class="text-center"><?php echo $repor["XL"]; ?></td>
-			<td class="text-center"><?php echo $repor["2XL"]; ?></td>
-			<td class="text-center"><?php echo $repor["3XL"]; ?></td>
-			<!-- <td class="text-center"><?php echo $repor["4XL"]; ?></td> -->
-			<td class="text-center"><?php echo $repor["size_avail_total"]; ?></td>
-		</tr>
-		<?php }
-		} ?>
+			<tr data-item-keywords="<?php echo $repor["item_keyword"]; ?>" class="item-row">
+				<td class="product-image text-center">
+					<input type="checkbox" id="<?php echo $item_id; ?>" class="item-checkbox" data-item-name="<?php echo $repor["Style"] . " " . $repor["Color"] . " " . $repor["Fabric"] . " " . $repor["Brand"]; ?>">
+				<?php if ($item_image != NULL || "") { ?>
+					<img src="<?php echo $imghost . $item_image; ?>" alt="">
+					<?php } else { ?>
+					<span class="glyphicon glyphicon-picture"></span><span> No Preview</span>
+				<?php } ?>
+					<span class="sr-only"><?php echo $repor["item_keyword"]; ?></span>
+				</td>
+				<td><?php echo $repor["Style"]; ?></td>
+				<td><?php echo $repor["Color"]; ?></td>
+				<td><?php echo $repor["Fabric"]; ?></td>
+				<td><?php echo $repor["Brand"]; ?></td>
+				<td><?php echo $repor["item_pattern"]; ?></td>
+				<td><?php echo $repor["Fit"]; ?></td>
+				<td><?php echo $repor["Origin"]; ?></td>
+				<!-- <td class="text-center"><?php echo $repor["OS"]; ?></td> -->
+				<!-- <td class="text-center"><?php echo $repor["2XS"]; ?></td> -->
+				<td class="text-center"><?php echo $repor["XS"]; ?></td>
+				<td class="text-center"><?php echo $repor["S"]; ?></td>
+				<td class="text-center"><?php echo $repor["M"]; ?></td>
+				<td class="text-center"><?php echo $repor["L"]; ?></td>
+				<td class="text-center"><?php echo $repor["XL"]; ?></td>
+				<td class="text-center"><?php echo $repor["2XL"]; ?></td>
+				<td class="text-center"><?php echo $repor["3XL"]; ?></td>
+				<!-- <td class="text-center"><?php echo $repor["4XL"]; ?></td> -->
+				<td class="text-center"><?php echo $repor["size_avail_total"]; ?></td>
+			</tr>
+		<?php } } ?>
 		</table>
 
 	</div>
 </div>
 
 <?php
-
 $paradox_mysql_link->close();
-$dataTables = TRUE;
-include '../admin/footer.php';
 
+$dataTables = TRUE;
+
+include '../admin/footer.php';
 ?>
 
 <script type="text/javascript">

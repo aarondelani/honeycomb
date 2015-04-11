@@ -4,6 +4,7 @@
 	$body_class .= " inventory-page-print";
 	$inventory_page_active = TRUE;
 	$autocomplete = TRUE;
+	$testing = FALSE;
 
 	include '../admin/vars.php';
 	include '../admin/headers.php';
@@ -12,8 +13,41 @@
 
 	include 'view_control.php';
 ?>
+	<?php if ($generated_catalog) { ?>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<!-- <div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#client_bar" aria-expanded="false" aria-controls="client_bar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a <?php if ($all_inventory) {echo " class=\"active navbar-brand\"";} else {echo " class=\"navbar-brand\"";}?> href="<?php echo $host; ?>/inventory/?rep=all">Inventory</a>
+			</div> -->
+
+			<div class="collapse navbar-collapse" id="client_bar">
+				<!-- <ul class="nav navbar-nav">
+					<li role="presentation" <?php if ($lji_rack_page) {echo " class=\"active\"";} ?>><a href="?rep=rack">LJI Rack Report</a></li>
+					<li role="presentation" <?php if ($closeout_page) {echo " class=\"active\"";} ?>><a href="?rep=close">Closeout Report</a></li>
+				</ul> -->
+				<form class="navbar-form" action="index.php" method="get" name="id" id="searchProducts" role="search">
+					<div class="form-group">
+						<button class="btn btn-default btn-back" onclick="cmdBack()"><span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+					</div>
+					<div class="form-group"><button class="btn btn-default" onclick="window.print()"><span class="glyphicon glyphicon-print"></span> Print</button></div>
+				</form>
+			</div>
+		</div>
+	</nav>
+	<?php } ?>
 <div id="wrapper">
 	<div id="content" class="container-fluid" role="main">
+	<?php if ($generated_catalog) { ?>
+		<div class="alert alert-info no-print">
+			<span class="glyphicon glyphicon-flash"></span> <strong>Great!</strong> You&apos;ve generated a custom catalog page. From this view, you will be able to add a custom title to the top of the page.
+		</div>
+	<?php } ?>
 		<div class="header-cont">
 			<div class="contact-details">
 				<ul>
@@ -22,7 +56,14 @@
 					<li>ljsales@lesliejordan.com</li>
 				</ul>
 			</div>
-			<h2><a href="http://www.lesliejordan.com"><img src="images/lj-logo.svg" alt="Leslie Jordan Logo"></a> <?php echo $current_page; ?></h2>
+			<h2>
+				<a href="http://www.lesliejordan.com"><img src="images/lj-logo.svg" alt="Leslie Jordan Logo"></a>
+				<?php if ($generated_catalog) { ?>
+					<span contenteditable="true" placeholder="Add Title"></span>
+				<?php } else { ?>
+					<span><?php echo $current_page; ?></span>
+				<?php } ?>
+			</h2>
 		</div>
 
 		<?php
@@ -85,8 +126,9 @@
 		} ?>
 		<div class="footer-cont">
 			<div class="footer-cont-content">
-				<strong>Leslie Jordan Inc.</strong> |&nbsp;
+				<strong>Leslie Jordan Inc.</strong>
 				<?php if ($generated_catalog) { ?>
+				&nbsp;|&nbsp;
 				<a href="mailto:<?php echo $_SESSION["username"]; ?>@lesliejordan.com"><?php echo $_SESSION["username"]; ?>@lesliejordan.com</a>
 				<?php } ?>
 			</div>
@@ -104,8 +146,7 @@ include '../admin/footer.php';
 
 <script type="text/javascript">
 $(document).ready(function(){
-	<?php 
-		if (!$testing) { ?>
+	<?php if (!$generated_catalog) { ?>
 		window.print();
 	<?php } ?>
 
@@ -122,7 +163,7 @@ $(document).ready(function(){
 	page_contents = [];
 
 	// container.append(new page);
-	console.log(items.length);
+	// console.log(items.length);
 
 	items.each(
 		function (node) {
@@ -139,7 +180,6 @@ $(document).ready(function(){
 			}
 
 			if (page_contents.length == 12 || (is_lastpage)) {
-				// container.append(page);
 				var page = $('<div class="page">');
 				var page_number = $('<span class="page-number">');
 

@@ -18,10 +18,10 @@ if ($all_inventory) {
 	</div>
 
 	<div class="collapse navbar-collapse" id="client_bar">
-	<ul class="nav navbar-nav">
-		<li role="presentation" <?php if ($lji_rack_page) {echo " class=\"active\"";} ?>><a href="?rep=rack">LJI Rack Report</a></li>
-		<li role="presentation" <?php if ($closeout_page) {echo " class=\"active\"";} ?>><a href="?rep=close">Closeout Report</a></li>
-	</ul>
+		<ul class="nav navbar-nav">
+			<li role="presentation" <?php if ($lji_rack_page) {echo " class=\"active\"";} ?>><a href="?rep=rack">LJI Rack Report</a></li>
+			<li role="presentation" <?php if ($closeout_page) {echo " class=\"active\"";} ?>><a href="?rep=close">Closeout Report</a></li>
+		</ul>
 		<form class="navbar-form navbar-right" action="index.php" method="get" name="id" id="searchProducts" role="search">
 			<div class="form-group">
 				<a href="print.php?rep=<?php if (isset($_GET["rep"])) {echo $_GET["rep"];} else { echo "all";} ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?php echo $tooltip; ?>"><span class="glyphicon glyphicon-print"></span> Print Catalog</a></span>

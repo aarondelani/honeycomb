@@ -1,5 +1,9 @@
 $body = $("body");
 
+function cmdBack() {
+    window.history.back();
+}
+
 $(document).on(
 	{
 		ajaxStart: function() {
