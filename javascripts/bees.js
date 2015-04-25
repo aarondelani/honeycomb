@@ -1,4 +1,4 @@
-$body = $("body");
+body = $("body");
 
 function cmdBack() {
     window.history.back();
@@ -7,17 +7,17 @@ function cmdBack() {
 $(document).on(
 	{
 		ajaxStart: function() {
-			$body.addClass("loading");
+			body.addClass("loading");
 		},
 		ajaxStop: function() {
-			$body.removeClass("loading");
+			body.removeClass("loading");
 		}
 	}
 );
 
 $(document).ready(
 	function (event) {
-		$body.removeClass("loading");
+		body.removeClass("loading");
 
 		$('[data-toggle="tooltip"]').tooltip();
 	}

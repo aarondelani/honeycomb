@@ -521,6 +521,20 @@ th, td {
 	min-height: 200px;
 }
 
+// Leads
+
+.lead-media {
+	margin-top: 0;
+	.product-image {
+		word-wrap: break-word;
+		position: relative;
+		overflow: hidden;
+
+		img {
+			width: 60px;
+		}
+	}
+}
 
 .typeahead.dropdown-menu {
 	li {
@@ -536,7 +550,7 @@ th, td {
 }
 
 .fl-right {
-	float: right
+	float: right;
 }
 
 .order-panel {
@@ -642,7 +656,6 @@ th, td {
 		}
 	}
 }
-
 
 @import "inventory_page_print";
 

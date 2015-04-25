@@ -162,15 +162,11 @@ $(document).ready(function(){
 
 	page_contents = [];
 
-	// container.append(new page);
-	// console.log(items.length);
 
 	items.each(
 		function (node) {
 			var is_lastpage = items.length == node + 1;
-			console.log(is_lastpage);
 
-			// console.log(page);
 			if (counter >= 0 && page_contents.length !== 12) {
 				page_contents.push(this);
 
@@ -202,7 +198,6 @@ $(document).ready(function(){
 				console.log('there eleven', page_contents.length);
 
 				if (items.length == node + 1) {
-
 					header.remove();
 					footer.remove();
 				}

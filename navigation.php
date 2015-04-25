@@ -42,7 +42,7 @@ $leads_count = $leads_count->num_rows;
 					<li><a href="<?php echo "$host"; ?>/customers/import_customers">Import and Compare Customer Lists</a></li>
 				</ul>
 			</li>
-			<li class="<?php if ($product_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/product">Product Catalog</a></li>
+			<li class="<?php if ($product_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/product">Product Library</a></li>
 		</ul>
 		<div class="nav navbar-nav navbar-right">
 			<li class="dropdown">

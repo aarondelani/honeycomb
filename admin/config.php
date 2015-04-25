@@ -5,7 +5,6 @@ $mysql_user = 'honeycomb';
 $mysql_password = 'password';
 $honeycomb_db = "_honeycomb";
 
-
 $host = "http://192.168.0.144/~aaron/honeycomb";
 // $host = "http://localhost/~aaron/HONEYCOMB";
 
