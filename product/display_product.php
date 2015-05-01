@@ -177,20 +177,19 @@
 
 			if ($product_options->num_rows > 0) {
 				while($prod_option = $product_options->fetch_assoc()) {
-					$print_list_options .= $pre_prnt_temp . mysql_escape_string($prod_option["id"]) . "\">" . mysql_escape_string($prod_option["_attr_name"]) . $post_prnt_temp;
+					$print_list_options .= $pre_prnt_temp . mysqli_escape_string($prod_option["id"]) . "\">" . mysqli_escape_string($prod_option["_attr_name"]) . $post_prnt_temp;
 
 					if ($product_option_library->num_rows > 0) {
 						while($options = $product_option_library->fetch_assoc()) {
 							if ($options["_prod_attr_option"] == $prod_option["id"]) {
 								$print_opt = TRUE;
-								$print_list .= $pre_prnt_temp . mysql_escape_string($options["id"]) . "\">" . mysql_escape_string($options["name"]) . " " . mysql_escape_string($options["val"]) . $post_prnt_temp;
+								$print_list .= $pre_prnt_temp . mysqli_escape_string($options["id"]) . "\">" . mysqli_escape_string($options["name"]) . " " . mysqli_escape_string($options["val"]) . $post_prnt_temp;
 							}
 						}
 					}
 				}
 			}
 		?>
-
 
 		<?php if (isset($_GET['id']) && !$foundProduct) { ?>
 			<div class="alert alert-danger" role="alert">Whoops, couldn&apos;t find the product you were looking for.</div>
@@ -213,7 +212,7 @@
 				<label for="val">Material:</label>
 				<?php
 					if ($print_opt) {
-						echo "<select name=\"val\" class=\"form-control\" data=\"" . mysql_escape_string($prod_option["id"]) . "\">";
+						echo "<select name=\"val\" class=\"form-control\" data=\"" . mysqli_escape_string($prod_option["id"]) . "\">";
 						echo $print_list;
 						echo "</select>";
 					}
@@ -226,7 +225,6 @@
 		</form>
 	</div>
 </div>
-
 
 <div class="modal anti-aliased fade" id="addOption">
 	<div class="modal-dialog">
@@ -242,7 +240,7 @@
 				<label for="val">Option:</label>
 				<?php
 					if ($print_opt) {
-						echo "<select name=\"val\" class=\"form-control\" data=\"" . mysql_escape_string($prod_option["id"]) . "\">";
+						echo "<select name=\"val\" class=\"form-control\" data=\"" . mysqli_escape_string($prod_option["id"]) . "\">";
 						echo $print_list_options;
 						echo "</select>";
 					}

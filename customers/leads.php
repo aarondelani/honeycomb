@@ -139,9 +139,6 @@
 				</div>
 			</div>
 
-
-
-
 		<?php }}} else { ?>
 		<h1><span class="fa fa-compass" aria-hidden="true"></span> Leads</h1>
 

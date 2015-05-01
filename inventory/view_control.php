@@ -3,7 +3,7 @@
 
 	$paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $paradox_mysql_password, $paradox_db);
 
-	$filters = $paradox_mysql_link->query('SELECT inv_filter.filterid as filterid, inv_filter.filtername as filtername, inv_filter.filterreference as filterreference, inv_filter.filtercategory as filtercategory, inv_filtercat.categoryname as category FROM (inv_filter JOIN inv_filtercat ON (inv_filter.filtercategory = inv_filtercat.filtercatid)) WHERE (inv_filtercat.filtercatid != 6) AND inv_filter.hide != "y";');
+// $filters = $paradox_mysql_link->query('SELECT inv_filter.filterid as filterid, inv_filter.filtername as filtername, inv_filter.filterreference as filterreference, inv_filter.filtercategory as filtercategory, inv_filtercat.categoryname as category FROM (inv_filter JOIN inv_filtercat ON (inv_filter.filtercategory = inv_filtercat.filtercatid)) WHERE (inv_filtercat.filtercatid != 6) AND inv_filter.hide != "y";');
 
 // Setting Default Report
 	$all_inventory = FALSE;
@@ -19,7 +19,7 @@
 	}
 
 	if (!isset($_GET["rep"]) && !isset($_POST["submit"])) {
-		$query .= "inv_item.item_remove = 'active' AND inv_item.hide = 'n' GROUP BY `paradox`.`inv_item`.`itemid`;";
+		$query .= "inv_item.item_remove = 'active' GROUP BY `paradox`.`inv_item`.`itemid`;";
 	}
 
 	if (isset($_GET["rep"])) {
@@ -35,10 +35,7 @@
 			$current_page = "Closeout Report";
 		}
 
-		if ($_GET["rep"] == "all") {
-		}
-
-		$query .= "inv_item.item_keyword LIKE '%" . $filterQuery . "%' AND inv_item.item_remove = 'active' AND inv_item.hide = 'n' GROUP BY `paradox`.`inv_item`.`itemid`;";
+		$query .= "inv_item.item_keyword LIKE '%" . $filterQuery . "%' AND inv_item.item_remove = 'active' GROUP BY `paradox`.`inv_item`.`itemid`;";
 	}
 
 	if (isset($_POST["submit"])) {
@@ -47,7 +44,7 @@
 
 		$filterQuery = implode(" OR inv_item.itemid = ", $querio);
 
-		$query .= "inv_item.itemid = " . $filterQuery . " AND inv_item.item_remove = 'active' AND inv_item.hide = 'n' ORDER BY `paradox`.`inv_item`.`color`;";
+		$query .= "inv_item.itemid = " . $filterQuery . " AND inv_item.item_remove = 'active' ORDER BY `paradox`.`inv_item`.`color`;";
 	}
 
 	$par_rep = $paradox_mysql_link->query($query);
