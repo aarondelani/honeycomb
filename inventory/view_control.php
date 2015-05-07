@@ -48,4 +48,8 @@
 	}
 
 	$par_rep = $paradox_mysql_link->query($query);
+
+	if ($testing) {
+		echo "<!-- " . $query . " -->";
+	}
 ?>
