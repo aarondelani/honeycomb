@@ -7,6 +7,7 @@
 	include '../admin/vars.php';
 	include '../admin/headers.php';
 	include '../navigation.php';
+
 	$imghost = "http://www.lesliejordan.com/inventory/prodimages/";
 
 	include 'view_control.php';
@@ -25,7 +26,7 @@
 			</div>
 		</nav>
 
-		<?php 
+		<?php
 		if ($generated_catalog) {
 		} ?>
 

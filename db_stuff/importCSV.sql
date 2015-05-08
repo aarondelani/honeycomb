@@ -1,1 +1,0 @@
-LOAD DATA INFILE '~/Desktop/product-images-db.csv' INTO TABLE _prod_attrs FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n';

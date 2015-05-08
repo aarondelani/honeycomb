@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 	// Need page preferences here
 
@@ -10,6 +9,9 @@
 	include 'admin/vars.php';
 	include 'admin/headers.php';
 ?>
+
+<!DOCTYPE html>
+
 <div id="welcome">
 	<div class="container">
 		<div class="jumbotron">
