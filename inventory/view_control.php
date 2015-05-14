@@ -14,28 +14,34 @@
 	$all_inventory = TRUE;
 	$current_page = "Viewing All Inventory";
 
-	if ($_GET["t"] == 1){
-		$testing = TRUE;
+	if (isset($_GET["t"])) {
+		if ($_GET["t"] == 1){
+			$testing = TRUE;
+		}
 	}
 
-	if (!isset($_GET["rep"]) && !isset($_POST["submit"])) {
+	if (!isset($_GET["rep"]) && !isset($_POST["submit"]) || $_GET["rep"] == "all") {
 		$query .= "inv_item.item_remove = 'active' GROUP BY `paradox`.`inv_item`.`itemid`;";
 	}
 
 	if (isset($_GET["rep"])) {
-		if ($_GET["rep"] == "rack") {
-			$filterQuery = "lji rack";
-			$lji_rack_page = TRUE;
-			$current_page = "LJI Rack Report";
-		}
+		$filterQuery = $query;
 
-		if ($_GET["rep"] == "close") {
-			$closeout_page = TRUE;
-			$filterQuery = "closeout";
-			$current_page = "Closeout Report";
-		}
+		if ($_GET["rep"] != "all") {
+			if ($_GET["rep"] == "rack") {
+				$filterQuery = "lji rack";
+				$lji_rack_page = TRUE;
+				$current_page = "LJI Rack Report";
+			}
 
-		$query .= "inv_item.item_keyword LIKE '%" . $filterQuery . "%' AND inv_item.item_remove = 'active' GROUP BY `paradox`.`inv_item`.`itemid`;";
+			if ($_GET["rep"] == "close") {
+				$closeout_page = TRUE;
+				$filterQuery = "closeout";
+				$current_page = "Closeout Report";
+			}
+
+			$query .= "inv_item.item_keyword LIKE '%" . $filterQuery . "%' AND inv_item.item_remove = 'active' GROUP BY `paradox`.`inv_item`.`itemid`;";
+		}
 	}
 
 	if (isset($_POST["submit"])) {
@@ -48,7 +54,4 @@
 	}
 
 	$par_rep = $paradox_mysql_link->query($query);
-
-
-
 ?>

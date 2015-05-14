@@ -1,12 +1,14 @@
 <?php
 	// Need page preferences here
+	include '../admin/vars.php';
 	$page_title = "Inventory Reports";
 	$body_class .= " inventory-page";
 	$inventory_page_active = TRUE;
 	$autocomplete = TRUE;
-	include '../admin/vars.php';
 	include '../admin/headers.php';
 	include '../navigation.php';
+	$closeout_page = FALSE;
+	$lji_rack_page = FALSE;
 
 	$imghost = "http://www.lesliejordan.com/inventory/prodimages/";
 
@@ -65,13 +67,13 @@
 					$style_ = $repor["Style"];
 
 					// Product Library Query
-					$plQ = $mysql_link->query('SELECT id_product FROM _product WHERE _product_style = "$style_" LIMIT 1');
+					// $plQ = $mysql_link->query('SELECT id_product FROM _product WHERE _product_style = "$style_" LIMIT 1');
 
-					if ($plQ->num_rows > 0) {
-						while ($plQID = $plQ->fetch_assoc()) {
-							$product_library_id = $plQID["id_product"];
-						}
-					}
+					// if ($plQ->num_rows > 0) {
+					// 	while ($plQID = $plQ->fetch_assoc()) {
+					// 		$product_library_id = $plQID["id_product"];
+					// 	}
+					// }
 		?>
 			<tr data-item-keywords="<?php echo $repor["item_keyword"]; ?>" class="item-row">
 				<td class="product-image text-center">
@@ -83,7 +85,7 @@
 				<?php } ?>
 					<span class="sr-only"><?php echo $repor["item_keyword"]; ?></span>
 				</td>
-				<td><a href="<?php echo $host . "/product/?search=" . $repor["Style"]; ?>" target="_blank"><?php echo $repor["Style"]; ?></a></td>
+				<td><?php echo $repor["Style"]; ?></td>
 				<td><?php echo $repor["Color"]; ?></td>
 				<td><?php echo $repor["Fabric"]; ?></td>
 				<td><?php echo $repor["Brand"]; ?></td>

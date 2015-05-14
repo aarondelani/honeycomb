@@ -14,7 +14,7 @@ if ($all_inventory) {
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a <?php if ($all_inventory) {echo " class=\"active navbar-brand\"";} else {echo " class=\"navbar-brand\"";}?> href="<?php echo $host; ?>/inventory/?rep=all">Inventory</a>
+		<a <?php if ($all_inventory) {echo " class=\"active navbar-brand\"";} else {echo " class=\"navbar-brand\"";}?> href="<?php echo $host; ?>/inventory/">Inventory</a>
 	</div>
 
 	<div class="collapse navbar-collapse" id="client_bar">

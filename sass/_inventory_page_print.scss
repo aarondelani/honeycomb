@@ -58,11 +58,11 @@
 		border: 0.0125in solid #CCC;
 		// display: inline-block;
 		float: left;
-		width: 2.5in;
-		max-height: 2.25in;
+		min-height: 2.25in;
 		overflow: hidden;
 		border-radius: 4px;
 		margin: 0 0.0725in 0.15in;
+		width: 2.5in;
 
 		// &:nth-child(odd) {
 		// 	margin-right: 0;

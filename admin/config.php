@@ -6,9 +6,6 @@ $mysql_password = 'password';
 $honeycomb_db = "_honeycomb";
 
 $host = "http://192.168.0.144/~aaron/honeycomb";
-// $host = "http://localhost/~aaron/HONEYCOMB";
-
-// $site_location = "/Users/~aaron/Sites/HONEYCOMB";
 $site_location = "/Users/~aaron/Sites/honeycomb";
 
 //PARADOX SERVER LEGACY
@@ -23,9 +20,7 @@ $sugar_mysql_user = 'honeycomb';
 $sugar_mysql_password = 'password';
 $sugar_db = "_sugar";
 
-if (file_exists('custom_config.php')) {
-	include 'custom_config.php';
-}
+include 'custom_config.php';
 
 // Check Honeycomb Install
 $mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);

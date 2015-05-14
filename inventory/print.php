@@ -1,12 +1,13 @@
 <?php
 	// Need page preferences here
+	include '../admin/vars.php';
+
 	$page_title = "Inventory Reports";
 	$body_class .= " inventory-page-print";
 	$inventory_page_active = TRUE;
 	$autocomplete = TRUE;
 	$testing = FALSE;
 
-	include '../admin/vars.php';
 	include '../admin/headers.php';
 
 	$imghost = "http://www.lesliejordan.com/inventory/prodimages/";
@@ -207,7 +208,3 @@ $(document).ready(function(){
 
 });
 </script>
-
-<?php
-$paradox_mysql_link->close();
-?>

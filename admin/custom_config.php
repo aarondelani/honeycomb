@@ -1,13 +1,11 @@
 <?php
+
 $mysql_server = '127.0.0.1:3306';
 $mysql_user = 'honeycomb';
 $mysql_password = 'password';
 $honeycomb_db = "_honeycomb";
 
 $host = "http://192.168.0.144/~aaron/honeycomb";
-// $host = "http://localhost/~aaron/HONEYCOMB";
-
-// $site_location = "/Users/~aaron/Sites/HONEYCOMB";
 $site_location = "/Users/~aaron/Sites/honeycomb";
 
 //PARADOX SERVER LEGACY
@@ -21,4 +19,5 @@ $sugar_mysql_server = '127.0.0.1:3306';
 $sugar_mysql_user = 'honeycomb';
 $sugar_mysql_password = 'password';
 $sugar_db = "_sugar";
+
 ?>
