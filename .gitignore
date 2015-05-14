@@ -3,4 +3,5 @@
 *.scssc
 
 .DS_Store
+
 admin/custom_config.php
