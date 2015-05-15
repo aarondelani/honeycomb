@@ -26,11 +26,11 @@ if ($errs) {
 session_start();
 // print_r($_SERVER);
 
-if ($_SERVER['HTTP_REFERER'] != "" && isset($_SESSION['url'])) {
-	$_SESSION['url'] = $_SERVER['HTTP_REFERER'];
-} else {
-	$_SESSION['url'] = $host;
-}
+// if ($_SERVER['HTTP_REFERER'] != "" && isset($_SESSION['url'])) {
+// 	$_SESSION['url'] = $_SERVER['HTTP_REFERER'];
+// } else {
+// 	$_SESSION['url'] = $host;
+// }
 
 if (!isset($_SESSION['login_tries'])) {
 	$_SESSION['login_tries'] = 0;
