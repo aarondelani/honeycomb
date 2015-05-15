@@ -17,16 +17,6 @@
 	<?php if ($generated_catalog) { ?>
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container-fluid">
-			<!-- <div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#client_bar" aria-expanded="false" aria-controls="client_bar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a <?php if ($all_inventory) {echo " class=\"active navbar-brand\"";} else {echo " class=\"navbar-brand\"";}?> href="<?php echo $host; ?>/inventory/?rep=all">Inventory</a>
-			</div> -->
-
 			<div class="collapse navbar-collapse" id="client_bar">
 				<!-- <ul class="nav navbar-nav">
 					<li role="presentation" <?php if ($lji_rack_page) {echo " class=\"active\"";} ?>><a href="?rep=rack">LJI Rack Report</a></li>

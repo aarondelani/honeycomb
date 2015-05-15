@@ -23,9 +23,9 @@
 	}
 
 	if (isset($_GET["rep"])) {
-		$filterQuery = $query;
-
 		if ($_GET["rep"] != "all") {
+			$filterQuery = $query;
+
 			if ($_GET["rep"] == "rack") {
 				$filterQuery = "lji rack";
 				$lji_rack_page = TRUE;
