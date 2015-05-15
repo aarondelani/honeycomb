@@ -1,11 +1,11 @@
 <?php
 	// Need page preferences here
+
+	include 'admin/vars.php';
 	$page_title = "";
 	$body_class = "";
 	$home_page_active = TRUE;
 	$autocomplete = TRUE;
-
-	include 'admin/vars.php';
 	include 'admin/headers.php';
 	include 'navigation.php';
 ?>
