@@ -31,7 +31,7 @@ $leads_count = $leads_count->num_rows;
 					<li><a href="<?php echo "$host"; ?>/inventory/?rep=close">Closeout Items</a></li>
 				</ul>
 			</li>
-			<li class="dropdown<?php if ($customer_page_active||$import_customer_page_active||$lead_page_active) {echo " active";} ?>">
+			<!-- <li class="dropdown<?php if ($customer_page_active||$import_customer_page_active||$lead_page_active) {echo " active";} ?>">
 				<a href="<?php echo "$host"; ?>/admin/customers" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Customers <span class="badge"><?php echo $leads_count; ?></span> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="<?php echo "$host"; ?>/customers">View Customer List</a></li>
@@ -41,8 +41,8 @@ $leads_count = $leads_count->num_rows;
 					<li><a href="<?php echo "$host"; ?>/customers/add">Add Contact or Customer</a></li>
 					<li><a href="<?php echo "$host"; ?>/customers/import_customers">Import and Compare Customer Lists</a></li>
 				</ul>
-			</li>
-			<li class="<?php if ($product_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/product">Product Library</a></li>
+			</li> -->
+			<!-- <li class="<?php if ($product_page_active) {echo " active";} ?>"><a href="<?php echo "$host"; ?>/product">Product Library</a></li> -->
 		</ul>
 		<div class="nav navbar-nav navbar-right">
 			<li class="dropdown">
