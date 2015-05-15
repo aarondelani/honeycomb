@@ -39,7 +39,6 @@
 						... and still couldn&apos;t log in. Please check your credentials, or ask IT for help.
 					</div>
 				<?php } ?>
-				<input type="hidden" name="redirurl" value="<?php echo $_SERVER['url']; ?>" />
 				<input type="hidden" name="login_process" value="true">
 				<input class="form-control" required type="text" name="username" placeholder="Username">
 				<input class="form-control" required type="password" name="password" placeholder="Password">
