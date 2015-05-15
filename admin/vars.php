@@ -1,6 +1,8 @@
 <?php
 include_once 'config.php';
 
+$loggedIn = FALSE;
+
 $dataTables = FALSE;
 $charts = FALSE;
 $autocomplete = FALSE;
@@ -16,43 +18,35 @@ $product_page_active = FALSE;
 $page_title = "";
 $body_class = "";
 
-
 if ($errs) {
 	error_reporting(E_ALL);
 	ini_set('display_errors','On');
 }
 
 session_start();
+// print_r($_SERVER);
 
-// if ($_SERVER['HTTP_REFERER'] != "") {
-// 	$_SESSION['url'] = $_SERVER['HTTP_REFERER'];
-// }
+if ($_SERVER['HTTP_REFERER'] != "" && isset($_SESSION['url'])) {
+	$_SESSION['url'] = $_SERVER['HTTP_REFERER'];
+} else {
+	$_SESSION['url'] = $host;
+}
+
+if (!isset($_SESSION['login_tries'])) {
+	$_SESSION['login_tries'] = 0;
+}
+
 if(isset($_SESSION['siteuser'])) {
 	if($_SESSION['siteuser'] !=0){
 		$loggedIn = TRUE;
 
-		// if(isset($_REQUEST['redirurl'])) {
-		// 	$url = $_REQUEST['redirurl']; // holds url for last page visited.
-
-		// 	header("Location: $url");
-		// } else {
-			// header("Location: index.php");
-		// }
-
 		$_SESSION['login_tries'] = 0;
-	} else {
-		$loggedIn = FALSE;
-
-		if (!$login_page){
-			header("Location: ".$host."/login.php");
-		}
 	}
+} else {
+	$loggedIn = FALSE;
 
-	$mysql_link = new mysqli($mysql_server, $mysql_user, $mysql_password, $honeycomb_db);
-
-	$users_table = $mysql_link->query('SELECT * FROM `users_table`');
-
-	$mysql_link->close();
+	if (!$login_page){
+		header("Location: ".$host."/login.php");
+	}
 }
-
 ?>

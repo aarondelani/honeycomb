@@ -11,8 +11,6 @@ $paradox_mysql_link = new mysqli($paradox_mysql_server, $paradox_mysql_user, $pa
 
 		if (isset($_SESSION['login_tries'])) {
 			$_SESSION['login_tries'] = $_SESSION['login_tries'] + 1;
-		} else {
-			$_SESSION['login_tries'] = 0;
 		}
 
 		$uSQL="SELECT * FROM user where username like '" . $username . "';";
