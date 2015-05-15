@@ -1,10 +1,12 @@
 <?php
 	// Need page preferences here
 	include '../admin/vars.php';
+
 	$page_title = "Inventory Reports";
 	$body_class .= " inventory-page";
 	$inventory_page_active = TRUE;
 	$autocomplete = TRUE;
+
 	include '../admin/headers.php';
 	include '../navigation.php';
 	$closeout_page = FALSE;
@@ -85,7 +87,7 @@
 				<?php } ?>
 					<span class="sr-only"><?php echo $repor["item_keyword"]; ?></span>
 				</td>
-				<td><?php echo $repor["Style"]; ?></td>
+				<td> <a href=""></a> <?php echo $repor["Style"]; ?></td>
 				<td><?php echo $repor["Color"]; ?></td>
 				<td><?php echo $repor["Fabric"]; ?></td>
 				<td><?php echo $repor["Brand"]; ?></td>
@@ -208,5 +210,3 @@ $(document).ready(function(){
 });
 
 </script>
-
-<?php $paradox_mysql_link->close(); ?>
